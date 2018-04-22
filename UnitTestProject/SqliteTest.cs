@@ -15,6 +15,18 @@ namespace UnitTestProject
     public class SqliteTest
     {
 
+
+
+        [TestMethod]
+        public void CreatTable()
+        {
+            SQLHelper sh = new SQLHelper();
+            string sql = string.Format("CREATE table CSDicTionary (id integer PRIMARY KEY autoincrement, DicType varchar(50), DicKeys varchar(50),DicVlaue varchar(50),DicMeno varchar(50) ,DicOrder float )");
+            int count = sh.SQLiteNonQuery(sql);
+            Assert.AreEqual("1", count + "");
+        }
+
+
         [TestMethod]
         public void AddUserInfo()
         {

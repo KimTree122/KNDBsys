@@ -38,9 +38,23 @@ namespace InitData.sqliteData
         {
             string sql = string.Format("CREATE table UserInfo (id integer PRIMARY KEY autoincrement, Uname varchar(50), UPost varchar(50), delflag bool) ");
             SQLiteNonQuery(sql);
+
             sql = string.Format("CREATE table CustomInfo (id integer PRIMARY KEY autoincrement, Cname varchar(50), CTel varchar(50), Caddress varchar(50)) ");
             SQLiteNonQuery(sql);
+
             sql = string.Format("CREATE table Goods (id integer PRIMARY KEY autoincrement, Gname varchar(50), Gtid varchar(50), delflag bool) ");
+            SQLiteNonQuery(sql);
+
+            sql = string.Format("CREATE table Authority (id integer PRIMARY KEY autoincrement, AuthName varchar(50), ParentID int, AuthTypeID int, AuthTypeName varchar(50) ,Imageid  int , AOrder FLOAT)");
+            SQLiteNonQuery(sql);
+
+            sql = string.Format("CREATE TABLE UserAuth (id integer PRIMARY KEY autoincrement, UserID int, AuthID int)");
+            SQLiteNonQuery(sql);
+
+            sql = string.Format("CREATE table CSDicTionary (id integer PRIMARY KEY autoincrement, DicType varchar(50), DicKeys varchar(50),DicVlaue varchar(50),DicMeno varchar(50),DicOrder float )");
+            SQLiteNonQuery(sql);
+
+            sql = string.Format("CREATE VIEW [UserAuthView] AS select b.* from userauth as a left join authority as b on a.[authid] = b.[id]");
             SQLiteNonQuery(sql);
         }
 

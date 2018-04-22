@@ -20,12 +20,15 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
 
         public IUserInfoService iis = new UserInfoService();
 
-        public string GetUserInfo() 
+        //public string GetUserInfo(string name) 
+        //{
+        //    return iis.GetEntity(ent => ent.Uname == name).Uname;
+        //}
+
+        public string GetUserInfo(string name,string post)
         {
-            return iis.GetEntity(ent => ent.Uname == "kim").Uname;
+            return iis.GetEntity(ent => ent.Uname == name).Uname+post;
         }
-
-
 
     }
 }
