@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseInfo\IBaseInfoService.cs" />
     <Compile Include="BaseInfo\IUserInfoService.cs" />
     <Compile Include="IBaseServiceBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

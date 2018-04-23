@@ -8,13 +8,13 @@ namespace KNDBsys.Model
 {
     public class SugarTest
     {
-        public object testsql()
+        public object testsql(string tablename)
         {
             //var db =new SugarADO().sc;
             SugarADO sa = new SugarADO();
             var db = sa.GetInstance();
 
-            db.DbFirst.Where("CustomInfo").CreateClassFile(@"C:\DataBase\SqlClz");
+            db.DbFirst.Where(tablename).CreateClassFile(@"C:\DataBase\SqlClz");
 
             List<Goods> all = db.Queryable<Goods>().ToList();
             return all;

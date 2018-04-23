@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseInfo\BaseInfoDal.cs" />
     <Compile Include="BaseInfo\UserInfoDal.cs" />
     <Compile Include="BaseDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

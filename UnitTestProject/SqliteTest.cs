@@ -49,10 +49,11 @@ namespace UnitTestProject
         }
 
         [TestMethod]
-        public void TestDB()
+        public void CreatClazz()
         {
             SugarTest st = new SugarTest();
-            List<Goods> obj = st.testsql() as List<Goods>;
+            
+            List<Goods> obj = st.testsql("UserAuth") as List<Goods>;
             Assert.AreEqual(obj[0].Gname, "kim");
         }
     }
