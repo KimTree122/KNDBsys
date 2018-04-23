@@ -16,7 +16,7 @@ namespace KNDBsys.WEB.Controllers
         public string TestSugarorm()
         {
             SugarTest st = new SugarTest();
-            List<Goods> sds = st.testsql() as List<Goods>;
+            List<Goods> sds = st.testsql("") as List<Goods>;
             string s = "";
             foreach (Goods sd in sds)
             {

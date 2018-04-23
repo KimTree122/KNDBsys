@@ -10,9 +10,9 @@ namespace KNDBsys.IDAL
     {
         T GetEntity(Expression<Func<T, bool>> whereLamdda);
 
-        IList<T> GetEntities(Expression<Func<T, bool>> whereLamdda);
+        List<T> GetEntities(Expression<Func<T, bool>> whereLamdda);
 
-        IList<T> GetPageEntityes(Expression<Func<T, bool>> whereLamdda,
+        List<T> GetPageEntityes(Expression<Func<T, bool>> whereLamdda,
             Expression<Func<T, object>> orderbyLambda, int pageSize, int pageIndex, bool isAsc);
 
         T Add(T entity);

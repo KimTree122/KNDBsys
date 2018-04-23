@@ -26,12 +26,12 @@ namespace KNDBsys.BLL
         }
 
 
-        public IList<T> GetEntities(Expression<Func<T, bool>> whereLamdda) 
+        public List<T> GetEntities(Expression<Func<T, bool>> whereLamdda) 
         {
             return CurrentDal.GetEntities(whereLamdda);
         }
 
-        public IList<T> GetPageEntityes<S>(Expression<Func<T, bool>> whereLamdda,
+        public List<T> GetPageEntityes<S>(Expression<Func<T, bool>> whereLamdda,
             Expression<Func<T, object>> orderbyLambda, int pageSize, int pageIndex, bool isAsc)
         {
             return CurrentDal.GetPageEntityes(whereLamdda, orderbyLambda, pageSize, pageIndex, isAsc);

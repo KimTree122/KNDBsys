@@ -10,40 +10,40 @@ namespace KNDBsys.DAL
 {
     public class BaseDal<T> where T:class,new ()
     {
-        public SugarADO sado = new SugarADO();
+        private SugarADO sado = new SugarADO();
 
-        public SqlSugarClient ssc 
+        public SqlSugarClient Ssc  
         {
             get { return sado.GetInstance(); }
         }
 
         public T GetEntity(Expression<Func<T, bool>> whereLamdda) 
         {
-            return ssc.Queryable<T>().Where(whereLamdda).First();
+            return Ssc.Queryable<T>().Where(whereLamdda).First();
         }
-        public IList<T> GetEntities(Expression<Func<T,bool>> whereLamdda) 
+        public List<T> GetEntities(Expression<Func<T,bool>> whereLamdda) 
         {
-            return ssc.Queryable<T>().Where(whereLamdda).ToList();
+            return Ssc.Queryable<T>().Where(whereLamdda).ToList();
         }
-        public IList<T> GetPageEntityes(Expression<Func<T, bool>> whereLamdda, 
+        public List<T> GetPageEntityes(Expression<Func<T, bool>> whereLamdda, 
             Expression<Func<T, object>>orderbyLambda ,int pageSize, int pageIndex,bool isAsc)
         {
             OrderByType oby = isAsc ? OrderByType.Asc : OrderByType.Desc;
-            return ssc.Queryable<T>().Where(whereLamdda).OrderBy(orderbyLambda, oby) 
+            return Ssc.Queryable<T>().Where(whereLamdda).OrderBy(orderbyLambda, oby) 
                 .Skip(pageIndex).Take(pageSize).ToList();
         }
 
         public T Add(T entity)
         {
-            return ssc.Insertable(entity).ExecuteReturnEntity();
+            return Ssc.Insertable(entity).ExecuteReturnEntity();
         }
         public bool Update(T entity) 
         {
-            return ssc.Updateable(entity).ExecuteCommand() > 0;
+            return Ssc.Updateable(entity).ExecuteCommand() > 0;
         }
         public bool Del(T entity)
         {
-            return ssc.Deleteable(entity).ExecuteCommand() > 0;
+            return Ssc.Deleteable(entity).ExecuteCommand() > 0;
         }
     }
 }

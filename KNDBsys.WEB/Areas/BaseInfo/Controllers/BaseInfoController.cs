@@ -1,5 +1,6 @@
 ﻿using KNDBsys.BLL.BaseInfo;
 using KNDBsys.IBLL.BaseInfo;
+using KNDBsys.Service.BaseInfoSer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,27 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
 
         public IUserInfoService iis = new UserInfoService();
 
-        //public string GetUserInfo(string name) 
-        //{
-        //    return iis.GetEntity(ent => ent.Uname == name).Uname;
-        //}
+        private AuthoritySer authser = new AuthoritySer();
+
+        private DictionarySer dictionarySer = new DictionarySer();
+
+
+        public string AddAuthority(string authority)
+        {
+            return authser.AddAuthority(authority);
+        }
+
+        public string GetDictionary(string dictype)
+        {
+            return dictionarySer.GetDicbytype(dictype);
+        }
+
+        public string AddDictionary(string dic)
+        {
+            return ""; 
+        }
+
+
 
         public string GetUserInfo(string name,string post)
         {
