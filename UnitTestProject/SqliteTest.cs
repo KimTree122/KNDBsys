@@ -16,26 +16,48 @@ namespace UnitTestProject
     {
 
 
+        [TestMethod]
+        public void Adddictionary()
+        {
+            string t = "";
+            Sysdic dic = new Sysdic { Dickey = "1", Dicname = "类型",
+             Dicsetp = 1, Dicval = "权限类型", DicMeno = "权限"};
+            ISysDicService ids = new SysDicService();
+            Sysdic insdic = ids.Add(dic);
+
+            t = insdic.id + "";
+            Assert.AreEqual(t, "1");
+        }
+
+        [TestMethod]
+        public void GetDictionaryData()
+        {
+            string t = "";
+            ISysDicService cSDic = new SysDicService();
+            List<Sysdic> dicTionary = cSDic.GetEntities(cs => cs.Dicname == "类型");
+            t = dicTionary.Count()+"";
+
+            Assert.AreEqual(t, "1");
+        }
 
         [TestMethod]
         public void CreatTable()
         {
             SQLHelper sh = new SQLHelper();
-            string sql = string.Format("CREATE table CSDicTionary (id integer PRIMARY KEY autoincrement, DicType varchar(50), DicKeys varchar(50),DicVlaue varchar(50),DicMeno varchar(50) ,DicOrder float )");
+            string sql = string.Format("CREATE table Sysdic (id integer PRIMARY KEY autoincrement, Dicname varchar(50), Dickey varchar(50),Dicval varchar(50),DicMeno varchar(50) ,Dicsetp int )");
             int count = sh.SQLiteNonQuery(sql);
-            Assert.AreEqual("1", count + "");
+            Assert.AreEqual("0", count + "");
         }
 
 
         [TestMethod]
-        public void AddUserInfo()
+        public void GetUserInfo()
         {
             UserInfoService uis = new UserInfoService();
-            UserInfo ui = new UserInfo { Uname = "kim", UPost = "kim", delflag = true };
+            List<UserInfo> userInfos = uis.GetEntities(ui => ui.Uname == "kim");
+            int count = userInfos.Count();
 
-            UserInfo insui = uis.Add(ui);
-
-            Assert.AreEqual(ui.Uname, insui.Uname);
+            Assert.AreEqual(count, 2);
 
         }
 
@@ -53,8 +75,8 @@ namespace UnitTestProject
         {
             SugarTest st = new SugarTest();
             
-            List<Goods> obj = st.testsql("UserAuth") as List<Goods>;
-            Assert.AreEqual(obj[0].Gname, "kim");
+            List<Goods> obj = st.testsql("Sysdic") as List<Goods>;
+            Assert.AreEqual(obj.Count, 1);
         }
     }
 }

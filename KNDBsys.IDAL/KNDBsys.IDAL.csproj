@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseInfo\IBaseInfo.cs" />
+    <Compile Include="BaseInfo\ISysDicDal.cs" />
     <Compile Include="BaseInfo\IUserInfoDal.cs" />
     <Compile Include="IBaseDal.cs" />
     <Compile Include="IDBsession.cs" />

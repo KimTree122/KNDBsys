@@ -57,6 +57,7 @@
     <Compile Include="BaseInfo\BaseClazz.cs" />
     <Compile Include="BaseInfo\CustomInfo.cs" />
     <Compile Include="BaseInfo\Goods.cs" />
+    <Compile Include="BaseInfo\Sysdic.cs" />
     <Compile Include="BaseInfo\UserInfo.cs" />
     <Compile Include="PostData.cs" />
     <Compile Include="SugarADO.cs" />

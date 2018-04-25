@@ -1,67 +1,11 @@
-﻿using System;
+﻿using SqlSugar;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace KNDBsys.Model.BaseInfo
 {
-    public class BaseClazz
-    {
-    }
-
-    ///<summary>
-    ///
-    ///</summary>
-    public partial class CSDicTionary
-    {
-        public CSDicTionary()
-        {
-
-
-        }
-        /// <summary>
-        /// Desc:
-        /// Default:
-        /// Nullable:False
-        /// </summary>           
-        public int id { get; set; }
-
-        /// <summary>
-        /// Desc:
-        /// Default:
-        /// Nullable:True
-        /// </summary>           
-        public string DicType { get; set; }
-
-        /// <summary>
-        /// Desc:
-        /// Default:
-        /// Nullable:True
-        /// </summary>           
-        public string DicKeys { get; set; }
-
-        /// <summary>
-        /// Desc:
-        /// Default:
-        /// Nullable:True
-        /// </summary>           
-        public string DicVlaue { get; set; }
-
-        /// <summary>
-        /// Desc:
-        /// Default:
-        /// Nullable:True
-        /// </summary>           
-        public string DicMeno { get; set; }
-
-        /// <summary>
-        /// Desc:
-        /// Default:
-        /// Nullable:True
-        /// </summary>           
-        public float? DicOrder { get; set; }
-
-    }
 
     ///<summary>
     ///

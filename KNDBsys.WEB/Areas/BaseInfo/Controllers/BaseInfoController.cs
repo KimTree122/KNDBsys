@@ -38,14 +38,21 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
 
         public string AddDictionary(string dic)
         {
-            return ""; 
+            return dictionarySer.AddDictionary(dic); 
+        }
+
+        public string Updatedictionary(string dic)
+        {
+            return dictionarySer.UpdateDictionary(dic);
         }
 
 
 
         public string GetUserInfo(string name,string post)
         {
-            return iis.GetEntity(ent => ent.Uname == name).Uname+post;
+            var list = iis.GetEntities(ent => ent.Uname == name);
+
+            return list.ToString();
         }
 
     }

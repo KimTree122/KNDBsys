@@ -10,20 +10,29 @@ namespace KNDBsys.Service.BaseInfoSer
 {
     public class DictionarySer
     {
-        private ICSDicTionaryService cSDic = new CSDicTionaryService();
+        private ISysDicService cSDic = new SysDicService();
 
         public string AddDictionary(string dic)
         {
-            CSDicTionary csDic = DataSwitch.JsonToObj<CSDicTionary>(dic);
+            Sysdic csDic = DataSwitch.JsonToObj<Sysdic>(dic);
             if (cSDic == null) return General.reFail;
-            return cSDic.Add(csDic).id + "";
+            int count = cSDic.Add(csDic).id;
+            if (count > 0) return DataSwitch.HttpPostData(count);
+            return DataSwitch.HttpPostData(General.reFail);
         }
 
         public string GetDicbytype(string type)
         {
-            List<CSDicTionary> cS = cSDic.GetEntities(d => d.DicType == type);
-            return DataSwitch.HttpPostData<CSDicTionary>(cS);
+            List<Sysdic> cS = cSDic.GetEntities(d => d.Dicname == type);
+            return DataSwitch.HttpPostData<Sysdic>(cS);
         }
 
+        public string UpdateDictionary(string dic)
+        {
+            Sysdic csDic = DataSwitch.JsonToObj<Sysdic>(dic);
+            if (cSDic == null) return General.reFail;
+            bool count = cSDic.Update(csDic);
+            return DataSwitch.HttpPostData(count ? General.reSucess:General.reFail);
+        }
     }
 }

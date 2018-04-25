@@ -18,8 +18,8 @@ namespace KNDBsys.IBLL.BaseInfo
     {
 
     }
-    public interface ICSDicTionaryService : IBaseServiceBLL<CSDicTionary>
-    {
+    //public interface ISysDicService : IBaseServiceBLL<SysDic>
+    //{
 
-    }
+    //}
 }

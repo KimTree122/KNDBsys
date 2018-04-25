@@ -51,7 +51,7 @@ namespace InitData.sqliteData
             sql = string.Format("CREATE TABLE UserAuth (id integer PRIMARY KEY autoincrement, UserID int, AuthID int)");
             SQLiteNonQuery(sql);
 
-            sql = string.Format("CREATE table CSDicTionary (id integer PRIMARY KEY autoincrement, DicType varchar(50), DicKeys varchar(50),DicVlaue varchar(50),DicMeno varchar(50),DicOrder float )");
+            sql = string.Format("CREATE table Sysdic (id integer PRIMARY KEY autoincrement, Dicname varchar(50), Dickey varchar(50),Dicval varchar(50),DicMeno varchar(50) ,Dicsetp int )");
             SQLiteNonQuery(sql);
 
             sql = string.Format("CREATE VIEW [UserAuthView] AS select b.* from userauth as a left join authority as b on a.[authid] = b.[id]");

@@ -21,7 +21,7 @@ namespace KNDBsys.DAL
         {
             return Ssc.Queryable<T>().Where(whereLamdda).First();
         }
-        public List<T> GetEntities(Expression<Func<T,bool>> whereLamdda) 
+        public List<T> GetEntities(Expression<Func<T, bool>> whereLamdda) 
         {
             return Ssc.Queryable<T>().Where(whereLamdda).ToList();
         }

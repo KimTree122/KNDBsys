@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseInfo\BaseInfoDal.cs" />
+    <Compile Include="BaseInfo\SysDicDal.cs" />
     <Compile Include="BaseInfo\UserInfoDal.cs" />
     <Compile Include="BaseDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

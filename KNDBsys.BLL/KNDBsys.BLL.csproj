@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseInfo\BaseInfoService.cs" />
+    <Compile Include="BaseInfo\SysDicService.cs" />
     <Compile Include="BaseInfo\UserInfoService.cs" />
     <Compile Include="BaseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

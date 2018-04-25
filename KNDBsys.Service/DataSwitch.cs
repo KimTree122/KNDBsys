@@ -17,8 +17,12 @@ namespace KNDBsys.Service
 
         public static T JsonToObj<T>(string jsonobj)
         {
-            try { return JsonConvert.DeserializeObject<T>(jsonobj); }
-            catch (Exception) { return default(T); }
+            try {
+                return JsonConvert.DeserializeObject<T>(jsonobj);
+            }
+            catch (Exception) {
+                return default(T);
+            }
         }
 
         public static string DataToObject( object list )
@@ -49,5 +53,16 @@ namespace KNDBsys.Service
             };
             return DataToObject(post);
         }
+
+        public static string HttpPostData(object msg)
+        {
+            PostData<DBNull, DBNull> post = new PostData<DBNull, DBNull>
+            {
+                MCount = 0,
+                Msg = msg.ToString()
+            };
+            return DataToObject(post);
+        }
+
     }
 }

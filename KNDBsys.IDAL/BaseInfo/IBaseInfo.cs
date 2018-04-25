@@ -18,8 +18,8 @@ namespace KNDBsys.IDAL.BaseInfo
     {
     }
 
-    public interface ICSDicTionaryDal : IBaseDal<CSDicTionary>
-    {
-    }
+    //public interface ISysDicDal : IBaseDal<SysDic>
+    //{
+    //}
 
 }

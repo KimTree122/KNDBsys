@@ -29,12 +29,12 @@ namespace KNDBsys.BLL.BaseInfo
         }
     }
 
-    public class CSDicTionaryService : BaseService<CSDicTionary>, ICSDicTionaryService
-    {
-        public override void SetCurrentDal()
-        {
-            CurrentDal = new CSDicTionaryDal();
-        }
-    }
+    //public class SysDicService : BaseService<SysDic>, ISysDicService
+    //{
+    //    public override void SetCurrentDal()
+    //    {
+    //        CurrentDal = new SysDicDal();
+    //    }
+    //}
 
 }

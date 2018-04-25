@@ -21,10 +21,10 @@ namespace KNDBsys.DAL.BaseInfo
 
     }
 
-    public class CSDicTionaryDal : BaseDal<CSDicTionary>, ICSDicTionaryDal
-    {
+    //public class SysDicDal : BaseDal<SysDic>, ISysDicDal
+    //{
 
-    }
+    //}
 
 
 }
