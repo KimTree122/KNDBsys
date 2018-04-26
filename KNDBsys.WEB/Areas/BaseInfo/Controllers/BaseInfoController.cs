@@ -26,11 +26,6 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
         private DictionarySer dictionarySer = new DictionarySer();
 
 
-        public string AddAuthority(string authority)
-        {
-            return authser.AddAuthority(authority);
-        }
-
         public string GetDictionary(string dictype)
         {
             return dictionarySer.GetDicbytype(dictype);
@@ -44,6 +39,17 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
         public string Updatedictionary(string dic)
         {
             return dictionarySer.UpdateDictionary(dic);
+        }
+
+        public string DeleteSysdic(string dic)
+        {
+            return dictionarySer.DeleteSysdic(dic);
+        }
+
+
+        public string AddAuthority(string authority)
+        {
+            return authser.AddAuthority(authority);
         }
 
 

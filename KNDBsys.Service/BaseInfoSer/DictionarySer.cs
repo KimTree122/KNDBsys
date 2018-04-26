@@ -34,5 +34,13 @@ namespace KNDBsys.Service.BaseInfoSer
             bool count = cSDic.Update(csDic);
             return DataSwitch.HttpPostData(count ? General.reSucess:General.reFail);
         }
+
+        public string DeleteSysdic(string dic)
+        {
+            Sysdic sysDic = DataSwitch.JsonToObj<Sysdic>(dic);
+            if (sysDic == null) return General.reFail;
+            bool count = cSDic.Del(sysDic);
+            return DataSwitch.HttpPostData(count ? General.reSucess : General.reFail);
+        }
     }
 }

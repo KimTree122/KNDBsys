@@ -16,7 +16,5 @@ namespace KNDBsys.Model
                 ConnectionString = SugarADO.ConnectionString, DbType = DbType.Sqlite, IsAutoCloseConnection = true });
             return db;
         }
-
-
     }
 }

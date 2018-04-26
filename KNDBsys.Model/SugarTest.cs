@@ -17,7 +17,12 @@ namespace KNDBsys.Model
             db.DbFirst.Where(tablename).CreateClassFile(@"C:\DataBase\SqlClz");
 
             List<Goods> all = db.Queryable<Goods>().ToList();
+
+            DbContext dbContext = new DbContext();
+            
+
             return all;
+
         }
     }
 }

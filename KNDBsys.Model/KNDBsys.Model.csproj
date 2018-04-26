@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADOClient.cs" />
     <Compile Include="BaseInfo\BaseClazz.cs" />
     <Compile Include="BaseInfo\CustomInfo.cs" />
     <Compile Include="BaseInfo\Goods.cs" />
