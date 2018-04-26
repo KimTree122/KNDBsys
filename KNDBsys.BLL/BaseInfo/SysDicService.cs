@@ -8,7 +8,7 @@ using System.Text;
 
 namespace KNDBsys.BLL.BaseInfo
 {
-    public class SysDicService : BaseService<Sysdic>, ISysDicService
+    public class SysDicService : BaseServiceBLL<Sysdic>, ISysDicService
     {
         public override void SetCurrentDal()
         {

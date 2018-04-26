@@ -9,11 +9,11 @@ using System.Text;
 
 namespace KNDBsys.BLL
 {
-    public abstract class BaseService<T> where T: class , new ()
+    public abstract class BaseServiceBLL<T> where T: class , new ()
     {
         public IBaseDal<T> CurrentDal { get; set; }
 
-        public BaseService() 
+        public BaseServiceBLL() 
         {
             SetCurrentDal();
         }

@@ -13,7 +13,7 @@ namespace KNDBsys.BLL.BaseInfo
 
     }
 
-    public class AuthorityService : BaseService<Authority>, IAuthorityService
+    public class AuthorityService : BaseServiceBLL<Authority>, IAuthorityService
     {
         public override void SetCurrentDal()
         {
@@ -21,20 +21,12 @@ namespace KNDBsys.BLL.BaseInfo
         }
     }
 
-    public class UserAuthService : BaseService<UserAuth>, IUserAuthService
+    public class UserAuthService : BaseServiceBLL<UserAuth>, IUserAuthService
     {
         public override void SetCurrentDal()
         {
             CurrentDal = new UserAuthDal();
         }
     }
-
-    //public class SysDicService : BaseService<SysDic>, ISysDicService
-    //{
-    //    public override void SetCurrentDal()
-    //    {
-    //        CurrentDal = new SysDicDal();
-    //    }
-    //}
 
 }
