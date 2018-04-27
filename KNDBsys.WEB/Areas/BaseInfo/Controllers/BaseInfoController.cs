@@ -26,6 +26,7 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
         private DictionarySer dictionarySer = new DictionarySer();
 
 
+        #region 数据字典
         public string GetDictionary(string dictype)
         {
             return dictionarySer.GetDicbytype(dictype);
@@ -45,14 +46,21 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
         {
             return dictionarySer.DeleteSysdic(dic);
         }
+        #endregion
 
+        #region 权限
+
+        public string GetAllAuthority(string userid)
+        {
+            return authser.getAllAuthority();
+        }
 
         public string AddAuthority(string authority)
         {
-            return authser.AddAuthority(authority);
+            return authser.AddEntity(authority);
         }
 
-
+        #endregion
 
         public string GetUserInfo(string name,string post)
         {

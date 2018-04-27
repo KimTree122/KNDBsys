@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="BaseInfoSer\AuthoritySer.cs" />
     <Compile Include="BaseInfoSer\DictionarySer.cs" />
-    <Compile Include="BaseService.cs" />
+    <Compile Include="CurdService.cs" />
     <Compile Include="DataSwitch.cs" />
     <Compile Include="General.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

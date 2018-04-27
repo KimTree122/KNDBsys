@@ -64,6 +64,8 @@ namespace KNDBsys.Model.BaseInfo
         /// </summary>           
         public string AuthName { get; set; }
 
+        public string Path { get; set; }
+
         /// <summary>
         /// Desc:
         /// Default:
@@ -97,7 +99,7 @@ namespace KNDBsys.Model.BaseInfo
         /// Default:
         /// Nullable:True
         /// </summary>           
-        public float? AOrder { get; set; }
+        public string AOrder { get; set; }
 
     }
 }

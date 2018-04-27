@@ -44,7 +44,7 @@ namespace UnitTestProject
         public void CreatTable()
         {
             SQLHelper sh = new SQLHelper();
-            string sql = string.Format("CREATE table Sysdic (id integer PRIMARY KEY autoincrement, Dicname varchar(50), Dickey varchar(50),Dicval varchar(50),DicMeno varchar(50) ,Dicsetp int )");
+            string sql = string.Format("CREATE table Authority (id integer PRIMARY KEY autoincrement, AuthName varchar(50),Path varchar(50), ParentID int, AuthTypeID int, AuthTypeName varchar(50) ,Imageid  int , AOrder varchar(50))");
             int count = sh.SQLiteNonQuery(sql);
             Assert.AreEqual("0", count + "");
         }

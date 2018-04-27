@@ -42,5 +42,6 @@ namespace KNDBsys.Service.BaseInfoSer
             bool count = cSDic.Del(sysDic);
             return DataSwitch.HttpPostData(count ? General.reSucess : General.reFail);
         }
+
     }
 }

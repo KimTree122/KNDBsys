@@ -45,7 +45,7 @@ namespace InitData.sqliteData
             sql = string.Format("CREATE table Goods (id integer PRIMARY KEY autoincrement, Gname varchar(50), Gtid varchar(50), delflag bool) ");
             SQLiteNonQuery(sql);
 
-            sql = string.Format("CREATE table Authority (id integer PRIMARY KEY autoincrement, AuthName varchar(50), ParentID int, AuthTypeID int, AuthTypeName varchar(50) ,Imageid  int , AOrder FLOAT)");
+            sql = string.Format("CREATE table Authority (id integer PRIMARY KEY autoincrement, AuthName varchar(50),Path varchar(50), ParentID int, AuthTypeID int, AuthTypeName varchar(50) ,Imageid  int , AOrder varchar(50))");
             SQLiteNonQuery(sql);
 
             sql = string.Format("CREATE TABLE UserAuth (id integer PRIMARY KEY autoincrement, UserID int, AuthID int)");

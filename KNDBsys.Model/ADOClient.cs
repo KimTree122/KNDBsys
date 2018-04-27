@@ -22,7 +22,7 @@ namespace KNDBsys.Model
     public class DbContext
     {
         public SqlSugarClient Db;
-        private string str = ConfigurationManager.AppSettings["dbpath"];
+        private string str = "DataSource=" +ConfigurationManager.AppSettings["dbpath"];
 
         public DbContext()
         {
@@ -31,6 +31,7 @@ namespace KNDBsys.Model
         }
 
         public DbSet<UserInfo> UserInfoDb { get { return new DbSet<UserInfo>(Db); } }
+        public DbSet<Authority> AuthorityDb { get { return new DbSet<Authority>(Db); } }
 
     }
 
