@@ -60,6 +60,16 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
             return authser.AddEntity(authority);
         }
 
+        public string UpdateAuthority(string authority)
+        {
+            return authser.UpdateEntity(authority);
+        }
+
+        public string DeleteAuthority(string authority)
+        {
+            return authser.DeleteEntity(authority);
+        }
+
         #endregion
 
         public string GetUserInfo(string name,string post)

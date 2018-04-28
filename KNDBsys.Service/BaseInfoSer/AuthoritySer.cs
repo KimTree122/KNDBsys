@@ -18,7 +18,7 @@ namespace KNDBsys.Service.BaseInfoSer
 
         public string getAllAuthority()
         {
-            return DataSwitch.HttpPostData<Authority>( dbSet.GetList() );
+            return DataSwitch.HttpPostData<Authority>( dbSet.GetList(e => e.id !=0) );
         }
     }
 }
