@@ -12,16 +12,22 @@ namespace KNDBsys.Service
     public abstract class CurdService<T> where T : class,new ()
     {
         public DbSet<T> dbSet { get; set; }
-        private DbContext db = new DbContext();
+        public DbContext db { get; set; }
 
         public CurdService()
         {
-            SetDbset(new DbContext());
+            db = new DbContext();
+            SetDbset(db);
         }
 
         public abstract void SetDbset(DbContext db);
 
 
+        /// <summary>
+        /// 增加数据
+        /// </summary>
+        /// <param name="json">实体类json</param>
+        /// <returns>Postdata msg id</returns>
         public string AddEntity(string json)
         {
             T entity = DataSwitch.JsonToObj<T>(json);
@@ -30,6 +36,17 @@ namespace KNDBsys.Service
             return DataSwitch.HttpPostData(count);
         }
 
+        public int AddEntity(T Entity)
+        {
+            int count = dbSet.InsertReturnIdentity(Entity);
+            return count;
+        }
+
+        /// <summary>
+        /// 更新数据
+        /// </summary>
+        /// <param name="json">实体类json</param>
+        /// <returns>postdata msg 1,0</returns>
         public string UpdateEntity(string json)
         {
             T entity = DataSwitch.JsonToObj<T>(json);
@@ -38,12 +55,29 @@ namespace KNDBsys.Service
             return DataSwitch.HttpPostData(count ? General.reSucess : General.reFail);
         }
 
+        public bool UpdateEntity(T Entity)
+        {
+            bool count = dbSet.Update(Entity);
+            return count;
+        }
+
+        /// <summary>
+        /// 删除数据
+        /// </summary>
+        /// <param name="json">实体类json</param>
+        /// <returns>postdata msg 1,0</returns>
         public string DeleteEntity(string json)
         {
             T entity = DataSwitch.JsonToObj<T>(json);
             if (entity == null) return General.reFail;
             bool count = dbSet.Delete(entity);
             return DataSwitch.HttpPostData(count ? General.reSucess : General.reFail);
+        }
+
+        public bool DeleteEntity(T Entity)
+        {
+            bool count = dbSet.Delete(Entity);
+            return count;
         }
 
     }

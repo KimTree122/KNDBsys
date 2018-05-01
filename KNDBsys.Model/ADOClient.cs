@@ -22,7 +22,8 @@ namespace KNDBsys.Model
     public class DbContext
     {
         public SqlSugarClient Db;
-        private string str = "DataSource=" +ConfigurationManager.AppSettings["dbpath"];
+        //private string str = "DataSource=" +ConfigurationManager.AppSettings["dbpath"];
+        private string str = @"DataSource=C:\DataBase\cs.db";
 
         public DbContext()
         {

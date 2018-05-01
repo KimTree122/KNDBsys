@@ -19,11 +19,11 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
             return View();
         }
 
-        public IUserInfoService iis = new UserInfoService();
-
         private AuthoritySer authser = new AuthoritySer();
 
         private DictionarySer dictionarySer = new DictionarySer();
+
+        private UserInfoSer userInfoSer = new UserInfoSer();
 
 
         #region 数据字典
@@ -72,12 +72,28 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
 
         #endregion
 
-        public string GetUserInfo(string name,string post)
-        {
-            var list = iis.GetEntities(ent => ent.Uname == name);
+        #region 用户
 
-            return list.ToString();
+        public string GetAllUserInfo(string userid)
+        {
+            return userInfoSer.GetAllUserInfo(userid);
         }
 
+        public string AddUserInfo(string userinfo)
+        {
+            return userInfoSer.AddEntity(userinfo);
+        }
+
+        public string UpdateUserInfo(string userinfo)
+        {
+            return userInfoSer.UpdateEntity(userinfo);
+        }
+
+        public string DeleteUserInfo(string userinfo)
+        {
+            return userInfoSer.DeleteEntity(userinfo);
+        }
+
+        #endregion
     }
 }

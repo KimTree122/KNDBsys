@@ -18,10 +18,7 @@ namespace KNDBsys.Model
 
             List<Goods> all = db.Queryable<Goods>().ToList();
 
-            DbContext dbContext = new DbContext();
-            
-
-            return all;
+            return all.Count();
 
         }
     }

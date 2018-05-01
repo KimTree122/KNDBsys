@@ -74,6 +74,10 @@
       <Project>{6ba63a23-22a5-4b93-8461-17ae0aa43b59}</Project>
       <Name>KNDBsys.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\KNDBsys.Service\KNDBsys.Service.csproj">
+      <Project>{6c91530b-ee56-4887-bc7d-36ce70698723}</Project>
+      <Name>KNDBsys.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

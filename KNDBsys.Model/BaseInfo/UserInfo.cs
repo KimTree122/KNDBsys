@@ -5,6 +5,9 @@ using System.Text;
 
 namespace KNDBsys.Model.BaseInfo
 {
+    ///<summary>
+    ///
+    ///</summary>
     public partial class UserInfo
     {
         public UserInfo()
@@ -25,6 +28,20 @@ namespace KNDBsys.Model.BaseInfo
         /// Nullable:True
         /// </summary>           
         public string Uname { get; set; }
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public string Upwd { get; set; }
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public string Utel { get; set; }
 
         /// <summary>
         /// Desc:

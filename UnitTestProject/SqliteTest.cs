@@ -3,6 +3,7 @@ using KNDBsys.BLL.BaseInfo;
 using KNDBsys.IBLL.BaseInfo;
 using KNDBsys.Model;
 using KNDBsys.Model.BaseInfo;
+using KNDBsys.Service.BaseInfoSer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace UnitTestProject
         public void CreatTable()
         {
             SQLHelper sh = new SQLHelper();
-            string sql = string.Format("CREATE table Authority (id integer PRIMARY KEY autoincrement, AuthName varchar(50),Path varchar(50), ParentID int, AuthTypeID int, AuthTypeName varchar(50) ,Imageid  int , AOrder varchar(50))");
+            string sql = string.Format("CREATE table UserInfo (id integer PRIMARY KEY autoincrement, Uname varchar(50),Upwd varchar(50),Utel varchar(50), UPost varchar(50), delflag bool) ");
             int count = sh.SQLiteNonQuery(sql);
             Assert.AreEqual("0", count + "");
         }
@@ -53,21 +54,22 @@ namespace UnitTestProject
         [TestMethod]
         public void GetUserInfo()
         {
-            UserInfoService uis = new UserInfoService();
-            List<UserInfo> userInfos = uis.GetEntities(ui => ui.Uname == "kim");
+            UserInfoSer uis = new UserInfoSer();
+            List<UserInfo> userInfos = uis.GetAllUserInfo("1");
+            UserInfo u = userInfos[0];
             int count = userInfos.Count();
-
-            Assert.AreEqual(count, 2);
+            Assert.AreEqual(u.Upwd, "123");
 
         }
 
 
         [TestMethod]
-        public void InitDB()
+        public void InsetrUser()
         {
-            SQLHelper sh = new SQLHelper();
-
-            Assert.AreEqual(sh.path, "kim");
+            UserInfoService uis = new UserInfoService();
+            UserInfo user = new UserInfo { Uname = "admin", Upwd = "123", UPost = "管理员", Utel = "12345679", delflag = false };
+            int id = uis.Add(user).id;
+            Assert.AreEqual("1",id.ToString());
         }
 
         [TestMethod]
@@ -75,7 +77,7 @@ namespace UnitTestProject
         {
             SugarTest st = new SugarTest();
             
-            List<Goods> obj = st.testsql("Sysdic") as List<Goods>;
+            List<Goods> obj = st.testsql("UserInfo") as List<Goods>;
             Assert.AreEqual(obj.Count, 1);
         }
     }
