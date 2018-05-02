@@ -19,7 +19,16 @@ namespace KNDBsys.Model
             List<Goods> all = db.Queryable<Goods>().ToList();
 
             return all.Count();
+        }
 
+        public object testview()
+        {
+            SugarADO sugar = new SugarADO();
+            var db = sugar.GetInstance();
+            string sql = string.Format("select * from userauthview where  userid = 1");
+            var authlist = db.SqlQueryable<Authority>(sql).ToList();
+
+            return authlist;
         }
     }
 }

@@ -21,5 +21,12 @@ namespace KNDBsys.Service.BaseInfoSer
             var authlist = dbSet.GetList(e => e.id != 0);
             return DataSwitch.HttpPostData<Authority>( authlist);
         }
+
+        public string GetUserAuth(string userid)
+        {
+            string sql = string.Format("select * from userauthview where  userid = '{0}'",userid);
+            var authlist = dbSet.FullClient.SqlQueryable<Authority>(sql).ToList();
+            return DataSwitch.HttpPostData<Authority>(authlist);
+        }
     }
 }

@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="BaseInfoSer\AuthoritySer.cs" />
     <Compile Include="BaseInfoSer\DictionarySer.cs" />
+    <Compile Include="BaseInfoSer\UserAuthSer.cs" />
     <Compile Include="BaseInfoSer\UserInfoSer.cs" />
     <Compile Include="CurdService.cs" />
     <Compile Include="DataSwitch.cs" />
@@ -56,6 +57,10 @@
     <ProjectReference Include="..\KNDBsys.BLL\KNDBsys.BLL.csproj">
       <Project>{9ccc63a6-6f4c-44eb-abf0-90e4ea328f61}</Project>
       <Name>KNDBsys.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KNDBsys.Common\KNDBsys.Common.csproj">
+      <Project>{4d6ad45d-d2da-4ae8-8af6-85eb095afa6e}</Project>
+      <Name>KNDBsys.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\KNDBsys.IBLL\KNDBsys.IBLL.csproj">
       <Project>{8b211db0-d7fd-4ca7-97b5-a0a012a10ac6}</Project>

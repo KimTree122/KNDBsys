@@ -25,6 +25,8 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
 
         private UserInfoSer userInfoSer = new UserInfoSer();
 
+        private UserAuthSer userAuthSer = new UserAuthSer();
+
 
         #region 数据字典
         public string GetDictionary(string dictype)
@@ -95,5 +97,31 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
         }
 
         #endregion
+
+        #region 用户权限
+
+        public string GetUserAuth(string userid)
+        {
+            return authser.GetUserAuth(userid);
+        }
+
+        public string AddUserAuth(string auth, string userid)
+        {
+            return userAuthSer.InsertTable(auth,userid);
+        }
+
+        public string DelteUserAuth(string userauthjson, string userid)
+        {
+            return userAuthSer.DeleteAuth(userauthjson,userid);
+        }
+
+        public string CopyUserAuth(string userid, string copyuserid)
+        {
+            return  userAuthSer.CopyAuth(userid, copyuserid);
+        }
+
+        #endregion
+
+
     }
 }

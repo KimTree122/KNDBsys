@@ -9,6 +9,5 @@ namespace KNDBsys.Service
     {
         public static string reFail = "0";
         public static string reSucess = "1";
-
     }
 }
