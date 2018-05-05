@@ -24,6 +24,7 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
         private UserInfoSer userInfoSer = new UserInfoSer();
         private UserAuthSer userAuthSer = new UserAuthSer();
         private ServerTypeSer serverTypeSer = new ServerTypeSer();
+        private CustomInfoSer customInfoSer = new CustomInfoSer();
 
 
         #region 数据字典
@@ -140,6 +141,35 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
         public string DeleteServerType(string servertype)
         {
             return serverTypeSer.DeleteEntity(servertype);
+        }
+
+        #endregion
+
+        #region 客户信息
+
+        public string GetAllCustomInfo(string userid)
+        {
+            return customInfoSer.GetAllCustomInfo(userid);
+        }
+
+        public string AddCustomInfo(string customInfo)
+        {
+            return customInfoSer.AddEntity(customInfo);
+        }
+
+        public string UpdatCustomInfo(string customInfo)
+        {
+            return customInfoSer.UpdateEntity(customInfo);
+        }
+
+        public string DeleteCustomInfo(string customInfo)
+        {
+            return customInfoSer.DeleteEntity(customInfo);
+        }
+
+        public string FindCustomByTel(string tel)
+        {
+            return customInfoSer.FindSameCumtomByTel(tel);
         }
 
         #endregion

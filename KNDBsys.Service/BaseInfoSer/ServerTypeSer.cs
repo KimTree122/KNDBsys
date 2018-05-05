@@ -11,7 +11,7 @@ namespace KNDBsys.Service.BaseInfoSer
     {
         public override void SetDbset(DbContext db)
         {
-            dbSet = db.ServerType;
+            dbSet = db.ServerTypeDb;
         }
 
         public string GetAllServerType(string userid)
