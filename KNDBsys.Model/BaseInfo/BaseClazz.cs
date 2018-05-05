@@ -62,7 +62,7 @@ namespace KNDBsys.Model.BaseInfo
         /// Default:
         /// Nullable:True
         /// </summary>           
-        public string AuthName { get; set; }
+        public string TreeName { get; set; }
 
         public string Path { get; set; }
 
@@ -100,6 +100,74 @@ namespace KNDBsys.Model.BaseInfo
         /// Nullable:True
         /// </summary>           
         public string AOrder { get; set; }
+
+    }
+
+    ///<summary>
+    ///
+    ///</summary>
+    public partial class ServerType
+    {
+        public ServerType()
+        {
+
+
+        }
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:False
+        /// </summary>           
+        public int id { get; set; }
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public int? ParentID { get; set; }
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public string TreeName { get; set; }
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public string TypeName { get; set; }
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public string Typeid { get; set; }
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public string TMemo { get; set; }
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public string TOrder { get; set; }
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public bool? delflag { get; set; }
 
     }
 }

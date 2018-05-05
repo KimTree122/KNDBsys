@@ -34,6 +34,7 @@ namespace KNDBsys.Model
         public DbSet<UserInfo> UserInfoDb { get { return new DbSet<UserInfo>(Db); } }
         public DbSet<Authority> AuthorityDb { get { return new DbSet<Authority>(Db); } }
         public DbSet<UserAuth> UserauthDb { get { return new DbSet<UserAuth>(Db); } }
+        public DbSet<ServerType> ServerType { get { return new DbSet<ServerType>(Db); } }
 
     }
 

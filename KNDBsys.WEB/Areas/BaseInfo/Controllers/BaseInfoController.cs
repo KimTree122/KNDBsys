@@ -20,12 +20,10 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
         }
 
         private AuthoritySer authser = new AuthoritySer();
-
         private DictionarySer dictionarySer = new DictionarySer();
-
         private UserInfoSer userInfoSer = new UserInfoSer();
-
         private UserAuthSer userAuthSer = new UserAuthSer();
+        private ServerTypeSer serverTypeSer = new ServerTypeSer();
 
 
         #region 数据字典
@@ -122,6 +120,29 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
 
         #endregion
 
+        #region 服务类别
+
+        public string GetAllServerType(string userid)
+        {
+            return serverTypeSer.GetAllServerType(userid);
+        }
+
+        public string AddServerType(string servertype)
+        {
+            return serverTypeSer.AddEntity(servertype);
+        }
+
+        public string UpdatServerType(string servertype)
+        {
+            return serverTypeSer.UpdateEntity(servertype);
+        }
+
+        public string DeleteServerType(string servertype)
+        {
+            return serverTypeSer.DeleteEntity(servertype);
+        }
+
+        #endregion
 
     }
 }

@@ -42,10 +42,7 @@ namespace InitData.sqliteData
             sql = string.Format("CREATE table CustomInfo (id integer PRIMARY KEY autoincrement, Cname varchar(50), CTel varchar(50), Caddress varchar(50)) ");
             SQLiteNonQuery(sql);
 
-            sql = string.Format("CREATE table Goods (id integer PRIMARY KEY autoincrement, Gname varchar(50), Gtid varchar(50), delflag bool) ");
-            SQLiteNonQuery(sql);
-
-            sql = string.Format("CREATE table Authority (id integer PRIMARY KEY autoincrement, AuthName varchar(50),Path varchar(50), ParentID int, AuthTypeID int, AuthTypeName varchar(50) ,Imageid  int , AOrder varchar(50))");
+            sql = string.Format("CREATE table Authority (id integer PRIMARY KEY autoincrement, TreeName varchar(50),Path varchar(50), ParentID int, AuthTypeID int, AuthTypeName varchar(50) ,Imageid  int , AOrder varchar(50))");
             SQLiteNonQuery(sql);
 
             sql = string.Format("CREATE TABLE UserAuth (id integer PRIMARY KEY autoincrement, UserID int, AuthID int)");
@@ -55,6 +52,9 @@ namespace InitData.sqliteData
             SQLiteNonQuery(sql);
 
             sql = string.Format("CREATE VIEW [UserAuthView] AS select a.[UserID], b.* from userauth as a left join authority as b on a.[authid] = b.[id]");
+            SQLiteNonQuery(sql);
+
+            sql = string.Format("CREATE TABLE [ServerType] ([id] integer PRIMARY KEY AUTOINCREMENT,[ParentID] int,[TreeName] varchar(50),[TypeName] varchar(50),[Typeid] varchar(50),[TMemo] varchar(50),[TOrder] varchar(50),[delflag] bool)");
             SQLiteNonQuery(sql);
         }
 
