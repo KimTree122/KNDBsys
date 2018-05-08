@@ -85,7 +85,7 @@ namespace UnitTestProject
         {
             SugarTest st = new SugarTest();
             
-            st.testsql("ServerType") ;
+            st.testsql("CheckInDT") ;
             Assert.AreEqual(1, 1);
         }
     }

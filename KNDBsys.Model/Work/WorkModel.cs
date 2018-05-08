@@ -1,18 +1,20 @@
-﻿using SqlSugar;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace KNDBsys.Model.BaseInfo
+namespace KNDBsys.Model.Work
 {
+    public class WorkModel
+    {
+    }
 
     ///<summary>
     ///
     ///</summary>
-    public partial class UserAuth
+    public partial class CheckInDT
     {
-        public UserAuth()
+        public CheckInDT()
         {
 
 
@@ -29,23 +31,51 @@ namespace KNDBsys.Model.BaseInfo
         /// Default:
         /// Nullable:True
         /// </summary>           
-        public int? UserID { get; set; }
+        public int? CheckInID { get; set; }
 
         /// <summary>
         /// Desc:
         /// Default:
         /// Nullable:True
         /// </summary>           
-        public int? AuthID { get; set; }
+        public int? GoodsStauts { get; set; }
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public int? Rating { get; set; }
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public string CheckData { get; set; }
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public string Meno { get; set; }
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public bool? delflag { get; set; }
 
     }
 
     ///<summary>
     ///
     ///</summary>
-    public partial class Authority
+    public partial class CheckInMT
     {
-        public Authority()
+        public CheckInMT()
         {
 
 
@@ -62,105 +92,35 @@ namespace KNDBsys.Model.BaseInfo
         /// Default:
         /// Nullable:True
         /// </summary>           
-        public string TreeName { get; set; }
-
-        public string Path { get; set; }
+        public int? ServerTypeID { get; set; }
 
         /// <summary>
         /// Desc:
         /// Default:
         /// Nullable:True
         /// </summary>           
-        public int? ParentID { get; set; }
+        public int? CustomID { get; set; }
 
         /// <summary>
         /// Desc:
         /// Default:
         /// Nullable:True
         /// </summary>           
-        public int? AuthTypeID { get; set; }
+        public int? ServerStauts { get; set; }
 
         /// <summary>
         /// Desc:
         /// Default:
         /// Nullable:True
         /// </summary>           
-        public string AuthTypeName { get; set; }
+        public string CheckDate { get; set; }
 
         /// <summary>
         /// Desc:
         /// Default:
         /// Nullable:True
         /// </summary>           
-        public int? Imageid { get; set; }
-
-        /// <summary>
-        /// Desc:
-        /// Default:
-        /// Nullable:True
-        /// </summary>           
-        public string AOrder { get; set; }
-
-    }
-
-    ///<summary>
-    ///
-    ///</summary>
-    public partial class ServerType
-    {
-        public ServerType()
-        {
-
-
-        }
-        /// <summary>
-        /// Desc:
-        /// Default:
-        /// Nullable:False
-        /// </summary>           
-        public int id { get; set; }
-
-        /// <summary>
-        /// Desc:
-        /// Default:
-        /// Nullable:True
-        /// </summary>           
-        public int? ParentID { get; set; }
-
-        /// <summary>
-        /// Desc:
-        /// Default:
-        /// Nullable:True
-        /// </summary>           
-        public string TreeName { get; set; }
-
-        /// <summary>
-        /// Desc:
-        /// Default:
-        /// Nullable:True
-        /// </summary>           
-        public string TypeName { get; set; }
-
-        /// <summary>
-        /// Desc:
-        /// Default:
-        /// Nullable:True
-        /// </summary>           
-        public string Typeid { get; set; }
-
-        /// <summary>
-        /// Desc:
-        /// Default:
-        /// Nullable:True
-        /// </summary>           
-        public string TMemo { get; set; }
-
-        /// <summary>
-        /// Desc:
-        /// Default:
-        /// Nullable:True
-        /// </summary>           
-        public string TOrder { get; set; }
+        public string Memo { get; set; }
 
         /// <summary>
         /// Desc:

@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseADOSer.cs" />
     <Compile Include="BaseInfoSer\AuthoritySer.cs" />
     <Compile Include="BaseInfoSer\CustomInfoSer.cs" />
     <Compile Include="BaseInfoSer\DictionarySer.cs" />
@@ -54,6 +55,9 @@
     <Compile Include="DataSwitch.cs" />
     <Compile Include="General.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkSer\CheckInbll.cs" />
+    <Compile Include="WorkSer\WorkCurdSer\CheckInDTSer.cs" />
+    <Compile Include="WorkSer\WorkCurdSer\CheckInMTSer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KNDBsys.BLL\KNDBsys.BLL.csproj">

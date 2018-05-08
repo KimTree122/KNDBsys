@@ -92,7 +92,7 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
 
         public string DeleteUserInfo(string userinfo)
         {
-            return userInfoSer.DeleteEntity(userinfo);
+            return userInfoSer.UpdateEntity(userinfo);
         }
 
         #endregion
