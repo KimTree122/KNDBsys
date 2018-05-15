@@ -33,7 +33,7 @@ namespace KNDBsys.Service
             T entity = DataSwitch.JsonToObj<T>(json);
             if (entity == null) return General.reFail;
             int count = dbSet.InsertReturnIdentity(entity);
-            return DataSwitch.HttpPostData(count);
+            return DataSwitch.HttpPostMsg(count);
         }
 
         public int AddEntity(T Entity)
@@ -52,7 +52,7 @@ namespace KNDBsys.Service
             T entity = DataSwitch.JsonToObj<T>(json);
             if (entity == null) return General.reFail;
             bool count = dbSet.Update(entity);
-            return DataSwitch.HttpPostData(count ? General.reSucess : General.reFail);
+            return DataSwitch.HttpPostMsg(count ? General.reSucess : General.reFail);
         }
 
         public bool UpdateEntity(T Entity)
@@ -71,7 +71,7 @@ namespace KNDBsys.Service
             T entity = DataSwitch.JsonToObj<T>(json);
             if (entity == null) return General.reFail;
             bool count = dbSet.Delete(entity);
-            return DataSwitch.HttpPostData(count ? General.reSucess : General.reFail);
+            return DataSwitch.HttpPostMsg(count ? General.reSucess : General.reFail);
         }
 
         public bool DeleteEntity(T Entity)

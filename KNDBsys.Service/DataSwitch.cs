@@ -43,7 +43,7 @@ namespace KNDBsys.Service
             return DataToObject(postData);
         }
 
-        public static string HttpPostData<T>(List<T> dlist,string msg = "")
+        public static string HttpPostList<T>(List<T> dlist,string msg = "")
         {
             PostData<T, DBNull> post = new PostData<T, DBNull>
             {
@@ -54,11 +54,21 @@ namespace KNDBsys.Service
             return DataToObject(post);
         }
 
-        public static string HttpPostData(object msg)
+        public static string HttpPostEntity<E>(E s,string msg = "")
+        {
+            PostData<DBNull, E> post = new PostData<DBNull, E> {
+                Obj = s,
+                MCount = 1,
+                Msg = msg
+            };
+            return DataToObject(post);
+        }
+
+        public static string HttpPostMsg(object msg)
         {
             PostData<DBNull, DBNull> post = new PostData<DBNull, DBNull>
             {
-                MCount = 0,
+                MCount = 1,
                 Msg = msg.ToString()
             };
             return DataToObject(post);

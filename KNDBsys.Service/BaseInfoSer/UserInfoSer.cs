@@ -18,7 +18,7 @@ namespace KNDBsys.Service.BaseInfoSer
         {
             var userlist = dbSet.FullClient.Queryable<UserInfo>().Where( e => e.delflag == false).Select((ui)=>
             new UserInfo() { id = ui.id, Uname = ui.Uname, UPost = ui.UPost, Utel = ui.Utel }).ToList();
-            return DataSwitch.HttpPostData<UserInfo>(userlist);
+            return DataSwitch.HttpPostList<UserInfo>(userlist);
         }
     }
 }

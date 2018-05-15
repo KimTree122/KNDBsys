@@ -19,6 +19,14 @@ namespace KNDBsys.Model
             return 1;
         }
 
+        public void CodeFrist(string nameplace)
+        {
+            SugarADO sa = new SugarADO();
+            var db = sa.GetInstance();
+            db.CodeFirst.InitTables(nameplace);
+        }
+
+
         public object testview()
         {
             SugarADO sugar = new SugarADO();

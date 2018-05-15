@@ -17,14 +17,14 @@ namespace KNDBsys.Service.BaseInfoSer
             Sysdic csDic = DataSwitch.JsonToObj<Sysdic>(dic);
             if (cSDic == null) return General.reFail;
             int count = cSDic.Add(csDic).id;
-            if (count > 0) return DataSwitch.HttpPostData(count);
-            return DataSwitch.HttpPostData(General.reFail);
+            if (count > 0) return DataSwitch.HttpPostMsg(count);
+            return DataSwitch.HttpPostMsg(General.reFail);
         }
 
         public string GetDicbytype(string type)
         {
             List<Sysdic> cS = cSDic.GetEntities(d => d.Dicname == type);
-            return DataSwitch.HttpPostData<Sysdic>(cS);
+            return DataSwitch.HttpPostList<Sysdic>(cS);
         }
 
         public string UpdateDictionary(string dic)
@@ -32,7 +32,7 @@ namespace KNDBsys.Service.BaseInfoSer
             Sysdic csDic = DataSwitch.JsonToObj<Sysdic>(dic);
             if (cSDic == null) return General.reFail;
             bool count = cSDic.Update(csDic);
-            return DataSwitch.HttpPostData(count ? General.reSucess:General.reFail);
+            return DataSwitch.HttpPostMsg(count ? General.reSucess:General.reFail);
         }
 
         public string DeleteSysdic(string dic)
@@ -40,7 +40,7 @@ namespace KNDBsys.Service.BaseInfoSer
             Sysdic sysDic = DataSwitch.JsonToObj<Sysdic>(dic);
             if (sysDic == null) return General.reFail;
             bool count = cSDic.Del(sysDic);
-            return DataSwitch.HttpPostData(count ? General.reSucess : General.reFail);
+            return DataSwitch.HttpPostMsg(count ? General.reSucess : General.reFail);
         }
 
     }

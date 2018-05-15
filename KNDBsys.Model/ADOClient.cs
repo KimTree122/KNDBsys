@@ -40,6 +40,7 @@ namespace KNDBsys.Model
 
         public DbSet<CheckInMT> CheckInMTDb { get { return new DbSet< CheckInMT > (Db); } }
         public DbSet<CheckInDT> CheckInDTDb { get { return new DbSet<CheckInDT>(Db); } }
+        public DbSet<QRnumber> QRnumberDb { get { return new DbSet<QRnumber>(Db); } }
 
     }
 

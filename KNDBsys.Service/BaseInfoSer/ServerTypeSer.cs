@@ -17,7 +17,7 @@ namespace KNDBsys.Service.BaseInfoSer
         public string GetAllServerType(string userid)
         {
             var list = dbSet.GetList(s => s.delflag == false ).ToList();
-            return DataSwitch.HttpPostData<ServerType>(list);
+            return DataSwitch.HttpPostList<ServerType>(list);
         }
 
     }

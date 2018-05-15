@@ -1,6 +1,7 @@
 ﻿using KNDBsys.BLL.BaseInfo;
 using KNDBsys.IBLL.BaseInfo;
 using KNDBsys.Service.BaseInfoSer;
+using KNDBsys.Service.WorkSer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -167,9 +168,14 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
             return customInfoSer.DeleteEntity(customInfo);
         }
 
+        public string CountCustomTel(string tel)
+        {
+            return customInfoSer.FindSameCustomByTel(tel);
+        }
+
         public string FindCustomByTel(string tel)
         {
-            return customInfoSer.FindSameCumtomByTel(tel);
+            return customInfoSer.FindCustomByTel(tel);
         }
 
         #endregion

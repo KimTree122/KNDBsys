@@ -13,5 +13,13 @@ namespace KNDBsys.Common
             int.TryParse(t, out int i);
             return i;
         }
+
+        public static DateTime StrToDateTime(this string str)
+        {
+            DateTime dtime = DateTime.Now;
+            if (string.IsNullOrWhiteSpace(str)) return dtime;
+            DateTime.TryParse(str, out dtime);
+            return dtime ;
+        }
     }
 }

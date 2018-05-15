@@ -36,10 +36,10 @@ namespace KNDBsys.Service.BaseInfoSer
                     addauth.Add(auth);
                 }
             }
-            if (userAuths.Count == 0) return DataSwitch.HttpPostData(addauth);
+            if (userAuths.Count == 0) return DataSwitch.HttpPostList(addauth);
             bool insert = dbSet.InsertRange(userAuths.ToArray());
-            if (insert) return DataSwitch.HttpPostData(addauth);
-            return DataSwitch.HttpPostData(General.reFail);
+            if (insert) return DataSwitch.HttpPostList(addauth);
+            return DataSwitch.HttpPostMsg(General.reFail);
             
         }
 
@@ -58,7 +58,7 @@ namespace KNDBsys.Service.BaseInfoSer
                     }
                 }
             }
-            return DataSwitch.HttpPostData(General.reSucess);
+            return DataSwitch.HttpPostMsg(General.reSucess);
         }
 
         public string CopyAuth(string userid, string copyuserid)
@@ -70,7 +70,7 @@ namespace KNDBsys.Service.BaseInfoSer
             }
             bool check = dbSet.InsertRange(userauth.ToArray());
             string str = check ? General.reSucess : General.reFail;
-            return DataSwitch.HttpPostData(str);
+            return DataSwitch.HttpPostMsg(str);
         }
 
     }

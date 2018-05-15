@@ -171,4 +171,34 @@ namespace KNDBsys.Model.BaseInfo
 
     }
 
+    public partial class QRnumber 
+    {
+        public QRnumber()
+        {
+
+
+        }
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:False
+        /// </summary>           
+        public int id { get; set; }
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public string QRday { get; set; }
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public int? QROrder { get; set; }
+
+    }
+
 }

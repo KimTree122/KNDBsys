@@ -115,6 +115,8 @@ namespace KNDBsys.Model.Work
         /// </summary>           
         public string CheckDate { get; set; }
 
+        public string FinishDate { get; set; }
+
         /// <summary>
         /// Desc:
         /// Default:
