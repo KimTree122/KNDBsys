@@ -23,7 +23,7 @@ namespace KNDBsys.Service.BaseInfoSer
 
         public string GetDicbytype(string type)
         {
-            List<Sysdic> cS = cSDic.GetEntities(d => d.Dicname == type);
+            List<Sysdic> cS = cSDic.GetEntities(d => d.Dicname == type).OrderBy(d => d.Dicsetp).ToList();
             return DataSwitch.HttpPostList<Sysdic>(cS);
         }
 

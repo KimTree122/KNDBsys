@@ -13,5 +13,12 @@ namespace KNDBsys.Service.WorkSer
         {
             dbSet = db.CheckInMTDb; 
         }
+
+        public CheckInMT GetCheckInMTByid(int id)
+        {
+            CheckInMT q = dbSet.GetById(id);
+            return q;
+        }
+
     }
 }

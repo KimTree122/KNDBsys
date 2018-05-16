@@ -38,7 +38,7 @@ namespace KNDBsys.Model.Work
         /// Default:
         /// Nullable:True
         /// </summary>           
-        public int? GoodsStauts { get; set; }
+        public string GoodsStauts { get; set; }
 
         /// <summary>
         /// Desc:
@@ -115,6 +115,11 @@ namespace KNDBsys.Model.Work
         /// </summary>           
         public string CheckDate { get; set; }
 
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
         public string FinishDate { get; set; }
 
         /// <summary>

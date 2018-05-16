@@ -27,7 +27,38 @@ namespace KNDBsys.WEB.Areas.Work.Controllers
             return checkInbll.GetCustomHistory(customid, stauts);
         }
 
+        public string GetCheckInByMTid(int checkinmtid)
+        {
+            return checkInbll.GetCheckInMTDT(checkinmtid);
+        }
+
+        public string AddCheckInMT(string checkinmt)
+        {
+            return checkInbll.AddCheckInMT(checkinmt);
+        }
+
+        public string UpdateCheckInMT(string checkinmt)
+        {
+            return checkInbll.UpdateCheckInMT(checkinmt);
+        }
+
+        public string AddCheckInDT(string checkindt)
+        {
+            return checkInbll.AddcheckInDT(checkindt);
+        }
+
+        public string UpdateCheckInDT(string checkindt)
+        {
+            return checkInbll.UpdateCheckInDT(checkindt);
+        }
+
         #endregion
 
+        #region 服务号
+        public string GetSerNumber(string userid)
+        {
+            return checkInbll.GetQRnumber();
+        }
+        #endregion
     }
 }

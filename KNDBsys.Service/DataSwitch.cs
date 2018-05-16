@@ -30,9 +30,9 @@ namespace KNDBsys.Service
             return JsonConvert.SerializeObject(list);
         }
 
-        public static string HttpPostData<T,S> ( List<T> dlist,string msg = "", S obj = default(S) )
+        public static string HttpPostData<L,E> ( List<L> dlist, E obj = default(E), string msg = "")
         {
-            PostData<T,S> postData = new PostData<T,S>
+            PostData<L,E> postData = new PostData<L,E>
             {
                 DList = dlist,
                 MCount = dlist.Count,

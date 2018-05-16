@@ -1,6 +1,8 @@
 ﻿using KNDBsys.Model.BaseInfo;
 using KNDBsys.Model.ViewModel;
 using KNDBsys.Model.Work;
+using KNDBsys.Service.WorkSer.WorkCurdSer;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +12,11 @@ namespace KNDBsys.Service.WorkSer
 {
     public class CheckInbll:BaseADOSer
     {
-        public string InsertCheckInMT(string checkinjson)
-        {
-            CheckInMT checkInMT = GetEntity<CheckInMT>(checkinjson);
-            if (checkInMT != null)
-            {
-                CheckInMTDb.Insert(checkInMT);
-            }
-            return "";
-        }
+        private CheckInMTSer checkInMTSer = new CheckInMTSer();
+        private CheckInDTSer checkInDTSer = new CheckInDTSer();
+        private QRnumberSer qRnumberSer = new QRnumberSer();
+
+        
 
         public string GetCheckInMT(int customid,int stauts)
         {
@@ -31,12 +29,52 @@ namespace KNDBsys.Service.WorkSer
             return DataSwitch.HttpPostList<CheckInMT>(ciMT);
         }
 
+        public string GetCheckInDT(int checkinid)
+        {
+            List<CheckInDT> ciDT = CheckInDTDb.GetList(c =>
+           c.delflag == false & c.CheckInID == checkinid).OrderBy(k => k.CheckData).ToList();
+            return DataSwitch.HttpPostList<CheckInDT>(ciDT);
+        }
+
+        public string GetCheckInMTDT(int checkinmtid)
+        {
+            CheckInMT mT = checkInMTSer.GetCheckInMTByid(checkinmtid);
+            List <CheckInDT> dtlist = checkInDTSer.GetCheckInDTs(checkinmtid);
+            return DataSwitch.HttpPostData<CheckInDT,CheckInMT>(dtlist,mT);
+        }
+
+        public string AddCheckInMT(string checkinjson)
+        {
+            string str = checkInMTSer.AddEntity(checkinjson);
+            return str;
+        }
+
+        public string AddcheckInDT(string checkindt)
+        {
+            string str = checkInDTSer.AddEntity(checkindt);
+            return str;
+        }
+
+        public string UpdateCheckInMT(string checkinmt)
+        {
+            string str = checkInMTSer.UpdateEntity(checkinmt);
+            return str;
+        }
+
+        public string UpdateCheckInDT(string checkindt)
+        {
+            string str = checkInDTSer.UpdateEntity(checkindt);
+            return str;
+        }
+
         public string GetCustomHistory(int customid, int stauts)
         {
             var q = Db.Queryable<CheckInMT, ServerType, Sysdic>(
-                (cm, st, sd) => new object[] { cm.ServerTypeID == st.id, cm.ServerStauts == sd.id }
+                (cm, st, sd) => new object[] {
+                    JoinType.Left, cm.ServerTypeID == st.id,
+                    JoinType.Left,cm.ServerStauts == sd.id }
                 ).Where((cm, st) => cm.delflag == false & cm.CustomID == customid)
-                .Select((cm, st, sd) => new { cm.id, st.TypeName, cm.CheckDate, sd.Dicname, cm.FinishDate, cm.ServerStauts }).ToList();
+                .Select((cm, st, sd) => new { cm.id, st.TreeName, cm.CheckDate, sd.Dicval, cm.FinishDate, cm.ServerStauts }).ToList();
 
             List<CustomHistoryVM> cvm = new List<CustomHistoryVM>();
             foreach (var vm in q)
@@ -44,24 +82,22 @@ namespace KNDBsys.Service.WorkSer
                 CustomHistoryVM ch = new CustomHistoryVM {
                     id = vm.id,
                     CheckDate = vm.CheckDate,
-                    Dicname = vm.Dicname,
+                    Dicname = vm.Dicval,
                     FinishDate = vm.FinishDate,
-                    TypeName = vm.TypeName,
+                    TypeName = vm.TreeName,
                     ServerStauts =(int) vm.ServerStauts
                 };
                 cvm.Add(ch);
             }
 
             if (stauts != 0) cvm = cvm.Where(c => c.ServerStauts == stauts).ToList();
-
+            cvm = cvm.OrderByDescending(c => c.id).ToList();
             return DataSwitch.HttpPostList<CustomHistoryVM>(cvm);
         }
 
-        public string GetCheckInDT(int checkinid)
+        public string GetQRnumber()
         {
-            List<CheckInDT> ciDT = CheckInDTDb.GetList(c =>
-           c.delflag == false & c.CheckInID == checkinid).OrderBy(k => k.CheckData).ToList();
-            return DataSwitch.HttpPostList<CheckInDT>(ciDT);
+            return qRnumberSer.GetNextNumber();
         }
 
     }

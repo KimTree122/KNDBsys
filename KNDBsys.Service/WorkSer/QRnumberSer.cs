@@ -15,7 +15,7 @@ namespace KNDBsys.Service.WorkSer
             dbSet = db.QRnumberDb;
         }
 
-        public int GetNextNumber()
+        public string GetNextNumber()
         {
             var q = dbSet.GetById(1);
             DateTime qrday = q.QRday.StrToDateTime();
@@ -33,15 +33,10 @@ namespace KNDBsys.Service.WorkSer
 
             bool count = dbSet.Update(q);
             int upd = count ? (int)q.QROrder : 0;
-            return upd;
+
+            string qrnum = nday.ToString("yyyyMMdd")+upd.ToString().PadLeft(3,'0');
+            qrnum ="CS"+ qrnum.Substring(2);
+            return DataSwitch.HttpPostMsg(qrnum);
         }
-
-
-        public QRnumber GetQRnumber()
-        {
-            return dbSet.GetById(1);
-        }
-
-
     }
 }

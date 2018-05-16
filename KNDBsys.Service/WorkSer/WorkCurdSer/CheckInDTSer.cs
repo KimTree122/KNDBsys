@@ -13,5 +13,11 @@ namespace KNDBsys.Service.WorkSer.WorkCurdSer
         {
             dbSet = db.CheckInDTDb;
         }
+
+        public List<CheckInDT> GetCheckInDTs(int checkinmtid)
+        {
+            List<CheckInDT> q = dbSet.GetList( d => d.CheckInID == checkinmtid ).ToList();
+            return q;
+        }
     }
 }
