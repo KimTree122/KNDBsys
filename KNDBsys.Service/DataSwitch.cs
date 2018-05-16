@@ -37,7 +37,7 @@ namespace KNDBsys.Service
                 DList = dlist,
                 MCount = dlist.Count,
                 Msg = msg,
-                Obj = obj
+                Entity = obj
             };
 
             return DataToObject(postData);
@@ -57,7 +57,7 @@ namespace KNDBsys.Service
         public static string HttpPostEntity<E>(E s,string msg = "")
         {
             PostData<DBNull, E> post = new PostData<DBNull, E> {
-                Obj = s,
+                Entity = s,
                 MCount = 1,
                 Msg = msg
             };
