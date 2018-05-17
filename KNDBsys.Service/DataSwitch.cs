@@ -54,11 +54,12 @@ namespace KNDBsys.Service
             return DataToObject(post);
         }
 
-        public static string HttpPostEntity<E>(E s,string msg = "")
+        public static string HttpPostEntity<E>(E s,int count = 0, string msg = "")
         {
+            if (s != null) count = 1;
             PostData<DBNull, E> post = new PostData<DBNull, E> {
                 Entity = s,
-                MCount = 1,
+                MCount = count,
                 Msg = msg
             };
             return DataToObject(post);

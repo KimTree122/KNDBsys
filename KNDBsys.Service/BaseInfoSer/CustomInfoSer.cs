@@ -33,5 +33,10 @@ namespace KNDBsys.Service.BaseInfoSer
             return DataSwitch.HttpPostEntity(cus);
         }
 
+        public string FindCustomByid(string customid)
+        {
+            var q = dbSet.GetById(customid);
+            return DataSwitch.HttpPostEntity(q);
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace UnitTestProject
         public void CreatTable()
         {
             SQLHelper sh = new SQLHelper();
-            string sql = string.Format("CREATE table CheckInDT (id integer PRIMARY KEY autoincrement, CheckInID int, GoodsStauts varchar(50),Rating int ,CheckData varchar(50),Meno varchar(50), delflag bool )");
+            string sql = string.Format("CREATE table CheckInMT (id integer PRIMARY KEY autoincrement, ServerTypeID int, CustomID int,ServerStauts int,CheckDate varchar(50),FinishDate varchar(50),Memo varchar(50),QRcode varchar(50), delflag bool )");
             int count = sh.SQLiteNonQuery(sql);
             Assert.AreEqual("0", count + "");
         }
@@ -23,7 +23,7 @@ namespace UnitTestProject
         {
             SugarTest st = new SugarTest();
 
-            st.testsql("CheckInDT");
+            st.testsql("CheckInMT");
             Assert.AreEqual(1, 1);
         }
 

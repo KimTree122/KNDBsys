@@ -178,6 +178,11 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
             return customInfoSer.FindCustomByTel(tel);
         }
 
+        public string FindCustomByid(string customid)
+        {
+            return customInfoSer.FindCustomByid(customid);
+        }
+
         #endregion
 
     }

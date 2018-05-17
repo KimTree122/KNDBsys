@@ -32,6 +32,11 @@ namespace KNDBsys.WEB.Areas.Work.Controllers
             return checkInbll.GetCheckInMTDT(checkinmtid);
         }
 
+        public string GetCustomidByQR(string qrcode)
+        {
+            return checkInbll.GetCustomidByQR(qrcode);
+        }
+
         public string AddCheckInMT(string checkinmt)
         {
             return checkInbll.AddCheckInMT(checkinmt);

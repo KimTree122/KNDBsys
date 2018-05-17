@@ -29,6 +29,14 @@ namespace KNDBsys.Service.WorkSer
             return DataSwitch.HttpPostList<CheckInMT>(ciMT);
         }
 
+        public string GetCustomidByQR(string qrcode)
+        {
+            CheckInMT mT = checkInMTSer.GetCheckInMTByQR(qrcode);
+            string customid = General.strFail;
+            if (mT.id != 0) customid = mT.CustomID.ToString();
+            return DataSwitch.HttpPostMsg(customid);
+        }
+
         public string GetCheckInDT(int checkinid)
         {
             List<CheckInDT> ciDT = CheckInDTDb.GetList(c =>

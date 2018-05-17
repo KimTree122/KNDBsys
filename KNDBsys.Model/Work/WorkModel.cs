@@ -134,6 +134,13 @@ namespace KNDBsys.Model.Work
         /// Default:
         /// Nullable:True
         /// </summary>           
+        public string QRcode { get; set; }
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
         public bool? delflag { get; set; }
 
     }

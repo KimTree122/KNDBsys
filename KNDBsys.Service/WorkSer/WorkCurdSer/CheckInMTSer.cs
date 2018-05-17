@@ -20,5 +20,16 @@ namespace KNDBsys.Service.WorkSer
             return q;
         }
 
+        public CheckInMT GetCheckInMTByQR(string qrcode)
+        {
+            var q = dbSet.GetList(c => c.QRcode == qrcode);
+            if (q.Count > 0)
+            {
+                CheckInMT mT = q.First();
+                return mT;
+            }
+            return new CheckInMT();
+        }
+
     }
 }

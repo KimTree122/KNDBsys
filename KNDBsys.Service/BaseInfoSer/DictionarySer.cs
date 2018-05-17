@@ -15,10 +15,10 @@ namespace KNDBsys.Service.BaseInfoSer
         public string AddDictionary(string dic)
         {
             Sysdic csDic = DataSwitch.JsonToObj<Sysdic>(dic);
-            if (cSDic == null) return General.reFail;
+            if (cSDic == null) return General.strFail;
             int count = cSDic.Add(csDic).id;
             if (count > 0) return DataSwitch.HttpPostMsg(count);
-            return DataSwitch.HttpPostMsg(General.reFail);
+            return DataSwitch.HttpPostMsg(General.strFail);
         }
 
         public string GetDicbytype(string type)
@@ -30,17 +30,17 @@ namespace KNDBsys.Service.BaseInfoSer
         public string UpdateDictionary(string dic)
         {
             Sysdic csDic = DataSwitch.JsonToObj<Sysdic>(dic);
-            if (cSDic == null) return General.reFail;
+            if (cSDic == null) return General.strFail;
             bool count = cSDic.Update(csDic);
-            return DataSwitch.HttpPostMsg(count ? General.reSucess:General.reFail);
+            return DataSwitch.HttpPostMsg(count ? General.strSucess:General.strFail);
         }
 
         public string DeleteSysdic(string dic)
         {
             Sysdic sysDic = DataSwitch.JsonToObj<Sysdic>(dic);
-            if (sysDic == null) return General.reFail;
+            if (sysDic == null) return General.strFail;
             bool count = cSDic.Del(sysDic);
-            return DataSwitch.HttpPostMsg(count ? General.reSucess : General.reFail);
+            return DataSwitch.HttpPostMsg(count ? General.strSucess : General.strFail);
         }
 
     }
