@@ -61,6 +61,8 @@ namespace KNDBsys.Model.Work
         /// </summary>           
         public string Meno { get; set; }
 
+        public int? ServerPay { get; set; }
+
         /// <summary>
         /// Desc:
         /// Default:

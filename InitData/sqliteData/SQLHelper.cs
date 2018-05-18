@@ -60,7 +60,7 @@ namespace InitData.sqliteData
             sql = string.Format("CREATE table CheckInMT (id integer PRIMARY KEY autoincrement, ServerTypeID int, CustomID int,ServerStauts int,CheckDate varchar(50),FinishDate varchar(50),Memo varchar(50),QRcode varchar(50), delflag bool )");
             SQLiteNonQuery(sql);
 
-            sql = string.Format("CREATE table CheckInDT (id integer PRIMARY KEY autoincrement, CheckInID int, GoodsStauts varchar(50),Rating int ,CheckData varchar(50),Meno varchar(50), delflag bool )");
+            sql = string.Format("CREATE table CheckInDT (id integer PRIMARY KEY autoincrement, CheckInID int, GoodsStauts varchar(50),Rating int ,CheckData varchar(50),Meno varchar(50),ServerPay int, delflag bool )");
             SQLiteNonQuery(sql);
 
             sql = string.Format("CREATE table QRnumber (id integer PRIMARY KEY autoincrement, QRday varchar(50), QROrder int )");
