@@ -29,6 +29,8 @@ namespace KNDBsys.Model.BaseInfo
         /// </summary>           
         public string Uname { get; set; }
 
+        public string Uaccount { get; set; }
+
         /// <summary>
         /// Desc:
         /// Default:

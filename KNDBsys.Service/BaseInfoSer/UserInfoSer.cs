@@ -20,5 +20,12 @@ namespace KNDBsys.Service.BaseInfoSer
             new UserInfo() { id = ui.id, Uname = ui.Uname, UPost = ui.UPost, Utel = ui.Utel }).ToList();
             return DataSwitch.HttpPostList<UserInfo>(userlist);
         }
+
+        public string GetUserInfoByAccount(string account, string pwd)
+        {
+            var q = dbSet.GetList().Find(u => u.Uaccount == account & u.Upwd == pwd);
+            return DataSwitch.HttpPostEntity<UserInfo>(q);
+        }
+
     }
 }

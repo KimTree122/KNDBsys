@@ -96,6 +96,11 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
             return userInfoSer.UpdateEntity(userinfo);
         }
 
+        public string GetUserInfoByAccount(string account, string pwd)
+        {
+            return userInfoSer.GetUserInfoByAccount(account,pwd);
+        }
+
         #endregion
 
         #region 用户权限

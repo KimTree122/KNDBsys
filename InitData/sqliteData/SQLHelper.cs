@@ -36,7 +36,7 @@ namespace InitData.sqliteData
 
         public void CreatTable()
         {
-            string sql = string.Format("CREATE table UserInfo (id integer PRIMARY KEY autoincrement, Uname varchar(50),Upwd varchar(50),Utel varchar(50), UPost varchar(50), delflag bool) ");
+            string sql = string.Format("CREATE table UserInfo (id integer PRIMARY KEY autoincrement, Uname varchar(50),Uaccount varchar(50), Upwd varchar(50),Utel varchar(50), UPost varchar(50), delflag bool) ");
             SQLiteNonQuery(sql);
 
             sql = string.Format("CREATE table CustomInfo (id integer PRIMARY KEY autoincrement, Cname varchar(50), CTel varchar(50), Caddress varchar(50)) ");
