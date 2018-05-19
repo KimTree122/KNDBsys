@@ -18,7 +18,7 @@ namespace UnitTestProject
 
 
         [TestMethod]
-        public void ViewSelect()
+        private void ViewSelect()
         {
             SugarTest st = new SugarTest();
             List<Authority> authorities = st.testview() as List<Authority> ;

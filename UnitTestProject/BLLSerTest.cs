@@ -17,10 +17,10 @@ namespace UnitTestProject
         [TestMethod]
         public void GetQRNumbertest()
         {
-            //QRnumberSer ser = new QRnumberSer();
-            //var q = ser.GetQRnumber();
-            
-            //Assert.AreEqual(2,q.QRday);
+            QRnumberSer ser = new QRnumberSer();
+            var q = ser.GetNextNumber();
+
+            Assert.AreEqual(2, q);
         }
     }
 }
