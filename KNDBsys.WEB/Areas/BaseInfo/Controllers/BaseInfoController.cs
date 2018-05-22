@@ -26,6 +26,7 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
         private UserAuthSer userAuthSer = new UserAuthSer();
         private ServerTypeSer serverTypeSer = new ServerTypeSer();
         private CustomInfoSer customInfoSer = new CustomInfoSer();
+        private SysVerSer sysVerSer = new SysVerSer();
 
 
         #region 数据字典
@@ -186,6 +187,20 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
         public string FindCustomByid(string customid)
         {
             return customInfoSer.FindCustomByid(customid);
+        }
+
+        #endregion
+
+        #region 程序更新
+
+        public string GetNewSysVer()
+        {
+            return sysVerSer.GetNewSysVer();
+        }
+
+        public string AddSysVer(string sysver)
+        {
+            return sysVerSer.AddEntity(sysver);
         }
 
         #endregion

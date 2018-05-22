@@ -65,6 +65,9 @@ namespace InitData.sqliteData
 
             sql = string.Format("CREATE table QRnumber (id integer PRIMARY KEY autoincrement, QRday varchar(50), QROrder int )");
             SQLiteNonQuery(sql);
+
+            sql = string.Format("CREATE table SysVer (id integer PRIMARY KEY autoincrement, sysver varchar(50), upgradedate  varchar(50), filelist  varchar(50), note  varchar(50) )");
+            SQLiteNonQuery(sql);
         }
 
         /// <summary>

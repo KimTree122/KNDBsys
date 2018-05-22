@@ -48,6 +48,8 @@
     <Compile Include="BaseInfoSer\AuthoritySer.cs" />
     <Compile Include="BaseInfoSer\CustomInfoSer.cs" />
     <Compile Include="BaseInfoSer\DictionarySer.cs" />
+    <Compile Include="BaseInfoSer\SysVerSer.cs" />
+    <Compile Include="FileSer\FileLoadSer.cs" />
     <Compile Include="WorkSer\QRnumberSer.cs" />
     <Compile Include="BaseInfoSer\ServerTypeSer.cs" />
     <Compile Include="BaseInfoSer\UserAuthSer.cs" />

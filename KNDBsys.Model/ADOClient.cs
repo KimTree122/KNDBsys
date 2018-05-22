@@ -37,6 +37,7 @@ namespace KNDBsys.Model
         public DbSet<UserAuth> UserauthDb { get { return new DbSet<UserAuth>(Db); } }
         public DbSet<ServerType> ServerTypeDb { get { return new DbSet<ServerType>(Db); } }
         public DbSet<CustomInfo> CustomInfoDb { get { return new DbSet<CustomInfo>(Db); } }
+        public DbSet<SysVer> SysVerDb { get { return new DbSet<SysVer>(Db); } }
 
         public DbSet<CheckInMT> CheckInMTDb { get { return new DbSet< CheckInMT > (Db); } }
         public DbSet<CheckInDT> CheckInDTDb { get { return new DbSet<CheckInDT>(Db); } }

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using KNDBsys.Service.FileSer;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,10 +14,20 @@ namespace KNDBsys.WEB.Areas.FileLoad.Controllers
         //
         // GET: /FileLoad/FileLoad/
 
+        private FileLoadSer fileser = new FileLoadSer();
+
         public ActionResult Index()
         {
             return View();
         }
+
+        public string GetFileVersion()
+        {
+            string path = System.Configuration.ConfigurationManager.AppSettings["vertext"];
+            string verstrlist = fileser.GetVerlist(path);
+            return verstrlist;
+        }
+
 
         public FileStreamResult DownFile(string filePath, string fileName)
         {
