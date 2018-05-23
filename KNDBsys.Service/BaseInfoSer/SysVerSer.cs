@@ -1,4 +1,5 @@
-﻿using KNDBsys.Model;
+﻿using KNDBsys.Common;
+using KNDBsys.Model;
 using KNDBsys.Model.BaseInfo;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,9 @@ namespace KNDBsys.Service.BaseInfoSer
             dbSet = db.SysVerDb;
         }
 
-        public string GetNewSysVer()
+        public string GetNewSysVer(string programtype)
         {
-            int count = dbSet.GetList().Count;
+            int count = dbSet.GetList(v => v.programtype == programtype).Count;
             if (count > 0)
             {
                 var q = dbSet.GetList().OrderByDescending(v => v.id).First().id;

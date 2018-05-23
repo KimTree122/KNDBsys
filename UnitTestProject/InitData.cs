@@ -13,7 +13,7 @@ namespace UnitTestProject
         public void CreatTable()
         {
             SQLHelper sh = new SQLHelper();
-            string sql = string.Format("CREATE table SysVer (id integer PRIMARY KEY autoincrement, sysver varchar(50), upgradedate  varchar(50), filelist  varchar(50), note  varchar(50) )");
+            string sql = string.Format("CREATE table SysVer (id integer PRIMARY KEY autoincrement, sysver varchar(50), upgradedate  varchar(50), filelist  varchar(50), note  varchar(50), programtype  varchar(50) )");
             int count = sh.SQLiteNonQuery(sql);
             Assert.AreEqual("0", count + "");
         }

@@ -1,4 +1,5 @@
-﻿using KNDBsys.Service.FileSer;
+﻿using KNDBsys.Common.FileManager;
+using KNDBsys.Service.FileSer;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,29 +16,32 @@ namespace KNDBsys.WEB.Areas.FileLoad.Controllers
         // GET: /FileLoad/FileLoad/
 
         private FileLoadSer fileser = new FileLoadSer();
+        private static readonly string uploadpath = System.Configuration.ConfigurationManager.AppSettings["fileupload"];
+        private static readonly string downloadpath = System.Configuration.ConfigurationManager.AppSettings["filedownload"];
+
+        private FilePresent filePresent = new FilePresent();
+
 
         public ActionResult Index()
         {
             return View();
         }
 
-        public string GetFileVersion()
-        {
-            string path = System.Configuration.ConfigurationManager.AppSettings["vertext"];
-            string verstrlist = fileser.GetVerlist(path);
-            return verstrlist;
-        }
+        #region 程序更新
+
+
+        #endregion
 
 
         public FileStreamResult DownFile(string filePath, string fileName)
         {
-            string absoluFilePath = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["AttachmentPath"] + filePath);
+            string absoluFilePath = Server.MapPath(downloadpath + filePath);
             return File(new FileStream(absoluFilePath, FileMode.Open), "application/octet-stream", Server.UrlEncode(fileName));
         }
 
         public ActionResult DownFile2(string filePath, string fileName)
         {
-            filePath = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["AttachmentPath"] + filePath);
+            filePath = Server.MapPath(downloadpath + filePath);
             FileStream fs = new FileStream(filePath, FileMode.Open);
             byte[] bytes = new byte[(int)fs.Length];
             fs.Read(bytes, 0, bytes.Length);
@@ -65,36 +69,9 @@ namespace KNDBsys.WEB.Areas.FileLoad.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public JsonResult Upload(HttpPostedFileBase fileData)
+        public string Upload(HttpPostedFileBase fileData)
         {
-            if (fileData != null)
-            {
-                try
-                {
-                    // 文件上传后的保存路径
-                    string filePath = Server.MapPath("~/Uploads/");
-                    if (!Directory.Exists(filePath))
-                    {
-                        Directory.CreateDirectory(filePath);
-                    }
-                    string fileName = Path.GetFileName(fileData.FileName);// 原始文件名称
-                    string fileExtension = Path.GetExtension(fileName); // 文件扩展名
-                    string saveName = Guid.NewGuid().ToString() + fileExtension; // 保存文件名称
-
-                    fileData.SaveAs(filePath + saveName);
-
-                    return Json(new { Success = true, FileName = fileName, SaveName = saveName });
-                }
-                catch (Exception ex)
-                {
-                    return Json(new { Success = false, Message = ex.Message }, JsonRequestBehavior.AllowGet);
-                }
-            }
-            else
-            {
-                return Json(new { Success = false, Message = "请选择要上传的文件！" }, JsonRequestBehavior.AllowGet);
-            }
+            return filePresent.UpLoadFile(fileData, uploadpath);
         }
-
     }
 }

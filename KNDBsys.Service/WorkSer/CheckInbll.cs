@@ -1,4 +1,5 @@
-﻿using KNDBsys.Model.BaseInfo;
+﻿using KNDBsys.Common;
+using KNDBsys.Model.BaseInfo;
 using KNDBsys.Model.ViewModel;
 using KNDBsys.Model.Work;
 using KNDBsys.Service.WorkSer.WorkCurdSer;

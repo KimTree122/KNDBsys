@@ -7,7 +7,7 @@ using System.Text;
 
 namespace KNDBsys.Service
 {
-    public class DataSwitch
+    public class ds
     {
         public static List<T> JsonToList<T>(string jsonlist)
         {

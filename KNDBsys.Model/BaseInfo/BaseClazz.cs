@@ -246,6 +246,13 @@ namespace KNDBsys.Model.BaseInfo
         /// </summary>           
         public string note { get; set; }
 
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public string programtype { get; set; }
+
     }
 
 }

@@ -1,4 +1,5 @@
-﻿using KNDBsys.Model;
+﻿using KNDBsys.Common;
+using KNDBsys.Model;
 using KNDBsys.Model.BaseInfo;
 using SqlSugar;
 using System;

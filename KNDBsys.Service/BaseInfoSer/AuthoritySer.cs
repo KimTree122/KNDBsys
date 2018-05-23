@@ -1,4 +1,5 @@
 ﻿using KNDBsys.BLL.BaseInfo;
+using KNDBsys.Common;
 using KNDBsys.IBLL.BaseInfo;
 using KNDBsys.Model;
 using KNDBsys.Model.BaseInfo;

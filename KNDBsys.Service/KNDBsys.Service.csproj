@@ -49,13 +49,13 @@
     <Compile Include="BaseInfoSer\CustomInfoSer.cs" />
     <Compile Include="BaseInfoSer\DictionarySer.cs" />
     <Compile Include="BaseInfoSer\SysVerSer.cs" />
+    <Compile Include="ds.cs" />
     <Compile Include="FileSer\FileLoadSer.cs" />
     <Compile Include="WorkSer\QRnumberSer.cs" />
     <Compile Include="BaseInfoSer\ServerTypeSer.cs" />
     <Compile Include="BaseInfoSer\UserAuthSer.cs" />
     <Compile Include="BaseInfoSer\UserInfoSer.cs" />
     <Compile Include="CurdService.cs" />
-    <Compile Include="DataSwitch.cs" />
     <Compile Include="General.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorkSer\CheckInbll.cs" />

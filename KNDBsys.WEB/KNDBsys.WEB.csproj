@@ -252,6 +252,7 @@
     <Content Include="Areas\BaseInfo\Views\Web.config" />
     <Content Include="Areas\Work\Views\Web.config" />
     <Content Include="Areas\FileLoad\Views\Web.config" />
+    <Content Include="Areas\BaseInfo\Views\BaseInfo\AddSysVer.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -313,6 +314,10 @@
     <ProjectReference Include="..\KNDBsys.BLL\KNDBsys.BLL.csproj">
       <Project>{9ccc63a6-6f4c-44eb-abf0-90e4ea328f61}</Project>
       <Name>KNDBsys.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KNDBsys.Common\KNDBsys.Common.csproj">
+      <Project>{4D6AD45D-D2DA-4AE8-8AF6-85EB095AFA6E}</Project>
+      <Name>KNDBsys.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\KNDBsys.IBLL\KNDBsys.IBLL.csproj">
       <Project>{8b211db0-d7fd-4ca7-97b5-a0a012a10ac6}</Project>

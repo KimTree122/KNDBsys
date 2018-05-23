@@ -193,9 +193,9 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
 
         #region 程序更新
 
-        public string GetNewSysVer()
+        public string GetNewSysVer(string programtype)
         {
-            return sysVerSer.GetNewSysVer();
+            return sysVerSer.GetNewSysVer(programtype);
         }
 
         public string AddSysVer(string sysver)
