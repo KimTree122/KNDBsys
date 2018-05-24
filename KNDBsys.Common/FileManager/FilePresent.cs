@@ -28,7 +28,7 @@ namespace KNDBsys.Common.FileManager
                 string fileExtension = Path.GetExtension(fileName); // 文件扩展名
                 string saveName = Guid.NewGuid().ToString("P") + fileExtension; // 保存文件名称
 
-                filedata.SaveAs(path + saveName);
+                filedata.SaveAs(path+"/"+ saveName);
             }
             catch (Exception e)
             {
@@ -36,5 +36,35 @@ namespace KNDBsys.Common.FileManager
             }
             return DataSwitch.HttpPostMsg("上传成功", 1);
         }
+
+        public string UpLoadStreamFile(Stream sr,string uploadpath, string filename)
+        {
+            try
+            {
+                int size = 1024;
+                byte[] by = new byte[size];
+                int length = sr.Read(by, 0, size);
+                if (!Directory.Exists(uploadpath))
+                {
+                    Directory.CreateDirectory(uploadpath);
+                }
+                FileStream fs = new FileStream(uploadpath + "/" + filename, FileMode.Create, FileAccess.Write);
+                while (length > 0)
+                {
+                    fs.Write(by, 0, by.Length);
+                    length = sr.Read(by, 0, size);
+                }
+                fs.Close();
+                sr.Close();
+            }
+            catch (Exception e)
+            {
+                return DataSwitch.HttpPostMsg(e.Message, 0);
+            }
+            
+            return DataSwitch.HttpPostMsg("上传成功", 1);
+        }
+
+
     }
 }

@@ -68,10 +68,18 @@ namespace KNDBsys.WEB.Areas.FileLoad.Controllers
             return File(filePath, s, Path.GetFileName(filePath));
         }
 
+
         [AcceptVerbs(HttpVerbs.Post)]
-        public string Upload(HttpPostedFileBase fileData)
+        public string UpLoadFile()
         {
-            return filePresent.UpLoadFile(fileData, uploadpath);
+            Stream sr = Request.InputStream;
+            string str = string.Empty;
+            if (sr.Length > 0)
+            {
+               string filename = Request.QueryString["filename"];
+               return filePresent.UpLoadStreamFile(sr, uploadpath, filename);
+            }
+            return str;
         }
     }
 }
