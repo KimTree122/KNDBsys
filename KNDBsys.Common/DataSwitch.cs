@@ -27,7 +27,11 @@ namespace KNDBsys.Common
 
         public static string DataToObject( object list )
         {
-            return JsonConvert.SerializeObject(list);
+            string str = JsonConvert.SerializeObject(list);
+
+            string ret = Secret_string.EncryptDES(str);
+
+            return ret;
         }
 
         public static string HttpPostData<L,E> ( List<L> dlist, E obj = default(E), string msg = "")

@@ -24,7 +24,7 @@ namespace KNDBsys.Service.BaseInfoSer
                 var sysver = dbSet.GetById(q);
                 return DataSwitch.HttpPostEntity<SysVer>(sysver);
             }
-            return DataSwitch.HttpPostMsg(General.strFail);
+            return DataSwitch.HttpPostMsg(General.strFail,General.intFail);
         }
 
     }
