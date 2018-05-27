@@ -35,8 +35,9 @@ namespace KNDBsys.WEB.Areas.FileLoad.Controllers
 
         public FileStreamResult DownFile(string filePath, string fileName)
         {
-            string absoluFilePath = Server.MapPath(downloadpath + filePath);
-            return File(new FileStream(absoluFilePath, FileMode.Open), "application/octet-stream", Server.UrlEncode(fileName));
+            //string absoluFilePath = Server.MapPath(downloadpath + filePath);
+            string path = downloadpath + filePath;
+            return File(new FileStream(path, FileMode.Open), "application/octet-stream", Server.UrlEncode(fileName));
         }
 
         public ActionResult DownFile2(string filePath, string fileName)
@@ -70,14 +71,13 @@ namespace KNDBsys.WEB.Areas.FileLoad.Controllers
 
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public string UpLoadFile()
+        public string UpLoadFile(string filename,string ver)
         {
             Stream sr = Request.InputStream;
             string str = string.Empty;
             if (sr.Length > 0)
             {
-               string filename = Request.QueryString["filename"];
-               return filePresent.UpLoadStreamFile(sr, uploadpath, filename);
+                return filePresent.UpLoadStreamFile(sr, uploadpath+"\\"+ver, filename);
             }
             return str;
         }
