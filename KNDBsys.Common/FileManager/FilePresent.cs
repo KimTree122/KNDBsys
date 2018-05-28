@@ -65,6 +65,9 @@ namespace KNDBsys.Common.FileManager
             return DataSwitch.HttpPostMsg("上传成功", 1);
         }
 
-
+        public string FileDownError(string msg)
+        {
+            return DataSwitch.HttpPostMsg(msg, 0);
+        }
     }
 }
