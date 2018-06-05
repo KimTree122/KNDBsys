@@ -29,5 +29,11 @@ namespace KNDBsys.Service.BaseInfoSer
             var authlist = dbSet.FullClient.SqlQueryable<Authority>(sql).ToList();
             return DataSwitch.HttpPostList<Authority>(authlist);
         }
+
+        public string GetOperAuthByTag(string authtype, int tag)
+        {
+            var authlist = dbSet.GetList(a => a.AuthTypeName == authtype & a.ParentID == tag);
+            return DataSwitch.HttpPostList<Authority>(authlist);
+        }
     }
 }

@@ -73,6 +73,11 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
             return authser.DeleteEntity(authority);
         }
 
+        public string GetOperAuthByTag(string authtypeName, int tag)
+        {
+            return authser.GetOperAuthByTag(authtypeName, tag);
+        }
+
         #endregion
 
         #region 用户
