@@ -253,6 +253,7 @@
     <Content Include="Areas\Work\Views\Web.config" />
     <Content Include="Areas\FileLoad\Views\Web.config" />
     <Content Include="Areas\BaseInfo\Views\BaseInfo\AddSysVer.cshtml" />
+    <Content Include="Areas\BaseInfo\Views\Shared\_BaseInfoView.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -301,7 +302,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\BaseInfo\Models\" />
-    <Folder Include="Areas\BaseInfo\Views\Shared\" />
     <Folder Include="Areas\FileLoad\Models\" />
     <Folder Include="Areas\FileLoad\Views\Shared\" />
     <Folder Include="Areas\Work\Models\" />
