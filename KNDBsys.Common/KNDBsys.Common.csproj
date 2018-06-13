@@ -49,6 +49,8 @@
     <Compile Include="FileManager\FilePresent.cs" />
     <Compile Include="General.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueueThreadBase.cs" />
+    <Compile Include="DownLoadQueueThread.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
