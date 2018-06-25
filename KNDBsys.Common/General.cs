@@ -19,7 +19,7 @@ namespace KNDBsys.Common
     {
         //默认密钥向量
         private static byte[] Keys = { 0x12, 0x34, 0x56, 0x77, 0x90, 0xAB, 0xCD, 0xEF };
-        private static string encryptKey = "FsQyCbcx";
+        private static string encryptKey = "KimFW";
 
         public static string EncryptDES(string encryptString)//, string encryptKey)
         {

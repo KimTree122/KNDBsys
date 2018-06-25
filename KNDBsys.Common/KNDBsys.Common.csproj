@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,13 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataChange.cs" />
+    <Compile Include="TypeChange.cs" />
     <Compile Include="DataSwitch.cs" />
     <Compile Include="FileManager\FilePresent.cs" />
     <Compile Include="General.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueueThreadBase.cs" />
-    <Compile Include="DownLoadQueueThread.cs" />
+    <Compile Include="ThreadHelp\QueueThreadBase.cs" />
+    <Compile Include="ThreadHelp\DownLoadQueueThread.cs" />
+    <Compile Include="VerifyCode\Verify_Code.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

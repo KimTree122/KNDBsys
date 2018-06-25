@@ -49,7 +49,6 @@
     <Compile Include="BaseInfoSer\CustomInfoSer.cs" />
     <Compile Include="BaseInfoSer\DictionarySer.cs" />
     <Compile Include="BaseInfoSer\SysVerSer.cs" />
-    <Compile Include="ds.cs" />
     <Compile Include="FileSer\FileLoadSer.cs" />
     <Compile Include="WorkSer\QRnumberSer.cs" />
     <Compile Include="BaseInfoSer\ServerTypeSer.cs" />
