@@ -17,32 +17,43 @@ namespace KNDBsys.WEB.Controllers
             return View();
         }
 
-        public ActionResult MainView()
+        public ActionResult MainView(string id)
         {
-            return View();
+            UserInfoSer userInfoSer = new UserInfoSer();
+            UserInfo user = userInfoSer.GetUserInfobyID(id);
+            return View(user);
         }
-
 
         public ActionResult Login()
         {
             return View();
         }
 
-        public int CLogin(string userid, string pwd, string vcode)
+        public string CLogin(string userid, string pwd, string vcode)
         {
             if (Session["v$code"] == null)
             {
-                return 0;
+                return "验证码失效";
             }
 
             if (Session["v$code"].ToString() != vcode)
             {
-                return 0;
+                Session["v$code"] = null;
+                return "验证码错误";
             }
             UserInfoSer userInfoSer = new UserInfoSer();
             string str = userInfoSer.GetUserInfoByAccount(userid, pwd).DecDES();
             int index = str.IndexOf("1");
-            return index;
+            if (index > 0)
+            {
+                Session["v$code"] = null;
+                return index + "";
+            }
+            else
+            {
+                Session["v$code"] = null;
+                return "账号密码错误";
+            }
         }
 
         public ActionResult yzm()

@@ -87,10 +87,12 @@
 
             $.post("/Home/CLogin", data, function (stauts) {
                 if (parseInt(stauts) > 0) {
-                    window.location.replace("/Home/MainView");
+                    window.location.replace("/Home/MainView?id=" + stauts);
+                } else {
+                    alert(stauts);
                 }
             });
-
+            $("#Loading").hide();
             return false;
         }
 

@@ -28,5 +28,12 @@ namespace KNDBsys.Service.BaseInfoSer
             return DataSwitch.HttpPostEntity<UserInfo>(q);
         }
 
+
+        public UserInfo GetUserInfobyID(string userid)
+        {
+            var userlist = dbSet.GetById(userid);
+            return userlist;
+        }
+
     }
 }
