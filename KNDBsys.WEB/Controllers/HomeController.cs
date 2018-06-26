@@ -1,5 +1,6 @@
 ﻿using KNDBsys.Common;
 using KNDBsys.Common.VerifyCode;
+using KNDBsys.Model;
 using KNDBsys.Model.BaseInfo;
 using KNDBsys.Service.BaseInfoSer;
 using System;
@@ -19,8 +20,13 @@ namespace KNDBsys.WEB.Controllers
 
         public ActionResult MainView()
         {
+            object id = Session["U@id"];
+            if (id == null)
+            {
+                return View("Error");
+            }
             UserInfoSer userInfoSer = new UserInfoSer();
-            UserInfo user = userInfoSer.GetUserInfobyID("1");
+            UserInfo user = userInfoSer.GetUserInfobyID_claz(id.ToString());
 
 
             return View(user);
@@ -44,12 +50,12 @@ namespace KNDBsys.WEB.Controllers
                 return "验证码错误";
             }
             UserInfoSer userInfoSer = new UserInfoSer();
-            string str = userInfoSer.GetUserInfoByAccount(userid, pwd).DecDES();
-            int index = str.IndexOf("1");
-            if (index > 0)
+            UserInfo user = userInfoSer.GetUserInfoByAccount_claz(userid, pwd);
+
+            if (user !=null)
             {
-                Session["v$code"] = null;
-                return index + "";
+                Session["U@id"] = user.id;
+                return "success";
             }
             else
             {

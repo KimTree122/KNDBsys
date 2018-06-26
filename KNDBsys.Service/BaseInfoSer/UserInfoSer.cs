@@ -29,10 +29,16 @@ namespace KNDBsys.Service.BaseInfoSer
         }
 
 
-        public UserInfo GetUserInfobyID(string userid)
+        public UserInfo GetUserInfobyID_claz(string userid)
         {
             var userlist = dbSet.GetById(userid);
             return userlist;
+        }
+
+        public UserInfo GetUserInfoByAccount_claz(string account, string pwd)
+        {
+            var q = dbSet.GetList().Find(u => u.Uaccount == account & u.Upwd == pwd);
+            return q;
         }
 
     }
