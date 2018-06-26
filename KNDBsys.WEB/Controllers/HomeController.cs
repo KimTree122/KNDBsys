@@ -17,10 +17,12 @@ namespace KNDBsys.WEB.Controllers
             return View();
         }
 
-        public ActionResult MainView(string id)
+        public ActionResult MainView()
         {
             UserInfoSer userInfoSer = new UserInfoSer();
-            UserInfo user = userInfoSer.GetUserInfobyID(id);
+            UserInfo user = userInfoSer.GetUserInfobyID("1");
+
+
             return View(user);
         }
 
