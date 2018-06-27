@@ -25,9 +25,15 @@ namespace KNDBsys.Service.BaseInfoSer
 
         public string GetUserAuth(string userid)
         {
-            string sql = string.Format("select * from userauthview where  userid = '{0}'",userid);
-            var authlist = dbSet.FullClient.SqlQueryable<Authority>(sql).ToList();
+            var authlist = GetAuthoritiesClz(userid);
             return DataSwitch.HttpPostList<Authority>(authlist);
+        }
+
+        public List<Authority> GetAuthoritiesClz(string userid)
+        {
+            string sql = string.Format("select * from userauthview where  userid = '{0}'", userid);
+            var authlist = dbSet.FullClient.SqlQueryable<Authority>(sql).ToList();
+            return authlist;
         }
 
         public string GetOperAuthByTag(string authtype, int tag)

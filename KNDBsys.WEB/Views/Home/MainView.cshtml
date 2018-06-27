@@ -1,7 +1,7 @@
 ﻿@{
     Layout = null;
 }
-@model KNDBsys.Model.BaseInfo.UserInfo
+@model KNDBsys.Model.ViewModel.UserAuthMsgVM
 <!DOCTYPE html>
 
 <html>
@@ -29,7 +29,7 @@
     <div data-options="region:'north',border:false,split:false" style="height: 60px;">
         <div class="define-head">
             <div class="define-logo">
-                <div id="LoginTopLine">ManagerSystem.KIM.COM</div>
+                <div id="LoginTopLine">Hello,@Model.LoginUser.Uname</div>
                 <div id="LoginBotoomLine"></div>
             </div>
             <div class="define-account">
@@ -42,10 +42,15 @@
         <div style="margin:20px 0">
             <a href="#" id="btn1" class="easyui-linkbutton c6" style="width:120px">Button5</a>
         </div>
-        <div>
-            <p>@Model.UPost</p>
-        </div>
 
+        <table>
+            @foreach (var item in Model.UserAuths)
+            {
+            <tr>
+                <a href="#" id="@item.id" class="easyui-linkbutton c6" style="width:120px">@item.TreeName</a>
+            </tr>
+            }
+        </table>
 
     </div>
     <div data-options="region:'east',split:true,collapsed:true,title:'East'" style="width:100px;padding:10px;">east region</div>

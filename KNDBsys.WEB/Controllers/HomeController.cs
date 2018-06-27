@@ -2,7 +2,9 @@
 using KNDBsys.Common.VerifyCode;
 using KNDBsys.Model;
 using KNDBsys.Model.BaseInfo;
+using KNDBsys.Model.ViewModel;
 using KNDBsys.Service.BaseInfoSer;
+using KNDBsys.Service.BaseInfoSer.BaseView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,13 +25,12 @@ namespace KNDBsys.WEB.Controllers
             object id = Session["U@id"];
             if (id == null)
             {
-                return View("Error");
+                //return View("Error");
+                id = "1";
             }
-            UserInfoSer userInfoSer = new UserInfoSer();
-            UserInfo user = userInfoSer.GetUserInfobyID_claz(id.ToString());
-
-
-            return View(user);
+            LoginUserAuthSer loginUser = new LoginUserAuthSer();
+            UserAuthMsgVM vM = loginUser.GetUserAuthMsgByUserID(id.ToString());
+            return View(vM);
         }
 
         public ActionResult Login()

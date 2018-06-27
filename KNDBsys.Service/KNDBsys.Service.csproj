@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="BaseADOSer.cs" />
     <Compile Include="BaseInfoSer\AuthoritySer.cs" />
+    <Compile Include="BaseInfoSer\BaseView\LoginUserAuthSer.cs" />
     <Compile Include="BaseInfoSer\CustomInfoSer.cs" />
     <Compile Include="BaseInfoSer\DictionarySer.cs" />
     <Compile Include="BaseInfoSer\SysVerSer.cs" />
