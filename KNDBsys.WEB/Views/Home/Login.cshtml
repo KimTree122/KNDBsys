@@ -87,9 +87,7 @@
 
             $.post("/Home/CLogin", data, function (stauts) {
                 if (stauts=="success") {
-
                     window.location.href = "/Home/MainView"
-
                 } else {
                     alert(stauts);
                 }

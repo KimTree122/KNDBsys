@@ -208,6 +208,12 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
             return sysVerSer.AddEntity(sysver);
         }
 
+        public ActionResult AddView()
+        {
+            return View();
+        }
+
+
         #endregion
 
     }

@@ -365,7 +365,6 @@
     <Content Include="Areas\BaseInfo\Views\Web.config" />
     <Content Include="Areas\Work\Views\Web.config" />
     <Content Include="Areas\FileLoad\Views\Web.config" />
-    <Content Include="Areas\BaseInfo\Views\BaseInfo\AddSysVer.cshtml" />
     <Content Include="Areas\BaseInfo\Views\Shared\_BaseInfoView.cshtml" />
     <Content Include="Content\Images\Logo.psd" />
     <Content Include="Content\Images\sunny\Logo.psd" />
@@ -373,6 +372,7 @@
     <Content Include="Content\themes\blue\images\Thumbs.db" />
     <Content Include="Content\themes\gray\images\Thumbs.db" />
     <Content Include="Content\themes\metro\images\Thumbs.db" />
+    <Content Include="Areas\BaseInfo\Views\BaseInfo\AddView.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\home.js" />
