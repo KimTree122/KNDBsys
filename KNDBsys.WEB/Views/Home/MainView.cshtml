@@ -18,54 +18,65 @@
         $(document).ready(function () {
 
 
-            $("easyui-linkbutton[id!='btnauth']").live("click", function () {
+            $(".easyui-linkbutton").live("click", function () {
                 //var m = $(this).attr("name");
                 var m = $(this).text();
-
+                if (SelectT(m)) {
+                    ActivitiveTabs(m);
+                    return;
+                } 
                 OpenTabs(m, "../BaseInfo/BaseInfo/AddView");
-
+                ReloadActivity();
             });
 
 
 
-            $("#btnauth").click(function () {
-                SelectT("");
+            $("#test").click(function () {
+                ActivitiveTabs("");
             });
-           
 
-
-            function SelectT(tn) {
-                var tc = $(".tabs-selected");
-
-                for (var i = 0; i < tc.length; i++) {
-                    alert(tc[i].id);
+            function ActivitiveTabs(tabName) {
+                var tabs = $("#mainTab .tabs-title");
+                var tablist = new Array();
+                for (var i = 0; i < tabs.length; i++) {
+                    var tw = tabs[i].innerText;
+                    if (tw == tabName) {
+                        $('#mainTab').tabs('select', i);
+                    }
                 }
             }
 
 
-            function SelectTabs(tn) {
-                $(".tabs-selected").each(function () {
-                    var atabs = $(this).text;
-                    if (atabs == tn) {
-                        return true;
+            function ReloadActivity() {
+                var tabs = $('#mainTab').tabs().tabs('tabs');
+                for (var i = 0; i < tabs.length; i++) {
+                    tabs[i].panel('options').tab.unbind().bind('mouseenter', { index: i }
+                        , function (e) {
+                        $('#mainTab').tabs('select', e.data.index);
+                    });
+                }
+            }
+
+            function SelectT(tn) {
+                var tc = $("#mainTab .tabs-title");
+                for (var i = 0; i < tc.length; i++) {
+                    var tw = tc[i].textContent;
+                    if (tn == tw) {
+                        return true
                     }
-                });
+                }
                 return false;
             }
 
-
             function OpenTabs(tabname, path) {
-
                 var content = '<iframe scrolling="auto" frameborder="0"  src="'
                     + path + '" style="width:100%;height:100%;"></iframe>';
-
                 $('#mainTab').tabs('add', {
                     title: tabname,
                     content:  content ,
                     closable: true
                 });
             }
-
         });
 
     </script>
@@ -87,6 +98,10 @@
     <div data-options="region:'west',split:true,title:'West'" style="width:150px;padding:10px;">
         <div style="margin:20px 0">
             <a href="#" id="btnauth" class="easyui-linkbutton" style="width:120px">Button5</a>
+            <button id="test">test</button>
+
+
+
         </div>
 
         <table>
