@@ -13,7 +13,7 @@ namespace KNDBsys.Common.FileManager
 
         public string UpLoadFile(HttpPostedFileBase filedata, string path)
         {
-            PostData<string, string> postData = new PostData<string, string>();
+            
             if (filedata == null)
             {
                 return DataSwitch.HttpPostMsg("未提交上传文件",0);
@@ -37,6 +37,7 @@ namespace KNDBsys.Common.FileManager
             return DataSwitch.HttpPostMsg("上传成功", 1);
         }
 
+        //弃用,流式数据不能生成对应文件(包含上传参数)
         public string UpLoadStreamFile(Stream sr,string uploadpath, string filename)
         {
             try
@@ -48,7 +49,7 @@ namespace KNDBsys.Common.FileManager
                 {
                     Directory.CreateDirectory(uploadpath);
                 }
-                FileStream fs = new FileStream(uploadpath + "/" + filename, FileMode.Create, FileAccess.Write);
+                FileStream fs = new FileStream(uploadpath + "//" + filename, FileMode.Create, FileAccess.Write);
                 while (length > 0)
                 {
                     fs.Write(by, 0, by.Length);
@@ -56,6 +57,7 @@ namespace KNDBsys.Common.FileManager
                 }
                 fs.Close();
                 sr.Close();
+
             }
             catch (Exception e)
             {
@@ -65,9 +67,15 @@ namespace KNDBsys.Common.FileManager
             return DataSwitch.HttpPostMsg("上传成功", 1);
         }
 
-        public string FileDownError(string msg)
+
+        public FileStream GetFile(string path)
         {
-            return DataSwitch.HttpPostMsg(msg, 0);
+            FileStream fs = new FileStream(path, FileMode.Open);
+            byte[] bytes = new byte[(int)fs.Length];
+            fs.Read(bytes, 0, bytes.Length);
+            fs.Close();
+            return fs;
         }
+
     }
 }

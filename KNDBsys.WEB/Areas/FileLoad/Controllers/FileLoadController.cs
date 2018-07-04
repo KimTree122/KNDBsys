@@ -32,31 +32,28 @@ namespace KNDBsys.WEB.Areas.FileLoad.Controllers
 
         #endregion
 
-
-        public FileStreamResult DownFile(string filePath, string fileName)
+        public ActionResult DownFile(string filePath, string fileName)
         {
-            //string absoluFilePath = Server.MapPath(downloadpath + filePath);
-            string path = downloadpath + filePath;
-            return File(new FileStream(path, FileMode.Open), "application/octet-stream", Server.UrlEncode(fileName));
-        }
-
-        public ActionResult DownFile2(string filePath, string fileName)
-        {
-            filePath = Server.MapPath(downloadpath + filePath);
-            FileStream fs = new FileStream(filePath, FileMode.Open);
+            string abspath = Server.MapPath(downloadpath+filePath+"\\"+fileName);
+            FileStream fs = new FileStream(abspath, FileMode.Open);
             byte[] bytes = new byte[(int)fs.Length];
             fs.Read(bytes, 0, bytes.Length);
             fs.Close();
             Response.Charset = "UTF-8";
             Response.ContentEncoding = System.Text.Encoding.GetEncoding("UTF-8");
             Response.ContentType = "application/octet-stream";
-
-
             Response.AddHeader("Content-Disposition", "attachment; filename=" + Server.UrlEncode(fileName));
             Response.BinaryWrite(bytes);
             Response.Flush();
             Response.End();
             return new EmptyResult();
+        }
+
+        //弃用
+        public FileStreamResult DownFile2(string filePath, string fileName)
+        {
+            string abspath = Server.MapPath(downloadpath + filePath);
+            return File(new FileStream(abspath, FileMode.Open), "application/octet-stream", Server.UrlEncode(fileName));
         }
 
         public FileResult MyFile()
@@ -73,12 +70,16 @@ namespace KNDBsys.WEB.Areas.FileLoad.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public string UpLoadFile(string filename,string ver)
         {
-            Stream sr = Request.InputStream;
             string str = string.Empty;
-            if (sr.Length > 0)
-            {
-                return filePresent.UpLoadStreamFile(sr, uploadpath+"\\"+ver, filename);
-            }
+            //Stream sr = Request.InputStream;
+            //if (sr.Length > 0)
+            //{
+            //    return filePresent.UpLoadStreamFile(sr, uploadpath+"\\"+ver, filename);
+            //}
+            HttpPostedFileBase hpfb = Request.Files[0];
+
+            str = filePresent.UpLoadFile(hpfb, uploadpath+"\\"+ver+"\\"+filename);
+
             return str;
         }
     }

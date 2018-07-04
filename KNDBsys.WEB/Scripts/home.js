@@ -102,9 +102,9 @@ function addTab(subtitle, url, icon) {
         });
     } else {
         $("#mainTab").tabs('select', subtitle);
-        $("#tab_menu-tabrefresh").trigger("click");
+        //$("#tab_menu-tabrefresh").trigger("click");
     }
-    $(".layout-button-left").trigger("click");
+    //$(".layout-button-left").trigger("click");
     //tabClose();
 }
 function createFrame(url) {

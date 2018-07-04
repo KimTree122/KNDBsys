@@ -1,7 +1,9 @@
-﻿@{
+﻿@model KNDBsys.Model.ViewModel.UserAuthMsgVM
+@{
     Layout = null;
+    string str = Newtonsoft.Json.JsonConvert.SerializeObject(Model.UserAuths);
 }
-@model KNDBsys.Model.ViewModel.UserAuthMsgVM
+
 <!DOCTYPE html>
 
 <html>
@@ -21,19 +23,43 @@
             $(".easyui-linkbutton").live("click", function () {
                 //var m = $(this).attr("name");
                 var m = $(this).text();
-                if (SelectT(m)) {
-                    ActivitiveTabs(m);
-                    return;
-                } 
-                OpenTabs(m, "../BaseInfo/BaseInfo/AddView");
-                ReloadActivity();
+                //if (SelectT(m)) {
+                //    ActivitiveTabs(m);
+                //    return;
+                //}
+                //OpenTabs(m, "../BaseInfo/BaseInfo/AddView");
+                //ReloadActivity();
+
+                addTab(m, "../BaseInfo/BaseInfo/AddView", "");
+
             });
 
 
 
             $("#test").click(function () {
-                ActivitiveTabs("");
+                @*var test = '@Model.LoginUser.Uname.ToString()';
+                alert(test);*@
+
+                GetNodes();
+
+
+                
             });
+
+            function GetNodes() {
+               
+                @*var theString = '@str'
+                theString = theString.replace(/&quot;/g, "\"");*@
+                var str = '@str';
+                str = JsonToObj(str);
+
+
+                //var s = JSON.parse(str)
+               
+               
+                alert(str);
+            }
+
 
             function ActivitiveTabs(tabName) {
                 var tabs = $("#mainTab .tabs-title");
@@ -107,7 +133,7 @@
         <table>
             @foreach (var item in Model.UserAuths)
             {
-                if (@item.AuthTypeID == 3 || @item.AuthTypeID == 4 )
+                if (@item.AuthTypeID == 3 || @item.AuthTypeID == 4)
                 {
                     <tr>
                         <a href="#" id="auth_@item.id" name="@item.Path" class="easyui-linkbutton" style="width:120px">@item.TreeName</a>
@@ -132,10 +158,10 @@
     <div data-options="region:'center',title:'Center'" style="margin :0 auto ;">
 
         <div id="mainTab" class="easyui-tabs" data-options="fit:true">
-            <div title="我的桌面" class="tabs-selected"  style="overflow: hidden; background:#fff">
+            <div title="我的桌面" class="tabs-selected" style="overflow: hidden; background:#fff">
                 <iframe scrolling="auto" frameborder="0" src="" style="width: 100%; height: 100%;"></iframe>
             </div>
-            <div title="你的桌面"  class="tabs-selected"  data-options="closable:true" style="overflow: hidden; background:#fff">
+            <div title="你的桌面" class="tabs-selected" data-options="closable:true" style="overflow: hidden; background:#fff">
                 <iframe scrolling="auto" frameborder="0" src="" style="width: 100%; height: 100%;"></iframe>
             </div>
 
