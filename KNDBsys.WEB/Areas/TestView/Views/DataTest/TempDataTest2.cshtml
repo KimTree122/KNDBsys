@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "TempDataTest2";
+    Layout = "~/Views/Shared/_LayoutJSCSS.cshtml";
+    string message = TempData["message"] as string;
+}
+
+<h2>@message</h2>

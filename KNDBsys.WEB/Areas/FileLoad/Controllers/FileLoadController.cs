@@ -34,6 +34,7 @@ namespace KNDBsys.WEB.Areas.FileLoad.Controllers
 
         public ActionResult DownFile(string filePath, string fileName)
         {
+            //需要在iis添加虚拟目录
             string abspath = Server.MapPath(downloadpath+filePath+"\\"+fileName);
             FileStream fs = new FileStream(abspath, FileMode.Open);
             byte[] bytes = new byte[(int)fs.Length];
@@ -56,19 +57,9 @@ namespace KNDBsys.WEB.Areas.FileLoad.Controllers
             return File(new FileStream(abspath, FileMode.Open), "application/octet-stream", Server.UrlEncode(fileName));
         }
 
-        public FileResult MyFile()
-        {
-            string root = Server.MapPath("~/App_Data");
-            string fileName = "test.jpg";
-            string filePath = Path.Combine(root, fileName);
-            //string s = MimeMapping.GetMimeMapping(fileName);
-            string s = "";
-            return File(filePath, s, Path.GetFileName(filePath));
-        }
-
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public string UpLoadFile(string filename,string ver)
+        public string UpLoadFile(string filename,string filePath)
         {
             string str = string.Empty;
             //Stream sr = Request.InputStream;
@@ -78,7 +69,7 @@ namespace KNDBsys.WEB.Areas.FileLoad.Controllers
             //}
             HttpPostedFileBase hpfb = Request.Files[0];
 
-            str = filePresent.UpLoadFile(hpfb, uploadpath+"\\"+ver+"\\"+filename);
+            str = filePresent.UpLoadFile(hpfb, uploadpath+"\\"+ filePath + "\\"+filename);
 
             return str;
         }
