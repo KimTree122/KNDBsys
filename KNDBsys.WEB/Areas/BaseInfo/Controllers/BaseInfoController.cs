@@ -111,9 +111,9 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
 
         #region 用户权限
 
-        public string GetUserAuth(string userid)
+        public string GetUserAuth(string userid,string portType)
         {
-            return authser.GetUserAuth(userid);
+            return authser.GetUserAuth(userid,portType);
         }
 
         public string AddUserAuth(string auth, string userid)

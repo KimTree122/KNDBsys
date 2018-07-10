@@ -155,6 +155,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\BaseInfo\BaseInfoAreaRegistration.cs" />
     <Compile Include="Areas\BaseInfo\Controllers\BaseInfoController.cs" />
+    <Compile Include="Areas\BaseInfo\Controllers\BaseInfoViewController.cs" />
     <Compile Include="Areas\FileLoad\Controllers\FileLoadController.cs" />
     <Compile Include="Areas\FileLoad\FileLoadAreaRegistration.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />

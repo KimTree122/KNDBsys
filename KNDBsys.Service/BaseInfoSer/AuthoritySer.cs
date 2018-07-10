@@ -23,15 +23,15 @@ namespace KNDBsys.Service.BaseInfoSer
             return DataSwitch.HttpPostList<Authority>( authlist);
         }
 
-        public string GetUserAuth(string userid)
+        public string GetUserAuth(string userid,string portType)
         {
-            var authlist = GetAuthoritiesClz(userid);
+            var authlist = GetAuthoritiesClz(userid,portType);
             return DataSwitch.HttpPostList<Authority>(authlist);
         }
 
-        public List<Authority> GetAuthoritiesClz(string userid)
+        public List<Authority> GetAuthoritiesClz(string userid,string portType)
         {
-            string sql = string.Format("select * from userauthview where  userid = '{0}'", userid);
+            string sql = string.Format("select * from userauthview where  userid = '{0}' and sysport = '{1}'", userid,portType);
             var authlist = dbSet.FullClient.SqlQueryable<Authority>(sql).ToList();
             return authlist;
         }

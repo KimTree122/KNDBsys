@@ -12,10 +12,12 @@ namespace KNDBsys.Service.BaseInfoSer.BaseView
         private UserInfoSer InfoSer = new UserInfoSer();
         private AuthoritySer authoritySer = new AuthoritySer();
 
-        public UserAuthMsgVM GetUserAuthMsgByUserID(string userid)
+        public UserAuthMsgVM GetUserAuthMsgByUserID(string userid,string portType)
         {
             UserInfo userInfo = InfoSer.GetUserInfobyID_claz(userid);
-            List<Authority> authorities = authoritySer.GetAuthoritiesClz(userid);
+            List<Authority> authorities = authoritySer.GetAuthoritiesClz(userid, portType)
+                .OrderBy(e => e.ParentID)
+                .OrderBy( e => e.AOrder).ToList();
             UserAuthMsgVM vM = new UserAuthMsgVM { LoginUser = userInfo, UserAuths = authorities };
             return vM;
         }

@@ -29,7 +29,7 @@ namespace KNDBsys.WEB.Controllers
                 id = "1";
             }
             LoginUserAuthSer loginUser = new LoginUserAuthSer();
-            UserAuthMsgVM vM = loginUser.GetUserAuthMsgByUserID(id.ToString());
+            UserAuthMsgVM vM = loginUser.GetUserAuthMsgByUserID(id.ToString(),"Web");
             return View(vM);
         }
 

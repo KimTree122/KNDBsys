@@ -101,6 +101,8 @@ namespace KNDBsys.Model.BaseInfo
         /// </summary>           
         public string AOrder { get; set; }
 
+        public string SysPort { get; set; }
+
     }
 
     ///<summary>
