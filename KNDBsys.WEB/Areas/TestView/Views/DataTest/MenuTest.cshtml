@@ -1,0 +1,150 @@
+﻿@{
+    ViewBag.Title = "MenuTest";
+    Layout = "~/Views/Shared/_LayoutJSCSS.cshtml";
+}
+
+<style type="text/css">
+
+    * {
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+        font-family: 'Microsoft YaHei'
+    }
+
+    #nav, #nav2 {
+        display: -webkit-box;
+        display: -moz-box;
+        display: box;
+        margin: auto;
+        margin-top: 30px;
+        border: 10px solid #7f8c8d
+    }
+
+    #nav {
+        width: 300px;
+        height: 100px;
+        -webkit-box-orient: horizontal;
+        -moz-box-orient: horizontal;
+        box-orient: horizontal
+    }
+
+    #nav2 {
+        width: 100px;
+        height: 300px;
+        -webkit-box-orient: vertical;
+        -moz-box-orient: vertical;
+        box-orient: vertical
+    }
+
+        #nav div, #nav2 div {
+            -webkit-box-flex: 1;
+            -moz-box-flex: 1;
+            box-flex: 1;
+            text-align: center;
+            line-height: 100px;
+            font-size: 36px;
+            color: #fff;
+        }
+
+    #box1 {
+        background: #1abc9c
+    }
+
+    #box2 {
+        background: #3498db
+    }
+
+    #box3 {
+        background: #9b59b6
+    }
+
+    #box4 {
+        background: #f39c12
+    }
+
+    #box5 {
+        background: #27ae60
+    }
+
+    #box6 {
+        background: #c0392b
+    }
+
+    /*底部导航栏*/
+    .nav {
+        background: #3498db;
+        padding: 10px 0 6px 0;
+        width: 100%;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+    }
+
+        .nav ul {
+            height: 0px;
+        }
+
+            .nav ul li {
+                float: left;
+                width: 25%;
+                text-align: center;
+                list-style-type: none;
+                margin: 0px;
+                padding: 0px;
+            }
+
+                .nav ul li span {
+                    display: block;
+                    color: #fff;
+                    font-size: 14px;
+                    font-family: "微软雅黑";
+                    line-height: 22px;
+                }
+
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+
+    * {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        font-weight: normal;
+    }
+</style>
+
+<div class="main">
+
+    <!-- 横向排列 -->
+    <div id="nav">
+        <div id="box1">1</div>
+        <div id="box2">2</div>
+        <div id="box3">3</div>
+    </div>
+    <!-- 纵向排列 -->
+    <div id="nav2">
+        <div id="box4">4</div>
+        <div id="box5">5</div>
+        <div id="box6">6</div>
+    </div>
+
+    <div class="nav">
+        <ul>
+            <li>
+                <a href="#"><span><img src="images/ni4.jpg" height="20"></span><span>充值卡</span></a>
+            </li>
+            <li>
+                <a href="#"><span><img src="images/ni3.jpg" height="20"></span><span>购买记录</span></a>
+            </li>
+            <li>
+                <a href="#"><span><img src="images/ni2.jpg" height="20"></span><span>我的篮子</span></a>
+            </li>
+            <li>
+                <a href="#"><span><img src="images/ni5.jpg" height="20"></span><span>个人中心</span></a>
+            </li>
+        </ul>
+    </div>
+
+</div>

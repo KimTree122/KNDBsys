@@ -352,6 +352,7 @@
     <Content Include="Content\themes\metro\tree.css" />
     <Content Include="Content\themes\metro\validatebox.css" />
     <Content Include="Content\themes\metro\window.css" />
+    <Content Include="Content\themes\mobile.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -383,6 +384,8 @@
     <Content Include="Areas\TestView\Views\DataTest\TempDataTest.cshtml" />
     <Content Include="Areas\TestView\Views\DataTest\ModelTest.cshtml" />
     <Content Include="Areas\TestView\Views\DataTest\JsonTest.cshtml" />
+    <Content Include="Areas\TestView\Views\DataTest\MenuTest.cshtml" />
+    <Content Include="Areas\TestView\Views\DataTest\EasyMobileUI.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\home.js" />
@@ -392,8 +395,11 @@
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
     <Content Include="Scripts\jquery.easyui.min.js" />
+    <Content Include="Scripts\jquery.easyui.min2.js" />
     <Content Include="Scripts\jquery.easyui.mobile.js" />
+    <Content Include="Scripts\jquery.easyui.mobile2.js" />
     <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.min2.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />

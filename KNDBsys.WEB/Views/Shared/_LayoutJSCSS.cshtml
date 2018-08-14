@@ -4,17 +4,29 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>_LayoutJSCSS</title>
+    <title>@ViewBag.Title</title>
+
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/mobile/css")
+    @Styles.Render("~/Content/themes/icon/css")
+    @Styles.Render("~/Content/themes/blue/css")
+
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/easyuijs")
     <script src="~/Scripts/jquery.easyui.min.js"></script>
-    @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/themes/blue/css")
+    @Scripts.Render("~/bundles/mobileui")
+
+    @*<link href="~/Content/themes/mobile.css" rel="stylesheet" />
+        <link href="~/Content/themes/icon.css" rel="stylesheet" />
+        <link href="~/Content/themes/blue/easyui.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery.min2.js"></script>
+        <script src="~/Scripts/jquery.easyui.min2.js"></script>
+        <script src="~/Scripts/jquery.easyui.mobile2.js"></script>*@
 
 </head>
 <body>
-    <div>
-        @RenderBody()
-    </div>
+    @RenderBody()
 </body>
 </html>

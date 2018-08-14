@@ -30,6 +30,9 @@ namespace KNDBsys.WEB.Controllers
             }
             LoginUserAuthSer loginUser = new LoginUserAuthSer();
             UserAuthMsgVM vM = loginUser.GetUserAuthMsgByUserID(id.ToString(),"Web");
+            string str = loginUser.AuthTreeNode_json(id.ToString(), "Web");
+
+            ViewBag.au = str;
             return View(vM);
         }
 

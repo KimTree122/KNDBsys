@@ -1,4 +1,5 @@
-﻿using KNDBsys.Model.BaseInfo;
+﻿using KNDBsys.Common.TreeNode;
+using KNDBsys.Model.BaseInfo;
 using KNDBsys.Model.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,16 @@ namespace KNDBsys.Service.BaseInfoSer.BaseView
                 .OrderBy( e => e.AOrder).ToList();
             UserAuthMsgVM vM = new UserAuthMsgVM { LoginUser = userInfo, UserAuths = authorities };
             return vM;
+        }
+
+        public string AuthTreeNode_json(string userid,string portType)
+        {
+            UserInfo userInfo = InfoSer.GetUserInfobyID_claz(userid);
+            List<Authority> authorities = authoritySer.GetAuthoritiesClz(userid, portType)
+                .OrderBy(e => e.ParentID)
+                .OrderBy(e => e.AOrder).ToList();
+            TreeNodeHelper nodeHelper = new TreeNodeHelper();
+            return nodeHelper.InitTreeNode_json(authorities, 0);
         }
 
 

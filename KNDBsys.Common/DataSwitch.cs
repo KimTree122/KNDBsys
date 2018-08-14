@@ -25,14 +25,21 @@ namespace KNDBsys.Common
             }
         }
 
-        public static string DataToObject( object list )
+        public static string DataToJson_DES( object obj )
         {
-            string str = JsonConvert.SerializeObject(list);
+            string str = JsonConvert.SerializeObject(obj);
 
             string ret = Secret_string.EncryptDES(str);
 
             return ret;
         }
+
+        public static string DataToJson(object obj)
+        {
+            string str = JsonConvert.SerializeObject(obj);
+            return str;
+        }
+
 
         public static string HttpPostData<L,E> ( List<L> dlist, E obj = default(E), string msg = "")
         {
@@ -44,7 +51,7 @@ namespace KNDBsys.Common
                 Entity = obj
             };
 
-            return DataToObject(postData);
+            return DataToJson_DES(postData);
         }
 
         public static string HttpPostList<T>(List<T> dlist,string msg = "")
@@ -55,7 +62,7 @@ namespace KNDBsys.Common
                 MCount = dlist.Count,
                 Msg = msg
             };
-            return DataToObject(post);
+            return DataToJson_DES(post);
         }
 
         public static string HttpPostEntity<E>(E s,int count = 0, string msg = "")
@@ -66,7 +73,7 @@ namespace KNDBsys.Common
                 MCount = count,
                 Msg = msg
             };
-            return DataToObject(post);
+            return DataToJson_DES(post);
         }
 
         public static string HttpPostMsg(object msg,int count = 1)
@@ -76,7 +83,7 @@ namespace KNDBsys.Common
                 MCount = count,
                 Msg = msg.ToString()
             };
-            return DataToObject(post);
+            return DataToJson_DES(post);
         }
 
     }

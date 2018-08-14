@@ -82,7 +82,15 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
             return View(jsonObj);
         }
 
+        public ActionResult MenuTest()
+        {
+            return View();
+        }
 
+        public ActionResult EasyMobileUI()
+        {
+            return View();
+        }
 
 
     }
