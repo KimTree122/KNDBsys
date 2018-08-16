@@ -18,8 +18,8 @@ namespace KNDBsys.Model.ViewModel.WebVM
 
     public class WebTexValue
     {
-        public string text { get; set; }
-        public string value { get; set; }
+        public string Text { get; set; }
+        public string Value { get; set; }
     }
 
 }

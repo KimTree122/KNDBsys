@@ -55,7 +55,7 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
 
         public string GetAllAuthority(string userid)
         {
-            return authser.getAllAuthority();
+            return authser.GetAllAuthority();
         }
 
         public string AddAuthority(string authority)

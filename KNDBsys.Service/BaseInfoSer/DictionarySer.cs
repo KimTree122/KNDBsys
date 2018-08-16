@@ -24,8 +24,13 @@ namespace KNDBsys.Service.BaseInfoSer
 
         public string GetDicbytype(string type)
         {
-            List<Sysdic> cS = cSDic.GetEntities(d => d.Dicname == type).OrderBy(d => d.Dicsetp).ToList();
+            List<Sysdic> cS = GetDicByTypeName(type);
             return DataSwitch.HttpPostList<Sysdic>(cS);
+        }
+
+        public List<Sysdic> GetDicByTypeName(string type)
+        {
+            return cSDic.GetEntities(d => d.Dicname == type).OrderBy(d => d.Dicsetp).ToList();
         }
 
         public string UpdateDictionary(string dic)

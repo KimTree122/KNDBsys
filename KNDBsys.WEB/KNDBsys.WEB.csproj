@@ -386,6 +386,7 @@
     <Content Include="Areas\TestView\Views\DataTest\JsonTest.cshtml" />
     <Content Include="Areas\TestView\Views\DataTest\MenuTest.cshtml" />
     <Content Include="Areas\TestView\Views\DataTest\EasyMobileUI.cshtml" />
+    <Content Include="Areas\BaseInfo\Views\BaseInfoView\AuthManage.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\home.js" />

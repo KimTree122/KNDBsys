@@ -17,10 +17,15 @@ namespace KNDBsys.Service.BaseInfoSer
             dbSet = db.AuthorityDb;
         }
 
-        public string getAllAuthority()
+        public string GetAllAuthority()
         {
-            var authlist = dbSet.GetList(e => e.id != 0);
+            var authlist = GetAllAuth();
             return DataSwitch.HttpPostList<Authority>( authlist);
+        }
+
+        public List<Authority> GetAllAuth()
+        {
+            return dbSet.GetList(au =>au.id !=0);
         }
 
         public string GetUserAuth(string userid,string portType)

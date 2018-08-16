@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KNDBsys.Service.BaseInfoSer.BaseView;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,6 +22,12 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
             return View();
         }
 
+        public ActionResult AuthManage()
+        {
+            LoginUserAuthSer loginUser = new LoginUserAuthSer();
+            ViewBag.allau = loginUser.AllAuthTreeNode_json();
+            return View();
+        }
 
     }
 }

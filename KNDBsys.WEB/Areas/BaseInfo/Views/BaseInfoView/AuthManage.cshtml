@@ -1,0 +1,156 @@
+﻿@{
+    ViewBag.Title = "AuthManage";
+    Layout = "~/Views/Shared/_LayoutJSCSS.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        LoadTree();
+        IsExpand();
+        FristFix();
+        setDisable();
+    });
+
+    function LoadTree() {
+        var str = @Html.Raw(ViewBag.allau)
+        $("#authtree").tree({
+            data: str,
+            onContextMenu: function (e, node) {
+                e.preventDefault();
+                $(this).tree('select', node.target);
+                $('#mm').menu('show', {
+                    left: e.pageX,
+                    top: e.pageY
+                });
+            }
+        });
+    }
+    function FristFix() {
+        var root = $("#authtree").tree("getRoot");
+        FixData(root);
+    }
+
+    function IsExpand() {
+        $("#authtree").tree({
+            onClick: function (node) {
+                $("#authtree").tree(node.state === 'closed' ? 'expand' : 'collapse', node.target);
+                node.state = node.state === 'closed' ? 'open' : 'closed';
+
+                FixData(node);
+            }
+        });
+    }
+
+    function FixData(node) {
+        $("#name").textbox('setValue', node.text);
+        $("#path").textbox('setValue', node.attributes.url);
+        $("#order").textbox("setValue", node.attributes.AOrder);
+        $("#authtype").combobox("setValue", node.attributes.AuthTypeID);
+        var root = $("#authtree").tree("getRoots");
+        //var parent = $("#authtree").tree("getParent", node.target).text;
+        //$('#state').combobox('disable')
+    }
+
+    function setDisable() {
+        $("#node input").attr("disabled", "true");
+        $('#node select').combobox('disable');
+    }
+
+
+    function append() {
+        var t = $('#authtree');
+        var node = t.tree('getSelected');
+        t.tree('append', {
+            parent: (node ? node.target : null),
+            data: [{
+                text: 'new item1'
+            }]
+        });
+    }
+
+    function removeit() {
+        var node = $('#authtree').tree('getSelected');
+        $('#authtree').tree('remove', node.target);
+    }
+
+    function collapse() {
+        var node = $('#authtree').tree('getSelected');
+        $('#authtree').tree('collapse', node.target);
+    }
+
+    function expand() {
+        var node = $('#authtree').tree('getSelected');
+        $('#authtree').tree('expand', node.target);
+    }
+
+</script>
+
+
+<div id="AuthManage" class="easyui-panel" style="width:100%;height:200px;" data-options="fit:true">
+
+    <div class="easyui-layout" style="width:100%;height:350px;" data-options="fit:true">
+        <div id="p" data-options="region:'west'" title="权限列表" style="width:30%;padding:10px">
+            <div class="easyui-panel" style="padding:5px">
+                <ul id="authtree" class="easyui-tree" data-options="method:'get',animate:true,dnd:true,lines:true"></ul>
+            </div>
+
+        </div>
+        <div data-options="region:'center'" title="权限管理">
+
+            <div class="easyui-panel" style="width:400px;padding:30px 60px">
+                <form id="node" method="post">
+                    <h4>所选节点</h4>
+
+                    <div style="margin-bottom:20px">
+                        <label for="accept" class="textbox-label">顶级:</label>
+                        <input id="accept" type="checkbox" name="顶级：" value="true">
+                    </div>
+                    <div style="margin-bottom:20px">
+                        <select id="port" class="easyui-combobox" name="port" label="端口" style="width:100%;">
+                            <option value="16">客户端</option>
+                            <option value="17">Web权限</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom:20px">
+                        <input id="name" class="easyui-textbox"  name="name" value="name" style="width:100%" data-options="label:'节点名：',required:true" />
+                    </div>
+
+                    <div style="margin-bottom:20px">
+                        <input id="path" class="easyui-textbox" name="path" value="" style="width:100%" data-options="label:'路径：'" />
+                    </div>
+
+                    <div style="margin-bottom:20px">
+                        <select id="authtype" class="easyui-combobox" name="authtype" label="权限类型" style="width:100%">
+                            <option value="3">模块权限</option>
+                            <option value="4">功能权限</option>
+                            <option value="6">编辑权限</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom:20px">
+                        <input id="order" class="easyui-textbox" name="order" value="" style="width:100%" data-options="label:'顺序：'" />
+                    </div>
+                </form>
+
+                <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">新增</a>
+                <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'">编辑</a>
+                <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-remove'">删除</a>
+                <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-save'">保存</a>
+                <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-undo'"> 取消</a>
+                <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-reload'"> 刷新</a>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div id="mm" class="easyui-menu" style="width:120px;">
+        <div onclick="append()" data-options="iconCls:'icon-add'">添加</div>
+        <div onclick="removeit()" data-options="iconCls:'icon-remove'">删除</div>
+        <div class="menu-sep"></div>
+        <div onclick="expand()">展开</div>
+        <div onclick="collapse()">折叠</div>
+    </div>
+
+</div>
