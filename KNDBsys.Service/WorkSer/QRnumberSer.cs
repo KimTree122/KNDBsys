@@ -1,4 +1,5 @@
 ﻿using KNDBsys.Common;
+using KNDBsys.DAL;
 using KNDBsys.Model;
 using KNDBsys.Model.BaseInfo;
 using System;
@@ -10,7 +11,7 @@ namespace KNDBsys.Service.WorkSer
 {
     public class QRnumberSer : CurdService<QRnumber>
     {
-        public override void SetDbset(DbContext db)
+        public override void SetDbset(SugarDBContext db)
         {
             dbSet = db.QRnumberDb;
         }

@@ -11,30 +11,30 @@ namespace KNDBsys.Model
         public object testsql(string tablename)
         {
             //var db =new SugarADO().sc;
-            SugarADO sa = new SugarADO();
-            var db = sa.GetInstance();
+            //SugarADO sa = new SugarADO();
+            //var db = sa.GetInstance();
 
-            db.DbFirst.Where(tablename).CreateClassFile(@"C:\DataBase\SqlClz");
+            //db.DbFirst.Where(tablename).CreateClassFile(@"C:\DataBase\SqlClz");
 
             return 1;
         }
 
         public void CodeFrist(string nameplace)
         {
-            SugarADO sa = new SugarADO();
-            var db = sa.GetInstance();
-            db.CodeFirst.InitTables(nameplace);
+            //SugarADO sa = new SugarADO();
+            //var db = sa.GetInstance();
+            //db.CodeFirst.InitTables(nameplace);
         }
 
 
-        public object testview()
-        {
-            SugarADO sugar = new SugarADO();
-            var db = sugar.GetInstance();
-            string sql = string.Format("select * from userauthview where  userid = 1");
-            var authlist = db.SqlQueryable<Authority>(sql).ToList();
+        //    public object testview()
+        //    {
+        //        SugarADO sugar = new SugarADO();
+        //        var db = sugar.GetInstance();
+        //        string sql = string.Format("select * from userauthview where  userid = 1");
+        //        var authlist = db.SqlQueryable<Authority>(sql).ToList();
 
-            return authlist;
-        }
+        //        return authlist;
+        //    }
     }
 }

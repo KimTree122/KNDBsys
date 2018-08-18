@@ -396,11 +396,8 @@
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
     <Content Include="Scripts\jquery.easyui.min.js" />
-    <Content Include="Scripts\jquery.easyui.min2.js" />
     <Content Include="Scripts\jquery.easyui.mobile.js" />
-    <Content Include="Scripts\jquery.easyui.mobile2.js" />
     <Content Include="Scripts\jquery.min.js" />
-    <Content Include="Scripts\jquery.min2.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -464,6 +461,10 @@
     <ProjectReference Include="..\KNDBsys.Common\KNDBsys.Common.csproj">
       <Project>{4D6AD45D-D2DA-4AE8-8AF6-85EB095AFA6E}</Project>
       <Name>KNDBsys.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KNDBsys.DAL\KNDBsys.DAL.csproj">
+      <Project>{AE7B3D24-8AD2-4C6F-AF32-DDC1B0A71EF1}</Project>
+      <Name>KNDBsys.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\KNDBsys.IBLL\KNDBsys.IBLL.csproj">
       <Project>{8b211db0-d7fd-4ca7-97b5-a0a012a10ac6}</Project>

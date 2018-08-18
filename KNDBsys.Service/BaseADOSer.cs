@@ -1,4 +1,5 @@
 ﻿using KNDBsys.Common;
+using KNDBsys.DAL;
 using KNDBsys.Model;
 using KNDBsys.Model.BaseInfo;
 using SqlSugar;
@@ -9,7 +10,7 @@ using System.Text;
 
 namespace KNDBsys.Service
 {
-    public class BaseADOSer :DbContext
+    public class BaseADOSer : SugarDBContext
     {
         public T GetEntity<T>(string json)
         {

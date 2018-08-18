@@ -1,5 +1,6 @@
 ﻿using KNDBsys.BLL;
 using KNDBsys.Common;
+using KNDBsys.DAL;
 using KNDBsys.IBLL;
 using KNDBsys.Model;
 using KNDBsys.Model.BaseInfo;
@@ -13,15 +14,15 @@ namespace KNDBsys.Service
     public abstract class CurdService<T> where T : class,new ()
     {
         public DbSet<T> dbSet { get; set; }
-        public DbContext db { get; set; }
+        public SugarDBContext db { get; set; }
 
         public CurdService()
         {
-            db = new DbContext();
+            db = new SugarDBContext();
             SetDbset(db);
         }
 
-        public abstract void SetDbset(DbContext db);
+        public abstract void SetDbset(SugarDBContext db);
 
 
         /// <summary>

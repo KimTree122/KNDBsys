@@ -1,5 +1,6 @@
 ﻿using KNDBsys.BLL.BaseInfo;
 using KNDBsys.Common;
+using KNDBsys.DAL;
 using KNDBsys.IBLL.BaseInfo;
 using KNDBsys.Model;
 using KNDBsys.Model.BaseInfo;
@@ -12,7 +13,7 @@ namespace KNDBsys.Service.BaseInfoSer
 {
     public class AuthoritySer:CurdService<Authority>
     {
-        public override void SetDbset(DbContext db)
+        public override void SetDbset(SugarDBContext db)
         {
             dbSet = db.AuthorityDb;
         }

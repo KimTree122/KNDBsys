@@ -10,10 +10,14 @@ namespace KNDBsys.Model
     {
         public static string ConnectionString = @"DataSource=C:\DataBase\cs.db";
 
-        public  SqlSugarClient GetInstance()
+        public SqlSugarClient GetInstance()
         {
-            SqlSugarClient db = new SqlSugarClient(new ConnectionConfig() { 
-                ConnectionString = SugarADO.ConnectionString, DbType = DbType.Sqlite, IsAutoCloseConnection = true });
+            SqlSugarClient db = new SqlSugarClient(new ConnectionConfig()
+            {
+                ConnectionString = SugarADO.ConnectionString,
+                DbType = DbType.Sqlite,
+                IsAutoCloseConnection = true
+            });
             return db;
         }
     }

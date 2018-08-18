@@ -71,6 +71,10 @@
       <Project>{4d6ad45d-d2da-4ae8-8af6-85eb095afa6e}</Project>
       <Name>KNDBsys.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\KNDBsys.DAL\KNDBsys.DAL.csproj">
+      <Project>{AE7B3D24-8AD2-4C6F-AF32-DDC1B0A71EF1}</Project>
+      <Name>KNDBsys.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KNDBsys.IBLL\KNDBsys.IBLL.csproj">
       <Project>{8b211db0-d7fd-4ca7-97b5-a0a012a10ac6}</Project>
       <Name>KNDBsys.IBLL</Name>
