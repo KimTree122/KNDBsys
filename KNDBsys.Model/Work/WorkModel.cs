@@ -38,7 +38,7 @@ namespace KNDBsys.Model.Work
         /// Default:
         /// Nullable:True
         /// </summary>           
-        public string GoodsStauts { get; set; }
+        public int? GoodsStauts { get; set; }
 
         /// <summary>
         /// Desc:
