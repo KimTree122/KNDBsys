@@ -107,6 +107,11 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
             return userInfoSer.GetUserInfoByAccount(account,pwd);
         }
 
+        public string GetUserInfoByID(string userid)
+        {
+            return userInfoSer.GetUserInfobyID(userid);
+        }
+
         #endregion
 
         #region 用户权限

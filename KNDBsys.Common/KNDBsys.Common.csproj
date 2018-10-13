@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExpressionGenericMapper.cs" />
     <Compile Include="TreeNode\TreeNodeHelper.cs" />
     <Compile Include="TypeChange.cs" />
     <Compile Include="DataSwitch.cs" />

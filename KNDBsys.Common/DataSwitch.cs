@@ -25,6 +25,15 @@ namespace KNDBsys.Common
             }
         }
 
+        public static T JsonToObject2<T>(string json)
+        {
+            T t = ExpressionGenericMapper.Map<string, T>(json);
+
+
+            return t;
+        }
+
+
         public static string DataToJson_DES( object obj )
         {
             string str = JsonConvert.SerializeObject(obj);

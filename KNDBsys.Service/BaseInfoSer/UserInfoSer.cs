@@ -36,6 +36,12 @@ namespace KNDBsys.Service.BaseInfoSer
             return userlist;
         }
 
+        public string GetUserInfobyID(string userid)
+        {
+            var entity = dbSet.GetById(userid);
+            return DataSwitch.HttpPostEntity<UserInfo>(entity);
+        }
+
         public UserInfo GetUserInfoByAccount_claz(string account, string pwd)
         {
             var q = dbSet.GetList().Find(u => u.Uaccount == account & u.Upwd == pwd);
