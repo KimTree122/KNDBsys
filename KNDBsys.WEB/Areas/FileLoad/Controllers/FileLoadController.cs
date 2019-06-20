@@ -69,9 +69,61 @@ namespace KNDBsys.WEB.Areas.FileLoad.Controllers
             //}
             HttpPostedFileBase hpfb = Request.Files[0];
 
-            str = filePresent.UpLoadFile(hpfb, uploadpath+"\\"+ filePath + "\\"+filename);
+            str = filePresent.UpLoadFile(hpfb, uploadpath+"\\"+ filePath);
 
             return str;
+        }
+
+        /// <Response分块下载>
+        ///  Response分块下载，输出硬盘文件，提供下载 支持大文件、续传、速度限制、资源占用小
+        /// </summary>
+        /// <param name="fileName">客户端保存的文件名</param>
+        /// <param name="filePath">客户端保存的文件路径（包括文件名）</param>
+        /// <returns></returns>
+        public bool ResponseDownLoad(string fileName, string filePath)
+        {
+             fileName = "wenjian.txt";//客户端保存的文件名
+             filePath = "/Upload/wenjian.txt"; //路径（后续从webconfig读取）
+
+            System.IO.FileInfo fileInfo = new System.IO.FileInfo(filePath);
+            if (fileInfo.Exists == true)
+            {
+                const long ChunkSize = 102400;//100K 每次读取文件，只读取100K，这样可以缓解服务器的压力
+                byte[] buffer = new byte[ChunkSize];
+
+                Response.Clear();
+                System.IO.FileStream iStream = System.IO.File.OpenRead(filePath);
+                long dataLengthToRead = iStream.Length;//获取下载的文件总大小
+                Response.ContentType = "application/octet-stream";
+                Response.AddHeader("Content-Disposition", "attachment; filename=" + HttpUtility.UrlEncode(fileName));
+                while (dataLengthToRead > 0 && Response.IsClientConnected)
+                {
+                    int lengthRead = iStream.Read(buffer, 0, Convert.ToInt32(ChunkSize));//读取的大小
+                    Response.OutputStream.Write(buffer, 0, lengthRead);
+                    Response.Flush();
+                    dataLengthToRead = dataLengthToRead - lengthRead;
+                }
+                Response.Close();
+                return true;
+            }
+            else
+                return false;
+        }
+
+        //文件流下载
+        public FileStreamResult Filestream_download()
+        {
+            string fileName = "wenjian.txt";//客户端保存的文件名
+            string filePath = Server.MapPath("/Upload/wenjian.txt");//指定文件所在的全路径
+            return File(new FileStream(filePath, FileMode.Open), "text/plain",//"text/plain"是文件MIME类型
+          fileName);
+        }
+
+        //文件下载
+        public FileResult File_download()
+        {
+            string filePath = Server.MapPath("/Upload/wenjian.txt");//路径
+            return File(filePath, "text/plain", "wenjian.txt"); //"text/plain"是文件MIME类型,welcome.txt是客户端保存的名字
         }
     }
 }
