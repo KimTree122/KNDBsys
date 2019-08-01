@@ -1,11 +1,13 @@
 ﻿using KNDBsys.Model.BaseInfo;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace KNDBsys.WEB.Areas.TestView.Controllers
 {
@@ -90,6 +92,69 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
         public ActionResult EasyMobileUI()
         {
             return View();
+        }
+
+        //数据流接收
+        public ActionResult StreamData()
+        {
+            //Stream s = System.Web.HttpContext.Current.Request.InputStream;
+            //byte[] b = new byte[s.Length];
+            //s.Read(b, 0, (int)s.Length);
+            //string  postStr = Encoding.UTF8.GetString(b);
+            //if (!string.IsNullOrWhiteSpace(postStr))
+            //{
+            //    string str = postStr;
+            //}
+
+            //using (Stream inputstream = System.Web.HttpContext.Current.Request.InputStream )
+            //{
+            //    byte[] b = new byte[inputstream.Length];
+            //    inputstream.Read(b, 0, (int)inputstream.Length);
+            //    string postStr = Encoding.UTF8.GetString(b);
+            //    if (!string.IsNullOrWhiteSpace(postStr))
+            //    {
+            //        json = postStr;
+            //    }
+            //    inputstream.Close();
+            //}
+
+            //Stream postData = Request.InputStream;
+            //StreamReader sRead = new StreamReader(postData);
+            //string postContent = sRead.ReadToEnd();
+            //sRead.Close();
+            return Content("");
+        }
+
+        //动态数据
+        public ActionResult DynamicsData()
+        {
+            return View();
+        }
+
+        public string ReceiveDynamics(string json)
+        {
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            IList<Dictionary<string, string>> jsonlist = js.Deserialize<IList<Dictionary<string, string>>>(json);
+
+            string jsonid = string.Empty;
+
+            foreach (var item in jsonlist)
+            {
+                jsonid += item["id"]+",";
+            }
+
+            return jsonid;
+        }
+
+        public string ReceiveDynamics2(string json)
+        {
+            JObject jObject = JObject.Parse(json);
+            string jsonstr = string.Empty;
+            foreach (var pro in jObject.Properties())
+            {
+                jsonstr += "name:"+ pro.Name+"value:"+pro.Value ;
+            }
+            return jsonstr;
         }
 
 

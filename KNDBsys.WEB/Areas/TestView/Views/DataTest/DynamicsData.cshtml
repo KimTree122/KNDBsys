@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "DynamicsData";
+    Layout = "~/Views/Shared/_LayoutJSCSS.cshtml";
+}
+
+<div>
+    <div id="divtext"></div>
+</div>
+
+<input type="button" onclick="PostData()" value="post1" />
+<input type="button" onclick="PostData2()" value="post2" />
+
+<script type="text/javascript" >
+    $().ready(function () {
+
+        InitData();
+    });
+
+    function InitData() {
+
+    }
+
+    function InitArr() {
+        var arr = new Array();
+        var dD = new dynamData();
+        dD.id = "id";
+        dD.name = "name";
+        arr.push(dD);
+
+        var dD2 = new dynamData();
+        dD2.id = "id2";
+        dD2.name = "name2";
+        arr.push(dD2);
+        return arr;
+    }
+
+    function PostData() {
+        var url = "./ReceiveDynamics";
+        var params = { json: JSON.stringify(InitArr()) };
+        $.post(url, params, function (result) {
+            console.log(result);
+        });
+    }
+
+    function dynamData() {
+
+    }
+
+    function PostData2() {
+        var url = "./ReceiveDynamics2";
+        var json = '{"id":"id1","name":"name1"}';
+        var params = { json: json };
+        $.post(url, params, function (result) {
+            console.log(result);
+        });
+    }
+
+</script>
