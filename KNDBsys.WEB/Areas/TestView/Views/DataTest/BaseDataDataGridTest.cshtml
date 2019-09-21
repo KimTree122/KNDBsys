@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "BaseDataDataGridTest";
+    Layout = "~/Views/Shared/_LayoutJSCSS.cshtml";
+}
+
+<div class="easyui-plane">
+    <input class="easyui-textbox" id="testkey" label="用户名" />
+    <a href="#" class="easyui-linkbutton" onclick="">查询</a>
+</div>
+
+<div>
+    <table id="dg" class="easyui-datagrid">
+        <thead>
+            <tr>
+                <th data-options="field:'id'">用户ID</th>
+                <th data-options="field:'Uname'">用户账号</th>
+                <th data-options="field:'UPost'">用户职位</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<script type="text/javascript">
+    $().ready(function () {
+        InitData();
+        InitLayout();
+    });
+
+    function InitData() {
+
+    }
+
+    function DgData() {
+       
+    }
+
+    function InitLayout() {
+
+        let myurl =  "../../BaseInfo/BaseInfo/GetAllUserInfo";
+        let params = {userid:'1' };
+      
+        $('#dg').datagrid({
+            url: myurl,
+            queryParams: params
+        });
+    }
+
+</script>

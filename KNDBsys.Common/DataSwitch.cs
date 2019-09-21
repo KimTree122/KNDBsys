@@ -38,9 +38,9 @@ namespace KNDBsys.Common
         {
             string str = JsonConvert.SerializeObject(obj);
 
-            string ret = Secret_string.EncryptDES(str);
+            //str = Secret_string.EncryptDES(str);
 
-            return ret;
+            return str;
         }
 
         public static string DataToJson(object obj)
@@ -54,8 +54,8 @@ namespace KNDBsys.Common
         {
             PostData<L,E> postData = new PostData<L,E>
             {
-                DList = dlist,
-                MCount = dlist.Count,
+                rows = dlist,
+                total = dlist.Count,
                 Msg = msg,
                 Entity = obj
             };
@@ -67,8 +67,8 @@ namespace KNDBsys.Common
         {
             PostData<T, DBNull> post = new PostData<T, DBNull>
             {
-                DList = dlist,
-                MCount = dlist.Count,
+                rows = dlist,
+                total = dlist.Count,
                 Msg = msg
             };
             return DataToJson_DES(post);
@@ -79,7 +79,7 @@ namespace KNDBsys.Common
             if (s != null) count = 1;
             PostData<DBNull, E> post = new PostData<DBNull, E> {
                 Entity = s,
-                MCount = count,
+                total = count,
                 Msg = msg
             };
             return DataToJson_DES(post);
@@ -89,7 +89,7 @@ namespace KNDBsys.Common
         {
             PostData<DBNull, DBNull> post = new PostData<DBNull, DBNull>
             {
-                MCount = count,
+                total = count,
                 Msg = msg.ToString()
             };
             return DataToJson_DES(post);

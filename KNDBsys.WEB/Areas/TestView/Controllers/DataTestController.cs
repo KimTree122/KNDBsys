@@ -131,6 +131,24 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
             return View();
         }
 
+        //弹框测试
+        public ActionResult DialogFrame()
+        {
+            return View();
+        }
+
+        //测试新弹框
+        public ActionResult SearchFrame()
+        {
+            return View();
+        }
+
+        //基础数据查询测试
+        public ActionResult BaseDataDataGridTest()
+        {
+            return View();
+        }
+
         public string ReceiveDynamics(string json)
         {
             JavaScriptSerializer js = new JavaScriptSerializer();

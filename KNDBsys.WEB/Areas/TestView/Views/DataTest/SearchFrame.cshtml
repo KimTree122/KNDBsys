@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "SearchFrame";
+    Layout = "~/Views/Shared/_LayoutJSCSS.cshtml";
+}
+
+<div>
+    <input class="easyui-searchbox" id="usercode" label="用户账号" />
+    <input class="easyui-textbox" id="username" />
+
+</div>
+
+<script type="text/javascript">
+    $().ready(function () {
+        InitLayout();
+    });
+
+    function InitLayout() {
+
+        searchFrame({
+            FixControlArr: [$('#usercode'), $('#username')],
+            DialogFieldArr: ['id', 'Uname'],
+            DialogUrl: "./BaseDataDataGridTest",
+            SearchUrl: "../../BaseInfo/BaseInfo/GetUserInfoByID",
+            queryParams: ["userid"],
+            queryValues: [$('#usercode')]
+        });
+
+    }
+
+    searchFrame = function (params) {
+        var dom = {
+            wintype: "easyui-window",
+            winiFrame: "search-iframe"
+        }
+        var FieldArrLen = params.DialogFieldArr.length;
+
+        params.FixControlArr[0].searchbox({
+            searcher: function (value, name) {
+                let paramstr = '{';
+                for (var i in params.queryParams) {
+                    let key = '"' + params.queryParams[i] + '":';
+                    let value = '"' + params.queryValues[i].textbox('getValue') + '",';
+                    paramstr += key + value;
+                }
+                paramstr = paramstr.substr(0, paramstr.length - 1) + '}';
+                let paramjson = JSON.parse(paramstr);
+
+                if (value.length > 0) {
+                    $.post(params.SearchUrl, paramjson, function (result) {
+                        if (result.total > 0) {
+                            var entity = result.Entity;
+                            for (var i = 0; i < FieldArrLen; i++) {
+                                var fieldName = params.DialogFieldArr[i]
+                                for (var val in entity) {
+                                    if (val == fieldName) {
+                                        params.FixControlArr[i].textbox('setValue', entity[val]);
+                                    }
+                                }
+                            }
+                        } else {
+                            showDialog();
+                        }
+                    }, 'json');
+                } else {
+                    showDialog();
+                }
+            }
+        });
+
+        function showDialog() {
+
+            //$("." + dom.wintype).remove();
+            var ifr = $('[name="' + dom.winiFrame + '"]');
+            ifr.remove();
+
+            var content = "<iframe  width='100%' height='99%' height='300px',frameborder='0' src='" + params.DialogUrl + "' name='" + dom.winiFrame + "'></iframe>";
+            $("body").append("<div class='" + dom.wintype + "' >" + content + "</div>");
+
+            $("." + dom.wintype).window({
+                closeable: true,
+                onOpen: function () {
+                    var iframe = window.frames[dom.winiFrame];
+                    $(iframe).load(function () {
+                        setTimeout(function () {
+                            var $row = $(iframe.document).find("body .datagrid-body").find("tr");
+                            console.log($row);
+                            if ($row.length) {
+                                $row.on("dblclick", function () {
+
+                                    for (var i = 0; i < FieldArrLen; i++) {
+                                        var fieldName = params.DialogFieldArr[i];
+                                        var dcclicktext = $(this).find("td[field='" + fieldName + "']").text();
+                                        params.FixControlArr[i].textbox('setValue', dcclicktext);
+                                    }
+
+                                    $("." + dom.wintype + "").window("close", true);
+                                    params.success && params.success();
+                                });
+                            }
+                        }, 200);
+                    });
+                }
+            });
+        }
+
+    }
+
+
+</script>
