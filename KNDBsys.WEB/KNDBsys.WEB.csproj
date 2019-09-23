@@ -410,6 +410,7 @@
     <Content Include="Scripts\EasyLib\css\EasyLib.css" />
     <Content Include="Scripts\EasyLib\EasyLib.js" />
     <Content Include="Scripts\EasyLib\img\EasyLib-SearchTxt-Icon.jpg" />
+    <Content Include="Scripts\EasyLib\QueryDialog.js" />
     <Content Include="Scripts\easyloader.js" />
     <Content Include="Scripts\home.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />

@@ -1,14 +1,30 @@
 ﻿@{
-    ViewBag.Title = "SearchFrame";
+    ViewBag.Title = "QueryDialog";
     Layout = "~/Views/Shared/_LayoutJSCSS.cshtml";
 }
 
 <div>
-    <input class="easyui-searchbox" id="usercode" label="用户账号" />
-    <input class="easyui-textbox" id="username" />
+    <div>
+        <input class="easyui-searchbox" id="usercode" label="用户账号" />
+        <input class="easyui-textbox" id="username" />
+    </div>
+    <div>
+        <input class="easyui-textbox" style="width:200px;" id="userid" label="用户账号" />
+        <input class="easyui-textbox" id="userpost" />
+    </div>
+
+    <div>
+        <input class="easyui-textbox" style="width:200px;" id="uid" label="用户账号" />
+        <input class="easyui-textbox" id="upost" />
+    </div>
+
+    <div>
+        <input class="easyui-textbox" style="width:200px;" id="uid1" label="用户账号" />
+        <input class="easyui-textbox" id="upost1" />
+    </div>
 
 </div>
-
+<script src="~/Scripts/EasyLib/QueryDialog.js"></script>
 <script type="text/javascript">
     $().ready(function () {
         InitLayout();
@@ -16,25 +32,289 @@
 
     function InitLayout() {
 
-        searchFrame({
-            FixControlArr: [$('#usercode'), $('#username')],
-            DialogFieldArr: ['id', 'Uname'],
-            DialogUrl: "./BaseDataDataGridTest",
-            SearchUrl: "../../BaseInfo/BaseInfo/GetUserInfoByID",
+        //QueryDialog.Query({
+        //    fillControlArr: [$('#usercode'), $('#username')],
+        //    dialogFieldArr: ['id', 'Uname'],
+        //    dialogPath: "./BaseDataDataGridTest",
+        //    queryAPI: "../../BaseInfo/BaseInfo/GetUserInfoByID",
+        //    queryParams: ["userid"],
+        //    queryValues: [$('#usercode')]
+        //});
+
+        //extendTextbox();
+
+        SearchboxQueryDialog({
+            fillControlArr: [$('#usercode'), $('#username')],
+            dialogFieldArr: ['id', 'Uname'],
+            dialogPath: "./BaseDataDataGridTest",
+            queryAPI: "../../BaseInfo/BaseInfo/GetUserInfoByID",
             queryParams: ["userid"],
             queryValues: [$('#usercode')]
         });
 
+
+        //TextboxQueryDialog({
+        //    fillControlArr: [$('#userid'), $('#userpost')],
+        //    dialogFieldArr: ['id', 'UPost'],
+        //    dialogPath: "./BaseDataDataGridTest",
+        //    queryAPI: "../../BaseInfo/BaseInfo/GetUserInfoByID",
+        //    queryParams: ["userid"],
+        //    queryValues: [$('#userid')]
+        //});
+
+
+        //TextboxQueryDialog({
+        //    fillControlArr: [$('#uid'), $('#upost')],
+        //    dialogFieldArr: ['id', 'Uname'],
+        //    dialogPath: "./BaseDataDataGridTest",
+        //    queryAPI: "../../BaseInfo/BaseInfo/GetUserInfoByID",
+        //    queryParams: ["userid"],
+        //    queryValues: [$('#uid')]
+        //});
+
+        QueryDialog.EasyTextBox({
+            fillControlArr: [$('#userid'), $('#userpost')],
+            dialogFieldArr: ['id', 'UPost'],
+            dialogPath: "./BaseDataDataGridTest",
+            queryAPI: "../../BaseInfo/BaseInfo/GetUserInfoByID",
+            queryParams: ["userid"],
+            queryValues: [$('#userid')]
+        });
+
+        QueryDialog.EasyTextBox({
+            fillControlArr: [$('#uid'), $('#upost')],
+            dialogFieldArr: ['id', 'Uname'],
+            dialogPath: "./BaseDataDataGridTest",
+            queryAPI: "../../BaseInfo/BaseInfo/GetUserInfoByID",
+            queryParams: ["userid"],
+            queryValues: [$('#uid')]
+        });
+
+        QueryDialog.EasyTextBox({
+            fillControlArr: [$('#uid1'), $('#upost1')],
+            dialogFieldArr: ['id', 'Uname'],
+            dialogPath: "./BaseDataDataGridTest",
+            queryAPI: "../../BaseInfo/BaseInfo/GetUserInfoByID",
+            queryParams: ["userid"],
+            queryValues: [$('#uid1')]
+        });
+
+
     }
 
-    searchFrame = function (params) {
+    TextboxQueryDialog = function (params) {
         var dom = {
             wintype: "easyui-window",
             winiFrame: "search-iframe"
         }
-        var FieldArrLen = params.DialogFieldArr.length;
 
-        params.FixControlArr[0].searchbox({
+        let FillcontrolArrLen = params.fillControlArr.length;
+        let FieldArrLen = params.dialogFieldArr.length;
+
+        //检测输入数据
+        let checkmsg = checkParams(FillcontrolArrLen, FieldArrLen);
+        if (checkmsg) {
+            $.messager.alert('警告', checkmsg + '控件绑定失效');
+        }
+
+        var querytxb = params.fillControlArr[0];
+
+        $.extend($.fn.textbox.methods, {
+            addQueryBtn: function (jq) {
+                return jq.each(function () {
+                    var t = $(this);
+                    var opts = t.textbox('options');
+                    opts.icons = opts.icons || [];
+                    opts.icons.unshift({
+                        iconCls: 'icon-clear',
+                        handler: function (e) {
+                            $(e.data.target).textbox('clear').textbox('textbox').focus();
+                            $(this).css('visibility', 'hidden');
+                            CleanControllData();
+                        }
+                    }, {
+                            iconCls: 'icon-search',
+                            handler: function (e) {
+                                let txb = $(e.data.target).textbox('getValue');
+                                PostData(txb);
+                            }
+                        });
+                    t.textbox();
+                    if (!t.textbox('getText')) {
+                        t.textbox('getIcon', 0).css('visibility', 'hidden');
+                    }
+                    t.textbox('textbox').bind('keyup', function () {
+                        var icon = t.textbox('getIcon', 0);
+                        if ($(this).val()) {
+                            icon.css('visibility', 'visible');
+                        } else {
+                            icon.css('visibility', 'hidden');
+                        }
+                    });
+                });
+            }
+        });
+
+        querytxb.textbox().textbox('addQueryBtn');
+
+        querytxb.textbox('textbox').keydown(function (e) {
+
+            switch (e.keyCode) {
+                //确定
+                case 13:
+                    let txb = querytxb.textbox('getValue');
+                    PostData(txb);
+                    break;
+                //返回
+                case 8:
+                    CleanControllData();
+                    break;
+                default:
+            }
+        });
+
+        function CleanControllData() {
+            for (var i = 1; i < FillcontrolArrLen; i++) {
+                var txb = params.fillControlArr[i];
+                txb.textbox('setValue', '');
+            }
+        }
+
+        //params.fillControlArr[0].searchbox({
+        //    searcher: function (value, name) {
+        //        let paramstr = '{';
+        //        for (var i in params.queryParams) {
+        //            let key = '"' + params.queryParams[i] + '":';
+        //            let value = '"' + params.queryValues[i].textbox('getValue') + '",';
+        //            paramstr += key + value;
+        //        }
+        //        paramstr = paramstr.substr(0, paramstr.length - 1) + '}';
+        //        let paramjson = JSON.parse(paramstr);
+        //        if (value.length > 0) {
+        //            $.post(params.queryAPI, paramjson, function (result) {
+        //                if (result.total > 0) {
+        //                    var entity = result.Entity;
+        //                    for (var i = 0; i < FieldArrLen; i++) {
+        //                        var fieldName = params.dialogFieldArr[i]
+        //                        for (var val in entity) {
+        //                            if (val == fieldName) {
+        //                                params.fillControlArr[i].textbox('setValue', entity[val]);
+        //                            }
+        //                        }
+        //                    }
+        //                } else {
+        //                    showDialog();
+        //                }
+        //            }, 'json');
+        //        } else {
+        //            showDialog();
+        //        }
+        //    }
+        //});
+
+        function PostData(txbvalue) {
+            let paramstr = '{';
+            for (var i in params.queryParams) {
+                let key = '"' + params.queryParams[i] + '":';
+                let value = '"' + params.queryValues[i].textbox('getValue') + '",';
+                paramstr += key + value;
+            }
+            paramstr = paramstr.substr(0, paramstr.length - 1) + '}';
+            let paramjson = JSON.parse(paramstr);
+            if (txbvalue.length > 0) {
+                $.post(params.queryAPI, paramjson, function (result) {
+                    if (result.total > 0) {
+                        var entity = result.Entity;
+                        for (var i = 0; i < FieldArrLen; i++) {
+                            var fieldName = params.dialogFieldArr[i]
+                            for (var val in entity) {
+                                if (val == fieldName) {
+                                    params.fillControlArr[i].textbox('setValue', entity[val]);
+                                }
+                            }
+                        }
+                    } else {
+                        showDialog();
+                    }
+                }, 'json');
+            } else {
+                showDialog();
+            }
+        }
+
+        function showDialog() {
+
+            //$("." + dom.wintype).remove();
+            var ifr = $('[name="' + dom.winiFrame + '"]');
+            ifr.remove();
+
+            var content = "<iframe  width='100%' height='99%' height='300px',frameborder='0' src='" + params.dialogPath + "' name='" + dom.winiFrame + "'></iframe>";
+            $("body").append("<div class='" + dom.wintype + "' >" + content + "</div>");
+
+            $("." + dom.wintype).window({
+                title: params.title ? params.title : " 请选择",
+                width: params.width ? params.width : 600,
+                height: params.height ? params.height : 400,
+                modal: true,
+                onOpen: function () {
+                    var iframe = window.frames[dom.winiFrame];
+                    $(iframe).load(function () {
+                        setTimeout(function () {
+                            var $row = $(iframe.document).find("body .datagrid-body").find("tr");
+                            if ($row.length) {
+                                $row.on("dblclick", function () {
+
+                                    for (var i = 0; i < FieldArrLen; i++) {
+                                        var fieldName = params.dialogFieldArr[i];
+                                        var dcclicktext = $(this).find("td[field='" + fieldName + "']").text();
+                                        params.fillControlArr[i].textbox('setValue', dcclicktext);
+                                    }
+
+                                    $("." + dom.wintype + "").window("close", true);
+                                    params.success && params.success();
+                                });
+                            }
+                        }, 200);
+                    });
+                }
+            });
+        }
+
+        function checkParams(fillLen, fieldLen) {
+            let msg = "";
+            let checkparams = false;
+            if (fillLen == 0 || fieldLen == 0) {
+                checkparams = true;
+            } else if (fieldLen != fillLen) {
+                checkparams = true;
+            } else if (params.dialogPath == null) {
+                checkparams = true;
+            }
+            if (checkparams) {
+                msg = params.fillControlArr[0].attr('label');
+            }
+            return msg;
+        }
+
+    }
+
+
+    SearchboxQueryDialog = function (params) {
+        var dom = {
+            wintype: "easyui-window",
+            winiFrame: "search-iframe"
+        }
+
+        let FillcontrolArrLen = params.fillControlArr.length;
+        let FieldArrLen = params.dialogFieldArr.length;
+
+        //检测输入数据
+        let checkmsg = checkParams(FillcontrolArrLen, FieldArrLen);
+        if (checkmsg) {
+            $.messager.alert('警告', checkmsg + '控件绑定失效');
+        }
+
+        params.fillControlArr[0].searchbox({
             searcher: function (value, name) {
                 let paramstr = '{';
                 for (var i in params.queryParams) {
@@ -44,16 +324,15 @@
                 }
                 paramstr = paramstr.substr(0, paramstr.length - 1) + '}';
                 let paramjson = JSON.parse(paramstr);
-
                 if (value.length > 0) {
-                    $.post(params.SearchUrl, paramjson, function (result) {
+                    $.post(params.queryAPI, paramjson, function (result) {
                         if (result.total > 0) {
                             var entity = result.Entity;
                             for (var i = 0; i < FieldArrLen; i++) {
-                                var fieldName = params.DialogFieldArr[i]
+                                var fieldName = params.dialogFieldArr[i]
                                 for (var val in entity) {
                                     if (val == fieldName) {
-                                        params.FixControlArr[i].textbox('setValue', entity[val]);
+                                        params.fillControlArr[i].textbox('setValue', entity[val]);
                                     }
                                 }
                             }
@@ -73,7 +352,7 @@
             var ifr = $('[name="' + dom.winiFrame + '"]');
             ifr.remove();
 
-            var content = "<iframe  width='100%' height='99%' height='300px',frameborder='0' src='" + params.DialogUrl + "' name='" + dom.winiFrame + "'></iframe>";
+            var content = "<iframe  width='100%' height='99%' height='300px',frameborder='0' src='" + params.dialogPath + "' name='" + dom.winiFrame + "'></iframe>";
             $("body").append("<div class='" + dom.wintype + "' >" + content + "</div>");
 
             $("." + dom.wintype).window({
@@ -88,9 +367,9 @@
                                 $row.on("dblclick", function () {
 
                                     for (var i = 0; i < FieldArrLen; i++) {
-                                        var fieldName = params.DialogFieldArr[i];
+                                        var fieldName = params.dialogFieldArr[i];
                                         var dcclicktext = $(this).find("td[field='" + fieldName + "']").text();
-                                        params.FixControlArr[i].textbox('setValue', dcclicktext);
+                                        params.fillControlArr[i].textbox('setValue', dcclicktext);
                                     }
 
                                     $("." + dom.wintype + "").window("close", true);
@@ -103,7 +382,66 @@
             });
         }
 
+        function checkParams(fillLen, fieldLen) {
+            let msg = "";
+            let checkparams = false;
+            if (fillLen == 0 || fieldLen == 0) {
+                checkparams = true;
+            } else if (fieldLen != fillLen) {
+                checkparams = true;
+            } else if (params.dialogPath == null) {
+                checkparams = true;
+            }
+            if (checkparams) {
+                msg = params.fillControlArr[0].attr('label');
+            }
+            return msg;
+        }
+
     }
 
+
+    function extendTextbox() {
+        
+        $.extend($.fn.textbox.methods, {
+            addQueryBtn: function (jq) {
+                return jq.each(function () {
+
+                    var t = $(this);
+                    var opts = t.textbox('options');
+
+                    //opts.icons = opts.icons || [];
+                    opts.icons = [];
+
+                    opts.icons.unshift({
+                        iconCls: 'icon-clear',
+                        handler: function (e) {
+                            $(e.data.target).textbox('clear').textbox('textbox').focus();
+                            $(this).css('visibility', 'hidden');
+                            //CleanControllData();
+                        }
+                    }, {
+                            iconCls: 'icon-search',
+                            handler: function (e) {
+                                let txb = $(e.data.target).textbox('getValue');
+                                //PostData(txb);
+                            }
+                        });
+                    t.textbox();
+                    if (!t.textbox('getText')) {
+                        t.textbox('getIcon', 0).css('visibility', 'hidden');
+                    }
+                    t.textbox('textbox').bind('keyup', function () {
+                        var icon = t.textbox('getIcon', 0);
+                        if ($(this).val()) {
+                            icon.css('visibility', 'visible');
+                        } else {
+                            icon.css('visibility', 'hidden');
+                        }
+                    });
+                });
+            }
+        });
+    }
 
 </script>
