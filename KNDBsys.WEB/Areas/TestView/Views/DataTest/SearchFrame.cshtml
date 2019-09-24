@@ -14,13 +14,8 @@
     </div>
 
     <div>
-        <input class="easyui-textbox" style="width:200px;" id="uid" label="用户账号" />
-        <input class="easyui-textbox" id="upost" />
-    </div>
-
-    <div>
-        <input class="easyui-textbox" style="width:200px;" id="uid1" label="用户账号" />
-        <input class="easyui-textbox" id="upost1" />
+        <input class="easyui-textbox" style="width:200px;" id="dictid" label="字典" />
+        <input class="easyui-textbox" id="dicval" />
     </div>
 
 </div>
@@ -41,7 +36,6 @@
         //    queryValues: [$('#usercode')]
         //});
 
-        //extendTextbox();
 
         SearchboxQueryDialog({
             fillControlArr: [$('#usercode'), $('#username')],
@@ -62,16 +56,6 @@
         //    queryValues: [$('#userid')]
         //});
 
-
-        //TextboxQueryDialog({
-        //    fillControlArr: [$('#uid'), $('#upost')],
-        //    dialogFieldArr: ['id', 'Uname'],
-        //    dialogPath: "./BaseDataDataGridTest",
-        //    queryAPI: "../../BaseInfo/BaseInfo/GetUserInfoByID",
-        //    queryParams: ["userid"],
-        //    queryValues: [$('#uid')]
-        //});
-
         QueryDialog.EasyTextBox({
             fillControlArr: [$('#userid'), $('#userpost')],
             dialogFieldArr: ['id', 'UPost'],
@@ -82,23 +66,13 @@
         });
 
         QueryDialog.EasyTextBox({
-            fillControlArr: [$('#uid'), $('#upost')],
-            dialogFieldArr: ['id', 'Uname'],
+            fillControlArr: [$('#dictid'), $('#dicval')],
+            dialogFieldArr: ['id', 'TreeName'],
             dialogPath: "./BaseDataDataGridTest",
-            queryAPI: "../../BaseInfo/BaseInfo/GetUserInfoByID",
-            queryParams: ["userid"],
-            queryValues: [$('#uid')]
+            queryAPI: "../../BaseInfo/BaseInfo/GetDictionary",
+            queryParams: ["dictype"],
+            queryValues: [$('#dictid')]
         });
-
-        QueryDialog.EasyTextBox({
-            fillControlArr: [$('#uid1'), $('#upost1')],
-            dialogFieldArr: ['id', 'Uname'],
-            dialogPath: "./BaseDataDataGridTest",
-            queryAPI: "../../BaseInfo/BaseInfo/GetUserInfoByID",
-            queryParams: ["userid"],
-            queryValues: [$('#uid1')]
-        });
-
 
     }
 

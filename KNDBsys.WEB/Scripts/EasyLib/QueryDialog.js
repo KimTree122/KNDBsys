@@ -136,6 +136,7 @@
         let checkmsg = checkParams(FillcontrolArrLen, FieldArrLen);
         if (checkmsg) {
             $.messager.alert('警告', checkmsg + '控件绑定失效');
+            return;
         }
 
         let querytxb = params.fillControlArr[0];
