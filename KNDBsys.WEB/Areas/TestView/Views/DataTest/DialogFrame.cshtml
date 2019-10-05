@@ -21,7 +21,7 @@
         var dom = {
             text: "EasyLib-SearchTxt",
             icon: "EasyLib-SearchTxt-Icon",
-            win: "easyui-window",
+            win: "EasyLib-SearchTxt-Win",
             WinIframe: "EasyLib-SearchTxt-Win-Iframe"
         };
 
@@ -54,111 +54,105 @@
         }
         var $MustValArr = dict.$MustValArr ? dict.$MustValArr : "";//判断必填参数
         var $CountValArr = dict.$CountValArr ? dict.$CountValArr : "";//执行指定事件参数
+        dict.$DomArr[0].next("." + dom.icon).remove();
+        dict.$DomArr[0].addClass(dom.text).after("<span class='" + dom.icon + "'></span>");
+        dict.$DomArr[0].next("." + dom.icon).on("click", function () {
 
-        dict.$DomArr[0].searchbox({
-            searcher: function () {
-
-                ////判断必填参数
-                if (dict.$MustValArr != "" && dict.$MustValArr != undefined && dict.$MoreValArr != "" && dict.$MoreValArr != undefined) {
-                    if (dict.$MoreValArr[0].val() == "" || dict.$MoreValArr[0].val() == undefined) {
-                        alert(dict.$MustValArr[0]);
-                        return;
-                    }
+            ////判断必填参数
+            if (dict.$MustValArr != "" && dict.$MustValArr != undefined && dict.$MoreValArr != "" && dict.$MoreValArr != undefined) {
+                if (dict.$MoreValArr[0].val() == "" || dict.$MoreValArr[0].val() == undefined) {
+                    alert(dict.$MustValArr[0]);
+                    return;
                 }
-
-                $("." + dom.win).remove();
-                var searchParam = "";
-                if (dict.$search) {
-                    searchParam = encodeURIComponent(dict.$search.val());
-                }
-                var content = "<iframe width='100%' height='99%' height='300px' frameborder='0' src='"
-                    + dict.WinUrl + searchParam + moreFn(0) + "' name='" + dom.WinIframe + "'></iframe>";
-                $("body").append("<div class='" + dom.win + "'>" + content + "</div>");
-                
-                $("." + dom.win + "").window({
-                    title: dict.title ? dict.title : " 请选择",
-                    width: dict.width ? dict.width : 600,
-                    height: dict.height ? dict.height : 400,
-                    modal: true,
-                    closable: true,
-                    onOpen: function () {
-                        var iframe = window.frames[dom.WinIframe];
-                        $(iframe).load(function () {//iframe加载成功
-                            iframe.$(document).ajaxStop(function () {//ajax完成
-                                var $row = $(iframe.document).find("body .datagrid-body").find("tr");
-                                if ($row.length) {
-                                    $row.on("dblclick", function () {
-                                        for (var i = 0; i < FieldArrLen; i++) {
-                                            var fieldName = dict.FieldArr[i];
-                                            dict.$DomArr[i].textbox('setValue', $(this).find("td[field='" + fieldName + "']").text());
-
-                                        }
-                                        if ($CountValArr != "" && $CountValArr != undefined) {//执行指定事件
-                                            var envenstr = $CountValArr + "('" + dict.$MoreValArr[0].val() + "')";
-                                            setTimeout(envenstr, 300)
-                                        }
-
-                                        $("." + dom.win + "").window("close", true);
-                                        dict.success && dict.success();
-                                    });
-                                }
-
-                                var $row_1 = $(iframe.document).find("body").find("span");
-                                if ($row_1.length) {
-                                    $row_1.on("dblclick", function () {
-                                        for (var i_1 = 0; i_1 < FieldArrLen; i_1++) {
-                                            var fieldName_1 = dict.FieldArr[i_1];
-                                            //dict.$DomArr[i_1].val($(this).attr(fieldName_1));
-                                            dict.$DomArr[i_1].textbox('setValue',$(this).attr(fieldName_1));
-                                        }
-                                        if ($CountValArr != "" && $CountValArr != undefined) {//执行指定事件
-                                            var envenstr = $CountValArr + "('" + dict.$MoreValArr[0].val() + "')";
-                                            setTimeout(envenstr, 300)
-                                        }
-                                        $("." + dom.win + "").window("close", true);
-                                        dict.success && dict.success();
-                                    });
-                                }
-                            });
-
-                            setTimeout(function () {
-                                var $row = $(iframe.document).find("body .datagrid-body").find("tr");
-                                if ($row.length) {
-                                    $row.on("dblclick", function () {
-                                        for (var i = 0; i < FieldArrLen; i++) {
-                                            var fieldName = dict.FieldArr[i];
-                                            var dcclicktext = $(this).find("td[field='" + fieldName + "']").text();
-                                            dict.$DomArr[i].textbox('setValue', dcclicktext);
-                                        }
-                                        if ($CountValArr != "" && $CountValArr != undefined) {//执行指定事件
-                                            var envenstr = $CountValArr + "('" + dict.$MoreValArr[0].val() + "')";
-                                            setTimeout(envenstr, 300)
-                                        }
-                                        $("." + dom.win + "").window("close", true);
-                                        dict.success && dict.success();
-                                    });
-                                }
-
-                                var $row_1 = $(iframe.document).find("body").find("span");
-                                if ($row_1.length) {
-                                    $row_1.on("dblclick", function () {
-                                        for (var i_1 = 0; i_1 < FieldArrLen; i_1++) {
-                                            var fieldName_1 = dict.FieldArr[i_1];
-                                            dict.$DomArr[i].textbox('setValue', $(this).attr(fieldName_1));
-                                        }
-                                        if ($CountValArr != "" && $CountValArr != undefined) {//执行指定事件
-                                            var envenstr = $CountValArr + "('" + dict.$MoreValArr[0].val() + "')";
-                                            setTimeout(envenstr, 300)
-                                        }
-                                        $("." + dom.win + "").window("close", true);
-                                        dict.success && dict.success();
-                                    });
-                                }
-                            }, 3000);
-                        });
-                    }
-                });
             }
+
+            $("." + dom.win).remove();
+            var searchParam = "";
+            if (dict.$search) {
+                searchParam = encodeURIComponent(dict.$search.val());
+            }
+            var content = "<iframe width='100%' height='99%' height='300px' frameborder='0' src='"
+                + dict.WinUrl + searchParam + moreFn(0) + "' name='" + dom.WinIframe + "'></iframe>";
+            $("body").append("<div class='" + dom.win + "'>" + content + "</div>");
+            $("." + dom.win + "").window({
+                title: dict.title ? dict.title : " 请选择",
+                width: dict.width ? dict.width : 600,
+                height: dict.height ? dict.height : 400,
+                modal: true,
+                onOpen: function () {
+                    var iframe = window.frames[dom.WinIframe];
+                    $(iframe).load(function () {//iframe加载成功
+                        iframe.$(document).ajaxStop(function () {//ajax完成
+                            var $row = $(iframe.document).find("body .datagrid-body").find("tr");
+                            if ($row.length) {
+                                $row.on("dblclick", function () {
+                                    for (var i = 0; i < FieldArrLen; i++) {
+                                        var fieldName = dict.FieldArr[i];
+                                        dict.$DomArr[i].val($(this).find("td[field='" + fieldName + "']").text());
+                                    }
+                                    if ($CountValArr != "" && $CountValArr != undefined) {//执行指定事件
+                                        var envenstr = $CountValArr + "('" + dict.$MoreValArr[0].val() + "')";
+                                        setTimeout(envenstr, 300)
+                                    }
+
+                                    $("." + dom.win + "").window("close", true);
+                                    dict.success && dict.success();
+                                });
+                            }
+
+                            var $row_1 = $(iframe.document).find("body").find("span");
+                            if ($row_1.length) {
+                                $row_1.on("dblclick", function () {
+                                    for (var i_1 = 0; i_1 < FieldArrLen; i_1++) {
+                                        var fieldName_1 = dict.FieldArr[i_1];
+                                        dict.$DomArr[i_1].val($(this).attr(fieldName_1));
+                                    }
+                                    if ($CountValArr != "" && $CountValArr != undefined) {//执行指定事件
+                                        var envenstr = $CountValArr + "('" + dict.$MoreValArr[0].val() + "')";
+                                        setTimeout(envenstr, 300)
+                                    }
+                                    $("." + dom.win + "").window("close", true);
+                                    dict.success && dict.success();
+                                });
+                            }
+                        });
+
+                        setTimeout(function () {
+                            var $row = $(iframe.document).find("body .datagrid-body").find("tr");
+                            if ($row.length) {
+                                $row.on("dblclick", function () {
+                                    for (var i = 0; i < FieldArrLen; i++) {
+                                        var fieldName = dict.FieldArr[i];
+                                        dict.$DomArr[i].val($(this).find("td[field='" + fieldName + "']").text());
+                                    }
+                                    if ($CountValArr != "" && $CountValArr != undefined) {//执行指定事件
+                                        var envenstr = $CountValArr + "('" + dict.$MoreValArr[0].val() + "')";
+                                        setTimeout(envenstr, 300)
+                                    }
+                                    $("." + dom.win + "").window("close", true);
+                                    dict.success && dict.success();
+                                });
+                            }
+
+                            var $row_1 = $(iframe.document).find("body").find("span");
+                            if ($row_1.length) {
+                                $row_1.on("dblclick", function () {
+                                    for (var i_1 = 0; i_1 < FieldArrLen; i_1++) {
+                                        var fieldName_1 = dict.FieldArr[i_1];
+                                        dict.$DomArr[i_1].val($(this).attr(fieldName_1));
+                                    }
+                                    if ($CountValArr != "" && $CountValArr != undefined) {//执行指定事件
+                                        var envenstr = $CountValArr + "('" + dict.$MoreValArr[0].val() + "')";
+                                        setTimeout(envenstr, 300)
+                                    }
+                                    $("." + dom.win + "").window("close", true);
+                                    dict.success && dict.success();
+                                });
+                            }
+                        }, 3000);
+                    });
+                }
+            });
         });
 
         var isKeypressTrigger = false;//是否已触发enter键
@@ -177,7 +171,7 @@
                         else {
                             for (var i = 1; i < FieldArrLen; i++) {
                                 var fieldName = dict.FieldArr[i];
-                                dict.$DomArr[i].textbox('setValue',data[0][fieldName]);
+                                dict.$DomArr[i].val(data[0][fieldName]);
                             }
                         }
                         dict.success && dict.success();
@@ -200,10 +194,6 @@
                 return;
             }
             if (dict.$DomArr[0].val()) {
-
-                let myurl = dict.AjaxUrl + encodeURIComponent(dict.$DomArr[0].val()) + moreFn();
-                console.log(myurl);
-
                 $.getJSON(dict.AjaxUrl + encodeURIComponent(dict.$DomArr[0].val()) + moreFn(), function (data) {
                     data = data.Row;
                     if (data.length === 0) {
@@ -237,23 +227,18 @@
     });
 
     function InitLayout() {
-        EasyLib.Ctl.SearchTxt({
-            //必填项
-            $DomArr: [$(".companyid"), $(".companyname")],//需要绑定的文本框1
-            FieldArr: ["field1", "field2"],//文本框1得到的字段值
-            //WinUrl: EasyLib.Url.GetRootPath(3) + "/iCRM/Page/56001",//iframe URL
-            WinUrl: "./BaseDataDataGridTest",//iframe URL
-
-            //AjaxUrl: getRootPath("GetData") + "/FormSLS1001",//按 enter 键 进行查询的 ajax URL
-
-            //选填,不填写会有默认值
-            title: "查询窗口",//标题
-            width: 800,//宽度
-            height: 500//高度
-        });
+        //EasyLib.Ctl.SearchTxt({
+        //    //必填项
+        //    $DomArr: [$(".companyid"), $(".companyname")],
+        //    FieldArr: ["id", "Uname"],
+        //    WinUrl: "./BaseDataDataGridTest",
+        //    title: "查询窗口",
+        //    width: 800,
+        //    height: 500
+        //});
 
         newDialog({
-            $DomArr: [$("#testkey"), $("#testvalue")],
+            $DomArr: [$("#companyid"), $("#companyname")],
             FieldArr: ["id", "Uname"],
             WinUrl: "./BaseDataDataGridTest",
             title: "查询窗口",

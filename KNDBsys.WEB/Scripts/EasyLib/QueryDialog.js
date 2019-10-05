@@ -13,10 +13,10 @@
         }
     };
 
-    using("QueryDialog.Query");
-    QueryDialog.Query = function (params) {
+    using("QueryDialog.EasySearchText");
+    EasySearchText = function (params) {
         var dom = {
-            wintype: "easyui-window",
+            wintype: "easyui-windowSearchText",
             winiFrame: "search-iframe"
         };
 
@@ -27,88 +27,197 @@
         let checkmsg = checkParams(FillcontrolArrLen, FieldArrLen);
         if (checkmsg) {
             $.messager.alert('警告', checkmsg + '控件绑定失效');
+            return;
         }
 
-        let QuerySearchbox = params.fillControlArr[0];
+        let querytxb = params.fillControlArr[0];
 
-        QuerySearchbox.searchbox({
-            searcher: function (value, name) {
-                let paramstr = '{';
-                for (var i in params.queryParams) {
-                    let key = '"' + params.queryParams[i] + '":';
-                    let value = '"' + params.queryValues[i].textbox('getValue') + '",';
-                    paramstr += key + value;
-                }
-                paramstr = paramstr.substr(0, paramstr.length - 1) + '}';
-                let paramjson = JSON.parse(paramstr);
-                if (value.length > 0) {
-                    $.post(params.queryAPI, paramjson, function (result) {
-                        if (result.total > 0) {
-                            var entity = result.Entity;
-                            for (var i = 0; i < FieldArrLen; i++) {
-                                var fieldName = params.dialogFieldArr[i];
-                                for (var val in entity) {
-                                    if (val === fieldName) {
-                                        params.fillControlArr[i].textbox('setValue', entity[val]);
-                                    }
-                                }
-                            }
-                        } else {
-                            for (var j = 0; j < FieldArrLen; j++) {
-                                params.fillControlArr[j].textbox('setValue', '');
-                                params.fillControlArr[j].textbox('setValue', '');
-                            }
-                            showDialog();
+        if (querytxb.hasClass('easyui-textbox')) {
+            //console.log('test');
+        }
+
+        $.extend($.fn.textbox.methods, {
+            addQueryBtn: function (jq) {
+                return jq.each(function () {
+                    var t = $(this);
+                    var opts = t.textbox('options');
+                    opts.icons = [];
+                    opts.icons.unshift({
+                        iconCls: 'icon-clear',
+                        handler: function (e) {
+                            $(e.data.target).textbox('clear').textbox('textbox').focus();
+                            $(this).css('visibility', 'hidden');
+                            CleanControllData();
                         }
-                    }, 'json');
-                } else {
-                    showDialog();
-                }
+                    }, {
+                            iconCls: 'icon-search',
+                            handler: function (e) {
+                                let txb = $(e.data.target).textbox('getValue');
+                                PostData(txb);
+                            }
+                        });
+                    t.textbox();
+
+                    if (!t.textbox('getText')) {
+                        t.textbox('getIcon', 0).css('visibility', 'hidden');
+                    }
+                    t.textbox('textbox').bind('keyup', function (event) {
+
+                        switch (event.keyCode) {
+                            case 13://确定
+                                let txb = querytxb.textbox('getValue');
+                                if (txb.length > 0 && params.queryParams.length > 0) {
+                                    PostData(txb);
+                                }
+                                break;
+                            case 8: //返回
+                                CleanControllData();
+                                break;
+                            default:
+                        }
+
+                        var icon = t.textbox('getIcon', 0);
+                        if ($(this).val()) {
+                            icon.css('visibility', 'visible');
+                        } else {
+                            icon.css('visibility', 'hidden');
+                        }
+
+                    });
+
+                });
             }
         });
 
-        QuerySearchbox.keyup(function () {
-            //console.log('test');
-        });
+        querytxb.textbox().textbox('addQueryBtn');
+
+        //querytxb.textbox({
+        //    inputEvents: $.extend({}, $.fn.textbox.defaults.inputEvents, {
+        //        keyup: function (event) {
+        //            switch (event.keyCode) {
+        //                //确定
+        //                case 13:
+        //                    let txb = querytxb.textbox('getValue');
+        //                    if (txb.length > 0 && params.queryParams.length > 0) {
+        //                        PostData(txb);
+        //                    }
+        //                    break;
+        //                    //返回
+        //                case 8:
+        //                    CleanControllData();
+        //                    break;
+        //                default:
+        //            }
+        //        }
+        //    })
+        //});
+
+        function CleanControllData() {
+            for (var i = 1; i < FillcontrolArrLen; i++) {
+                var txb = params.fillControlArr[i];
+                txb.textbox('setValue', '');
+            }
+        }
+
+        function PostData(txbvalue) {
+            let paramstr = '{';
+            for (var i in params.queryParams) {
+                let key = '"' + params.queryParams[i] + '":';
+                if (typeof params.queryValues[i] == 'string') {
+                    let value = '"' + params.queryValues[i] + '",';
+                    paramstr += key + value;
+                } else {
+                    let value = '"' + params.queryValues[i].textbox('getValue') + '",';
+                    paramstr += key + value;
+                }
+
+            }
+            paramstr = paramstr.substr(0, paramstr.length - 1) + '}';
+            let paramjson = JSON.parse(paramstr);
+            if (txbvalue.length > 0) {
+                $.get(params.queryAPI, paramjson, function (result) {
+                    if (result.Row.length == 1) {
+                        var entity = result.Row[0];
+                        for (var i = 0; i < FieldArrLen; i++) {
+                            var fieldName = params.dialogFieldArr[i]
+                            for (var val in entity) {
+                                if (val === fieldName) {
+                                    params.fillControlArr[i].textbox('setValue', entity[val]);
+                                }
+                            }
+                        }
+                    } else {
+                        showDialog();
+                    }
+                }, 'json');
+            } else {
+                showDialog();
+            }
+        }
 
         function showDialog() {
 
-            //$("." + dom.wintype).remove();
-            var ifr = $('[name="' + dom.winiFrame + '"]');
-            ifr.remove();
+            $("." + dom.wintype).remove();
+            //$("." + dom.wintype + "").window("close", true);
 
             var content = "<iframe  width='100%' height='99%' height='300px',frameborder='0' src='" + params.dialogPath + "' name='" + dom.winiFrame + "'></iframe>";
             $("body").append("<div class='" + dom.wintype + "' >" + content + "</div>");
 
             $("." + dom.wintype).window({
-                closeable: true,
+                title: params.title ? params.title : " 请选择",
+                width: params.width ? params.width : 600,
+                height: params.height ? params.height : 400,
+                modal: true,
                 onOpen: function () {
                     var iframe = window.frames[dom.winiFrame];
                     $(iframe).load(function () {
-                        setTimeout(function () {
-                            var $row = $(iframe.document).find("body .datagrid-body").find("tr");
-                            if ($row.length) {
-                                $row.on("dblclick", function () {
-                                    for (var i = 0; i < FieldArrLen; i++) {
-                                        var fieldName = params.dialogFieldArr[i];
-                                        var dcclicktext = $(this).find("td[field='" + fieldName + "']").text();
-                                        params.fillControlArr[i].textbox('setValue', dcclicktext);
-                                    }
 
-                                    $("." + dom.wintype + "").window("close", true);
-                                    params.success && params.success();
-                                });
-                            }
-                        }, 200);
+                        iframe.$(document).ajaxStop(function () {
+                            dbclickRow($(iframe.document));
+                        });
+
+                        setTimeout(function () {
+                            dbclickRow($(iframe.document));
+                        }, 500);
                     });
+
                 }
             });
+        }
+
+        function dbclickRow(framewin) {
+
+            var $row = framewin.find("body .datagrid-body").find("tr");
+            if ($row.length) {
+                $row.on("dblclick", function () {
+                    for (var i = 0; i < FieldArrLen; i++) {
+                        var fieldName = params.dialogFieldArr[i];
+                        var dbclicktext = $(this).find("td[field='" + fieldName + "']").text();
+                        params.fillControlArr[i].textbox('setValue', dbclicktext);
+                    }
+                    $("." + dom.wintype + "").window("close", true);
+                    params.success && params.success();
+                });
+            }
+
+            var $row_1 = framewin.find('body').find("span");
+            if ($row_1.length) {
+                $row_1.on('dbclick', function () {
+                    for (var i_1 = 0; i_1 < FieldArrLen; i_1++) {
+                        var fieldName_1 = params.dialogFieldArr[i];
+                        var dbclicktext = $(this).attr(fieldName_1);
+                        params.fillControlArr[i].textbox('setValue', dbclicktext);
+                    }
+                    $("." + dom.wintype + "").window("close", true);
+                    params.success && params.success();
+                });
+            }
         }
 
         function checkParams(fillLen, fieldLen) {
             let msg = "";
             let checkparams = false;
-            if (fillLen === 0 || fieldLen === 0) {
+            if (fillLen == 0 || fieldLen == 0) {
                 checkparams = true;
             } else if (fieldLen !== fillLen) {
                 checkparams = true;
@@ -120,10 +229,11 @@
             }
             return msg;
         }
+
     };
 
     using("QueryDialog.EasyTextBox");
-    QueryDialog.EasyTextBox = function (params) {
+    EasyTextBox = function (params) {
         var dom = {
             wintype: "easyui-window",
             winiFrame: "search-iframe"
@@ -182,7 +292,7 @@
         });
 
         querytxb.textbox().textbox('addQueryBtn');
-        
+
         querytxb.textbox('textbox').keydown(function (e) {
 
             switch (e.keyCode) {
@@ -217,8 +327,8 @@
             let paramjson = JSON.parse(paramstr);
             if (txbvalue.length > 0) {
                 $.post(params.queryAPI, paramjson, function (result) {
-                    if (result.total > 0) {
-                        var entity = result.Entity;
+                    if (result.total = 1) {
+                        var entity = result.Row;
                         for (var i = 0; i < FieldArrLen; i++) {
                             var fieldName = params.dialogFieldArr[i]
                             for (var val in entity) {
@@ -238,9 +348,7 @@
 
         function showDialog() {
 
-            //$("." + dom.wintype).remove();
-            var ifr = $('[name="' + dom.winiFrame + '"]');
-            ifr.remove();
+            $("." + dom.wintype).remove();
 
             var content = "<iframe  width='100%' height='99%' height='300px',frameborder='0' src='" + params.dialogPath + "' name='" + dom.winiFrame + "'></iframe>";
             $("body").append("<div class='" + dom.wintype + "' >" + content + "</div>");
@@ -268,7 +376,7 @@
                                     params.success && params.success();
                                 });
                             }
-                        }, 200);
+                        }, 500);
                     });
                 }
             });
