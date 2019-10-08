@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "WorkFlowView";
+    Layout = "~/Views/Shared/_LayoutJSCSS.cshtml";
+}
+
+
+<div>
+    <div class="easyui-panel">
+        <a href="#" id="close" class="easyui-linkbutton" onclick="openFlow()" data-options="plain:true">打开</a>
+        <a href="#" id="close" class="easyui-linkbutton" onclick="addFlow()" data-options="plain:true">新建</a>
+        <a href="#" id="close" class="easyui-linkbutton" onclick="flowAttrSetting()" data-options="plain:true">属性</a>
+        <a href="#" id="close" class="easyui-linkbutton" onclick="addStep()" data-options="plain:true">新步骤</a>
+        <a href="#" id="close" class="easyui-linkbutton" onclick="addConn()" data-options="plain:true">连线</a>
+        <a href="#" id="close" class="easyui-linkbutton" onclick="removeObj()" data-options="plain:true">删除</a>
+        <a href="#" id="close" class="easyui-linkbutton" onclick="saveFlow('save'); return false;" data-options="plain:true">保存</a>
+        <a href="#" id="close" class="easyui-linkbutton" onclick="saveAs(); return false;" data-options="plain:true">另存为</a>
+        <a href="#" id="close" class="easyui-linkbutton" onclick="saveFlow('install'); return false;" data-options="plain:true">安装</a>
+        <a href="#" id="close" class="easyui-linkbutton" onclick="saveFlow('uninstall'); return false;" data-options="plain:true">卸载</a>
+        <a href="#" id="close" class="easyui-linkbutton" onclick="saveFlow('delete'); return false;" data-options="plain:true">删除流程</a>
+
+    </div>
+    <div id="flowdiv"></div>
+</div>
+
+<script src="~/Scripts/FlowDesinger/draw-min.js"></script>
+<script src="~/Scripts/FlowDesinger/workflow.js"></script>
+<script type="text/javascript">
+
+    $().ready(function () {
+        InitLayout();
+    });
+
+    function InitLayout() {
+        
+    }
+
+</script>

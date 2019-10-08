@@ -149,6 +149,12 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
             return View();
         }
 
+        //流程图测试
+        public ActionResult WorkFlowView()
+        {
+            return View();
+        }
+
         public string ReceiveDynamics(string json)
         {
             JavaScriptSerializer js = new JavaScriptSerializer();
