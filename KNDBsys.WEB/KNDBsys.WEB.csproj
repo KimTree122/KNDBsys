@@ -406,6 +406,7 @@
     <Content Include="Areas\TestView\Views\DataTest\BaseDataDataGridTest.cshtml" />
     <Content Include="Areas\TestView\Views\DataTest\SearchFrame.cshtml" />
     <Content Include="Areas\TestView\Views\DataTest\WorkFlowView.cshtml" />
+    <Content Include="Areas\TestView\Views\DataTest\DynamicsTable.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\datagrid-export.js" />

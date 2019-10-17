@@ -155,6 +155,11 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
             return View();
         }
 
+        public ActionResult DynamicsTable()
+        {
+            return View();
+        }
+
         public string ReceiveDynamics(string json)
         {
             JavaScriptSerializer js = new JavaScriptSerializer();

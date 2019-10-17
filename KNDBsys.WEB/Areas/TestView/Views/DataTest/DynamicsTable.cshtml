@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "DynamicsTable";
+    Layout = "~/Views/Shared/_LayoutJSCSS.cshtml";
+}
+
+<style>
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        border: 1px solid #c0c0c0;
+    }
+
+    th,
+    td {
+        border: 1px solid #d0d0d0;
+        color: #404060;
+        padding: 10px;
+    }
+
+    th {
+        background-color: #09c;
+        font: bold 16px "微软雅黑";
+        color: #fff;
+    }
+
+    td {
+        font: 14px "微软雅黑";
+    }
+
+    tbody :first-child {
+        background-color: #09c;
+        font: bold 16px "微软雅黑";
+        color: #fff;
+    }
+
+    tbody tr {
+        background-color: #f0f0f0;
+    }
+
+        tbody tr:hover {
+            cursor: pointer;
+            background-color: #fafafa;
+        }
+</style>
+
+
+<div>
+    <p>
+        <input id="addrow" type="button" value="增加行" onclick="addrow()">&nbsp&nbsp
+        <input id="delrow" type="button" value="删除行" onclick="delrow()">&nbsp&nbsp
+        <input id="addcol" type="button" value="增加列" onclick="addcol()">&nbsp&nbsp
+        <input id="delcol" type="button" value="删除列" onclick="delcol()">
+    </p>
+    <table frame="border" rules="all" id="mytable">
+        <caption>测试表</caption>
+        <tr>
+            <th>单元格</th>
+            <th>单元格</th>
+        </tr>
+    </table>
+</div>
+
+<script type="text/javascript">
+
+
+    function addrow() {
+        var c = document.getElementById('mytable');//获得表格的信息
+        if (c.rows.length == 0) {//如果是向一个空表增加一行
+            var x = c.insertRow(0);//向空表插入一行
+            var y = x.insertCell(0);//向新行插入一列
+            y.innerHTML = "new cell0";
+        }
+        else {
+            var z = c.rows[0].cells;//如果不是空表，首先获得表格有多少列，先获取再插入新行
+            var x = c.insertRow(0);
+            for (var i = 0; i < z.length; i++) {//依次向新行插入表格列数的单元格
+                var y = x.insertCell(i);
+                y.innerHTML = "new cell" + i;
+            }
+        }
+    }
+    function delrow() {
+        var x = document.getElementById("mytable");
+        x.deleteRow(0);//删除一行
+    }
+    function addcol() {
+        var c = document.getElementById('mytable');//获取表格信息
+        var len = c.rows.length;//获得行数
+        var ro = c.rows[0].cells;
+        var len2 = ro.length;//获得列数
+        for (var i = 0; i < len; i++) {
+            var x = c.rows[i].insertCell(len2);//依次向每一行的末尾插入一个新列
+            x.innerHTML = "new cell" + len2;
+        }
+    }
+    function delcol() {
+        var c = document.getElementById('mytable');//获取表格信息
+        var len = c.rows.length;//获取表格的行数
+        var ro = c.rows[0].cells//获取表格的列数
+        var len2 = ro.length - 1;
+        for (var i = 0; i < len; i++) {
+            var x = c.rows[i].deleteCell(len2);//删除每一行末尾的单元格
+        }
+    }
+</script>
