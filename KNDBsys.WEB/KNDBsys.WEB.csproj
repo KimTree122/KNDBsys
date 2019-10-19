@@ -407,17 +407,26 @@
     <Content Include="Areas\TestView\Views\DataTest\SearchFrame.cshtml" />
     <Content Include="Areas\TestView\Views\DataTest\WorkFlowView.cshtml" />
     <Content Include="Areas\TestView\Views\DataTest\DynamicsTable.cshtml" />
+    <Content Include="Areas\TestView\Views\DataTest\GoJsWorkFlow.cshtml" />
+    <Content Include="Areas\TestView\Views\DataTest\GoJsWorkFlow2.cshtml" />
+    <Content Include="Areas\TestView\Views\DataTest\AWorkflowView.cshtml" />
+    <Content Include="Areas\TestView\Views\DataTest\RLReportTestView.cshtml" />
+    <Content Include="Areas\TestView\Report\GridReport.grf" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\datagrid-export.js" />
     <Content Include="Scripts\EasyLib\css\EasyLib.css" />
     <Content Include="Scripts\EasyLib\EasyLib.js" />
+    <Content Include="Scripts\EasyLib\ExtendAjax.js" />
     <Content Include="Scripts\EasyLib\img\EasyLib-SearchTxt-Icon.jpg" />
     <Content Include="Scripts\EasyLib\QueryDialog.js" />
     <Content Include="Scripts\easyloader.js" />
+    <Content Include="Scripts\FlowDesinger\aworkflow.js" />
     <Content Include="Scripts\FlowDesinger\draw-min.js" />
     <Content Include="Scripts\FlowDesinger\workflow-show.js" />
     <Content Include="Scripts\FlowDesinger\workflow.js" />
+    <Content Include="Scripts\goJS.js" />
+    <Content Include="Scripts\Go-debug.js" />
     <Content Include="Scripts\home.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -436,6 +445,7 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ReportJS\CreateControl.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

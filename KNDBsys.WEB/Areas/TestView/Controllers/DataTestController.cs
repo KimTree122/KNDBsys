@@ -21,6 +21,12 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
             return View();
         }
 
+        //锐浪报表测试
+        public ActionResult RLReportTestView()
+        {
+            return View();
+        }
+
         //ViewBag的类型是动态的，不确定的，直接就可以使用，它的传值范围是：controller向view传值，view自己和自己传值。
         public ActionResult ViewBagTest()
         {
@@ -151,6 +157,22 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
 
         //流程图测试
         public ActionResult WorkFlowView()
+        {
+            return View();
+        }
+
+        //GOJS流程图
+        public ActionResult GoJsWorkFlow()
+        {
+            return View();
+        }
+
+        public ActionResult GoJsWorkFlow2()
+        {
+            return View();
+        }
+
+        public ActionResult AWorkflowView()
         {
             return View();
         }

@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "RLReportTestView";
+    Layout = "~/Views/Shared/_LayoutJSCSS.cshtml";
+}
+
+<div>
+    @*<div id="report_holder"></div>*@
+</div>
+<script src="~/Scripts/ReportJS/CreateControl.js"></script>
+<script type="text/javascript">
+    $().ready(function () {
+        InitLayout();
+    });
+
+    function InitLayout() {
+        GetAllUser();
+    }
+
+    function GetAllUser() {
+        let myurl = "../../BaseInfo/BaseInfo/GetAllUserInfo?userid=1";
+        let report = "http://localhost:36769/Areas/TestView/Report/GridReport.grf";
+
+        let params = '<param name="par1" value="kim">'
+
+        CreatePrintViewerEx("100%", "100%", report, myurl, true, params);
+    }
+</script>

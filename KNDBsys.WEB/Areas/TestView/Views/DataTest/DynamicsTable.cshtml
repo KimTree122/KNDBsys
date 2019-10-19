@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_LayoutJSCSS.cshtml";
 }
 
-<style>
+@*<style>
     table {
         border-collapse: collapse;
         border-spacing: 0;
@@ -41,8 +41,19 @@
             cursor: pointer;
             background-color: #fafafa;
         }
-</style>
+</style>*@
 
+
+<div class="easyui-panel" title="easyuidatagrid" style="height:400px;">
+    <div>
+        <a href="#" id="addcolbtn" class="easyui-linkbutton" data-option="iconCls:'icon-add'">增加列</a>
+        <a href="#" id="delcolbtn" class="easyui-linkbutton" data-option="iconCls:'icon-remove'">减少列</a>
+    </div>
+    <table id="dg" class="easyui-datagrid" >
+        
+    </table>
+
+</div>
 
 <div>
     <p>
@@ -62,6 +73,46 @@
 
 <script type="text/javascript">
 
+    $().ready(function () {
+        $('#addcolbtn').click(function () {
+            $('#dg').datagrid({
+                frozenColumns: [[{field:'frozen',title:'冻结'}]],
+                columns: mycol(),
+                data: dgdata()
+            });
+
+            
+        });
+
+        $('#delcolbtn').click(function () {
+
+        });
+    });
+
+    function mycol() {
+        var columns = [[
+            { field: 'ck', rowspan: 2,checkbox: true },
+            { field: 'itemid', title: 'Item ID', rowspan: 2, width: 80, sortable: true },
+            { field: 'productid', title: 'Product ID', rowspan: 2, width: 80, sortable: true },
+            { title: 'Item Details', colspan: 4 }
+        ], [
+            { field: 'listprice', title: 'List Price', width: 80, align: 'right', sortable: true },
+            { field: 'unitcost', title: 'Unit Cost', width: 80, align: 'right', sortable: true },
+            { field: 'attr1', title: 'Attribute', width: 100 },
+            { field: 'status', title: 'Status', width: 60 }
+            ]];
+        return columns;
+    }
+
+    function dgdata() {
+        var dgrows = new Array();
+        for (var i = 0; i < 3; i++) {
+            var row = { itemid: i + 'itemid', productid: i + 'productid', listprice: i +'listprice',unitcost:i+'unitcost'};
+            dgrows.push(row);
+        }
+        return dgrows;
+    }
+    
 
     function addrow() {
         var c = document.getElementById('mytable');//获得表格的信息
@@ -102,4 +153,5 @@
             var x = c.rows[i].deleteCell(len2);//删除每一行末尾的单元格
         }
     }
+
 </script>
