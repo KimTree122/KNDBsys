@@ -2,20 +2,29 @@
     ViewBag.Title = "RLReportTestView";
     Layout = "~/Views/Shared/_LayoutJSCSS.cshtml";
 }
-
-<div>
-    @*<div id="report_holder"></div>*@
-</div>
 <script src="~/Scripts/ReportJS/CreateControl.js"></script>
+<div>
+    <div id="report_holder">
+        <p>
+            <script type="text/javascript">
+                CreatePrintViewerEx("100%", "500", "", "", false, "<param name=BorderStyle value=1>");
+            </script>
+        </p>
+    </div>
+</div>
+
 <script type="text/javascript">
     $().ready(function () {
         InitLayout();
     });
 
     function InitLayout() {
-        GetAllUser();
+        //GetAllUser();
+        PostParams();
+
     }
 
+    //数据集
     function GetAllUser() {
         let myurl = "../../BaseInfo/BaseInfo/GetAllUserInfo?userid=1";
         let report = "http://localhost:36769/Areas/TestView/Report/GridReport.grf";
@@ -24,4 +33,20 @@
 
         CreatePrintViewerEx("100%", "100%", report, myurl, true, params);
     }
+
+    //参数
+    function PostParams() {
+        var Report = ReportViewer.Report;
+        let report = "http://localhost:36769/Areas/TestView/Report/GridReport.grf";
+        Report.LoadFromURL(report);
+        ReportViewer.Stop();
+        //图片
+        Report.ControlByName("pbox").AsPictureBox.LoadFromFile("../../Content/Images/Logo.png");
+
+        Report.ParameterByName("par1").AsString = "kim";
+        ReportViewer.Start();
+
+        
+    }
+
 </script>

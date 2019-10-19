@@ -176,11 +176,19 @@
 				Item
 					Type=MemoBox
 					Name='MemoBox1'
-					Left=3.41313
-					Top=1.00542
-					Width=2.59292
+					Left=0.79375
+					Top=0.79375
+					Width=2.61938
 					Height=0.396875
 					Text='[#{par1}#]'
+				End
+				Item
+					Type=PictureBox
+					Name='pbox'
+					Left=5.79438
+					Top=0.396875
+					Width=2.59292
+					Height=1.40229
 				End
 			End
 		End
