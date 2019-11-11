@@ -21,6 +21,11 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
             return View();
         }
 
+        public ActionResult DynamicsControl()
+        {
+            return View();
+        }
+
         //锐浪报表测试
         public ActionResult RLReportTestView()
         {

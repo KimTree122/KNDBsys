@@ -1,0 +1,142 @@
+﻿@{
+    ViewBag.Title = "DynamicsControl";
+    Layout = "~/Views/Shared/_LayoutJSCSS.cshtml";
+}
+
+<div>
+    <input type="file" id="filebox"  onchange="Fileboxchange()" style="display:none;" />
+
+    <div title="附件上传">
+        <a href="#" id="addfile" attach="atttype" class="easyui-linkbutton"  data-options="iconCls:'icon-add'">附件添加</a>
+        <div id="atttype"></div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+    var attachtype;
+
+    $().ready(function () {
+        InitLayout();
+
+    });
+
+    function InitLayout() {
+        $('[attach]').click(function () {
+            attachtype = $(this).attr('attach');
+            choiceFile();
+        });
+    }
+
+    function choiceFile() {
+        $('#filebox').trigger('click');
+    }
+
+    function Fileboxchange() {
+        var formData = new FormData();
+        var choicefile = document.getElementById('filebox').files[0];
+        if (choicefile == undefined) {
+            return;
+        }
+        if (choicefile.size > 5000000) {
+            $.messager.alert('警告', '文件大于5M');
+            $('#filebox').val('');
+            return;
+        }
+        if (FileReapet(choicefile.name)) {
+            $.messager.alert('警告', '有文件重名,请确认无重复后再上传。');
+            $('#filebox').val('');
+            return;
+        }
+        formData.append('UpFile', choicefile);
+        //var myurl = EasyLib.Url.GetRootPath(0) + "/EasyOA/FileUpLoadCURD/FormOA0003_Upload";
+        //$.ajax({
+        //    url: myurl,
+        //    type: "POST",
+        //    dataType: "json",
+        //    data: formData,
+        //    processData: false,
+        //    contentType: false,
+        //    success: function (data) {
+        //        if (data.Result != "0") {
+        //            UpdateFileAttachment(choicefile.name, data.Result);
+        //        } else {
+        //            $.messager.alert('警告', '上传失败');
+        //        }
+        //    }, error: function (r, s, e) {
+        //        console.log('upload fail:' + e);
+        //    }
+        //});
+
+        UpdateFileAttachment(choicefile.name, 'fileid');
+    }
+
+    function FileReapet(filename) {
+        var filesls = $("#" + attachtype + " .easyui-textbox");
+        for (var i = 0; i < filesls.length; i++) {
+            if (filename == filesls[i].value) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function UpdateFileAttachment(filename, fileid) {
+        //var myurl = EasyLib.Url.GetRootPath(0) + "/BaseCURD/SuplierBaseInfo_SaveFile";
+        //var attchment = { filename: filename, fileid: fileid, vndcode: $('#vndcode').textbox('getValue'), vndname: $('#vndname').textbox('getValue'), attachtype: attachtype, scopeid: '0' };
+        //$.post(myurl, attchment, function (data) {
+        //    if (data[0].result == "success") {
+        //        addFileText(filename, fileid, attachtype);
+        //        $('#filebox').val('');
+        //    } else {
+        //        $.messager.alert('提示', '添加失败');
+        //    }
+        //}, 'json').error(function (r, s, e) {
+        //    console.log('update attachment info faile:' + e);
+        //});
+
+        addFileText(filename, fileid, attachtype);
+    }
+
+    function addFileText(filename, fileid, type) {
+        var filetext = $("<div style=\"margin:10px; float:left;\"> <input class=\"easyui-textbox\" value='" + filename + "' style=\"min-width:200px;\" fileid='" + fileid + "' iconAlign='left' editable=\"false\" data-options=\" iconWidth: 22,icons: [{ iconCls:'icon-remove',handler: function(e){ delFile($(e.data.target))} },{iconCls:'icon-search',handler: function(e){ showFile($(e.data.target))}}] \"></div>").appendTo("#" + type);
+        $.parser.parse(filetext);
+    }
+
+    function delFile(choicefile) {
+        var filename = choicefile.textbox('getValue');
+        var fildid = choicefile.attr('fileid');
+        $.messager.confirm('提示', '是否确认删除:\r\n' + filename + "?", function (c) {
+            if (c) {
+                RemoveFile(choicefile, fildid);
+            }
+        });
+    }
+
+    function RemoveFile(choicefile, fileid) {
+        //var myurl = EasyLib.Url.GetRootPath(0) + "/BaseCURD/SuplierBaseInfo_DelFile";
+        //var param = { fileid: fileid, vndcode: $('#vndcode').textbox('getValue') };
+        //$.post(myurl, param, function (result) {
+        //    if (result[0].result == "success") {
+        //        $.messager.alert('提示', '文件已删除');
+        //        $(choicefile).parent().remove();
+        //    }
+        //}, 'json').error(function (r, s, e) {
+        //    console.log(e);
+        //    });
+
+        $.messager.alert('提示', '文件已删除');
+        $(choicefile).parent().remove();
+    }
+
+    function showFile(choiceFile) {
+        var fid = choiceFile.attr('fileid');
+        var filename = choiceFile.textbox('getValue');
+        if (fid != undefined) {
+            var myurl = EasyLib.Url.GetRootPath(0) + "/EasyOA/FileUpLoadCURD/ShowFile?id=" + fid;
+            window.open(myurl);
+        }
+    }
+
+</script>

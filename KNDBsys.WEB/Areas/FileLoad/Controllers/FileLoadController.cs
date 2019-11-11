@@ -82,13 +82,13 @@ namespace KNDBsys.WEB.Areas.FileLoad.Controllers
         /// <returns></returns>
         public bool ResponseDownLoad(string fileName, string filePath)
         {
-             fileName = "wenjian.txt";//客户端保存的文件名
-             filePath = "/Upload/wenjian.txt"; //路径（后续从webconfig读取）
+             //fileName = "wenjian.txt";//客户端保存的文件名
+             //filePath = "/Upload/wenjian.txt"; //路径（后续从webconfig读取）
 
             System.IO.FileInfo fileInfo = new System.IO.FileInfo(filePath);
             if (fileInfo.Exists == true)
             {
-                const long ChunkSize = 102400;//100K 每次读取文件，只读取100K，这样可以缓解服务器的压力
+                const long ChunkSize = 1;//100K 每次读取文件，只读取100K，这样可以缓解服务器的压力
                 byte[] buffer = new byte[ChunkSize];
 
                 Response.Clear();
