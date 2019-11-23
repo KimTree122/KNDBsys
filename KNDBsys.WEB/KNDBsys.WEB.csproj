@@ -413,6 +413,7 @@
     <Content Include="Areas\TestView\Views\DataTest\RLReportTestView.cshtml" />
     <Content Include="Areas\TestView\Report\GridReport.grf" />
     <Content Include="Areas\TestView\Views\DataTest\DynamicsControl.cshtml" />
+    <Content Include="Areas\TestView\Views\DataTest\DynamicsGridView.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\datagrid-export.js" />

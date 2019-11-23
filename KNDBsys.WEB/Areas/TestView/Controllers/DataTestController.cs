@@ -21,6 +21,11 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
             return View();
         }
 
+        public ActionResult DynamicsGridView()
+        {
+            return View();
+        }
+
         public ActionResult DynamicsControl()
         {
             return View();

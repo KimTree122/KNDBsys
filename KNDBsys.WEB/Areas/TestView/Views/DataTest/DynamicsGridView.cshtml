@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "DynamicsGridView";
+    Layout = "~/Views/Shared/_LayoutJSCSS.cshtml";
+}
+
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+        table tr td,
+        table tr th {
+            border: solid 1px #2080f0;
+        }
+</style>
+
+<div>
+    <div class="easyui-panel">
+        <table class="easyui-datagrid" id="dg"></table>
+    </div>
+
+    <div class="easyui-panel">
+        <table >
+            <tr >
+                <td>A</td>
+                <td>B</td>
+                <td>C</td>
+                <td>D</td>
+            </tr>
+            <tr>
+                <td>E</td>
+                <td>F</td>
+                <td>G</td>
+                <td>H</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+    $().ready(function () {
+        InitData();
+        InitLayout();
+    });
+
+    var collist, rowlist;
+
+    function InitData() {
+        initCollist();
+
+    }
+
+    function initCollist() {
+        collist = new Array();
+        var ranNum = Math.ceil(Math.random() * 10);
+        for (var i = 0; i < ranNum; i++) {
+            let col = new function () { };
+            let fieldlist = getRanNum();
+            col.title = fieldlist[0];
+            col.field = fieldlist[1];
+            col.width = 70;
+            collist.push(col);
+        }
+    }
+
+    function getRanNum() {
+        var result = [];
+        //生成一个0到25的数字
+        //大写字母'A'的ASCII是65,A~Z的ASCII码就是65 + 0~25;
+        //然后调用String.fromCharCode()传入ASCII值返回相应的字符并push进数组里
+        for (var i = 0; i < 4; i++) {
+            var ranNum = Math.ceil(Math.random() * 25);
+            result.push(String.fromCharCode(65 + ranNum));
+        }
+        return result.join('');
+    }
+
+    function InitLayout() {
+        //initDGCol();
+        //initDGCol2();
+    }
+
+    function initDGCol2() {
+        $('#dg').datagrid({
+            columns: [collists]
+        });
+    }
+
+    function initDGCol() {
+        $('#dg').datagrid({
+            columns: [[
+                { field: 'itemid', title: 'Item ID', rowspan: 2, width: 80, sortable: true },
+                { field: 'productid', title: 'Product ID', rowspan: 2, width: 80, sortable: true },
+                { title: 'Item Details', colspan: 4 }
+            ], [
+                { field: 'listprice', title: 'List Price', width: 80, align: 'right', sortable: true },
+                { field: 'unitcost', title: 'Unit Cost', width: 80, align: 'right', sortable: true },
+                { field: 'attr1', title: 'Attribute', width: 100 },
+                { field: 'status', title: 'Status', width: 60 }
+            ]]
+        });
+    }
+
+
+</script>
