@@ -1,4 +1,5 @@
 ﻿using KNDBsys.Model.BaseInfo;
+using KNDBsys.Model.SYS;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -15,6 +16,30 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
     {
         //
         // GET: /TestView/DataTest/
+
+        public string DynamicModel()
+        {
+            dynamic dynamicModel = new DynamicModel();
+            List<string> myList = new List<string>();
+            myList.Add("Name");
+            myList.Add("Age");
+            myList.Add("Hobby");
+
+            List<string> myValueList = new List<string>();
+            myValueList.Add("Mary");
+            myValueList.Add("18");
+            myValueList.Add("Dance");
+
+            for (int i = 0; i < myList.Count; i++)
+            {
+                string myAttr = myList[i];
+                dynamicModel.PropertyName = myAttr;
+                dynamicModel.Property = myValueList[i];
+            }
+            string str = dynamicModel.Name;
+
+            return dynamicModel.toValue;
+        }
 
         public ActionResult Index()
         {
