@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using KNDBsys.WEB.Models;
+using System.Web;
 using System.Web.Mvc;
 
 namespace KNDBsys.WEB
@@ -8,6 +9,7 @@ namespace KNDBsys.WEB
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new MyAuthorizeAttribute());
         }
     }
 }

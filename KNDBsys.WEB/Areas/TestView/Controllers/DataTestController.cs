@@ -1,5 +1,6 @@
 ﻿using KNDBsys.Model.BaseInfo;
 using KNDBsys.Model.SYS;
+using KNDBsys.WEB.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -16,6 +17,39 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
     {
         //
         // GET: /TestView/DataTest/
+
+
+        public ActionResult CreateToken(string username, string pwd)
+        {
+
+            DataResult result = new DataResult();
+
+            //假设用户名为"admin"，密码为"123"  
+            if (username == "admin" && pwd == "123")
+            {
+
+                var payload = new Dictionary<string, object>
+                {
+                    { "Uname",username },
+                    { "Upwd", pwd }
+                };
+
+                result.Token = JwtHelp.SetJwtEncode(payload);
+                result.Success = true;
+                result.Message = "成功";
+            }
+            else
+            {
+                result.Token = "";
+                result.Success = false;
+                result.Message = "生成token失败";
+            }
+
+            return Json(result);
+            //get请求需要修改成这样
+            //return Json(result,JsonRequestBehavior.AllowGet);
+        }
+
 
         public string DynamicModel()
         {
@@ -85,7 +119,7 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
 
         public ActionResult TempDataTest2()
         {
-            if ("Hello,world TempDataTest" == TempData["message"] as string )
+            if ("Hello,world TempDataTest" == TempData["message"] as string)
             {
                 TempData["message"] = "hello!";
             }
@@ -100,7 +134,7 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
         //普通页面传递model-razor实现
         public ActionResult ModelTest()
         {
-            UserInfo userInfo = new UserInfo() {  Uname = "kim"};
+            UserInfo userInfo = new UserInfo() { Uname = "kim" };
             return View(userInfo);
         }
 
@@ -110,7 +144,7 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
             //(传递字符串)
             //RedirectToAction(控制器, 控制器方法, new { name = value,....})
             UserInfo userInfo = new UserInfo() { Uname = "kim" };
-            return RedirectToAction("DataTest","ModelTest",userInfo);
+            return RedirectToAction("DataTest", "ModelTest", userInfo);
         }
 
         //匿名类型
@@ -120,7 +154,7 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
             //dynamic user = new ExpandoObject();
             //user.name = "kim";
 
-            string json = JsonConvert.SerializeObject(new { Uname = "kim",age = 30 });
+            string json = JsonConvert.SerializeObject(new { Uname = "kim", age = 30 });
             dynamic jsonObj = JsonConvert.DeserializeObject(json);
             return View(jsonObj);
         }
@@ -226,7 +260,7 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
 
             foreach (var item in jsonlist)
             {
-                jsonid += item["id"]+",";
+                jsonid += item["id"] + ",";
             }
 
             return jsonid;
@@ -238,7 +272,7 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
             string jsonstr = string.Empty;
             foreach (var pro in jObject.Properties())
             {
-                jsonstr += "name:"+ pro.Name+"value:"+pro.Value ;
+                jsonstr += "name:" + pro.Name + "value:" + pro.Value;
             }
             return jsonstr;
         }
