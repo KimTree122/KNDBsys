@@ -190,7 +190,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CustomActionFilterAttribute.cs" />
     <Compile Include="Models\JwtHelp.cs" />
     <Compile Include="Models\MyAuthorizeAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

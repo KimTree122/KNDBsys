@@ -67,6 +67,7 @@
     <Compile Include="SugarTest.cs" />
     <Compile Include="SYS\DataResult.cs" />
     <Compile Include="SYS\DynamicModel.cs" />
+    <Compile Include="SYS\LoginUser.cs" />
     <Compile Include="ViewModel\CustomHistoryVM.cs" />
     <Compile Include="ViewModel\UserAuthMsgVM.cs" />
     <Compile Include="ViewModel\WebVM\WebTreeNode.cs" />

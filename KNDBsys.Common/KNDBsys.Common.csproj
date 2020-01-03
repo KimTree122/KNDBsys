@@ -48,6 +48,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExpressionGenericMapper.cs" />
+    <Compile Include="ObserverPattern\ConcreteObserver.cs" />
+    <Compile Include="ObserverPattern\ConcreteSubject.cs" />
+    <Compile Include="ObserverPattern\Observer.cs" />
+    <Compile Include="ObserverPattern\Subject.cs" />
     <Compile Include="TreeNode\TreeNodeHelper.cs" />
     <Compile Include="TypeChange.cs" />
     <Compile Include="DataSwitch.cs" />

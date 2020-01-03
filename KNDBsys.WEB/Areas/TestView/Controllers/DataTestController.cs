@@ -1,4 +1,5 @@
-﻿using KNDBsys.Model.BaseInfo;
+﻿using KNDBsys.Common.ObserverPattern;
+using KNDBsys.Model.BaseInfo;
 using KNDBsys.Model.SYS;
 using KNDBsys.WEB.Models;
 using Newtonsoft.Json;
@@ -19,6 +20,17 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
         // GET: /TestView/DataTest/
 
 
+        public string ObserverTest()
+        {
+            ConcreteSubject s = new ConcreteSubject();
+            s.Attach(new ConcreteObserver(s,"X"));
+            s.Attach(new ConcreteObserver(s,"Y"));
+            s.Attach(new ConcreteObserver(s, "Y"));
+            s.SubjectState = "abc";
+            s.Notify();
+            return "";
+        }
+
         public ActionResult CreateToken(string username, string pwd)
         {
 
@@ -30,8 +42,9 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
 
                 var payload = new Dictionary<string, object>
                 {
-                    { "Uname",username },
-                    { "Upwd", pwd }
+                    { "UserCode",username },
+                    { "LoginPWD", pwd },
+                    { "LoginTime",DateTime.Now.AddMilliseconds(10)}
                 };
 
                 result.Token = JwtHelp.SetJwtEncode(payload);

@@ -24,8 +24,6 @@ namespace KNDBsys.WEB.Models
         /// <returns></returns>
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-
-
             //前端请求api时会将token存放在名为"auth"的请求头中
             var authHeader = httpContext.Request.Headers["auth"];
             if (authHeader == null)
@@ -34,11 +32,10 @@ namespace KNDBsys.WEB.Models
                 return false;
             }
 
-
             var userinfo = JwtHelp.GetJwtDecode(authHeader);
             //举个例子  生成jwtToken 存入redis中    
             //这个地方用jwtToken当作key 获取实体val   然后看看jwtToken根据redis是否一样
-            if (userinfo.Uname == "admin" && userinfo.Upwd == "123")
+            if (userinfo.UserCode == "admin" && userinfo.LoginPWD == "123")
                 return true;
 
             httpContext.Response.StatusCode = 403;
