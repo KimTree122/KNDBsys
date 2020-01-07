@@ -7,26 +7,17 @@ namespace KNDBsys.Common.ObserverPattern
 {
     public class ConcreteObserver : Observer
     {
-        private string _name;
-        private string _observerState;
-        private ConcreteSubject _subject;
-
-        public ConcreteObserver(ConcreteSubject subject, string name)
+        private string _subName;
+        
+        public ConcreteObserver(string subName,Action<string> action)
         {
-            this._subject = subject;
-            this._name = name;
+            _subName = subName;
+            obaction = action;
         }
 
-        public override void Update()
+        public override void ToDo()
         {
-            _observerState = _subject.SubjectState;
-            Console.WriteLine("Observer {0}'s new state is {1}", _name, _observerState);
-        }
-
-        public ConcreteSubject Subject
-        {
-            get { return _subject; }
-            set { _subject = value; }
+            obaction.Invoke(_subName);
         }
     }
 }

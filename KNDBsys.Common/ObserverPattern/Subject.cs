@@ -23,7 +23,7 @@ namespace KNDBsys.Common.ObserverPattern
         {
             foreach (Observer o in _observers)
             {
-                o.Update();
+                o.ToDo();
             }
         }
     }

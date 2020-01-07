@@ -20,15 +20,13 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
         // GET: /TestView/DataTest/
 
 
+
+        //观察者模式
         public string ObserverTest()
         {
-            ConcreteSubject s = new ConcreteSubject();
-            s.Attach(new ConcreteObserver(s,"X"));
-            s.Attach(new ConcreteObserver(s,"Y"));
-            s.Attach(new ConcreteObserver(s, "Y"));
-            s.SubjectState = "abc";
-            s.Notify();
-            return "";
+            ObserverTest ot = new ObserverTest();
+            string msg =  ot.ObserverToDo();
+            return msg;
         }
 
         public ActionResult CreateToken(string username, string pwd)

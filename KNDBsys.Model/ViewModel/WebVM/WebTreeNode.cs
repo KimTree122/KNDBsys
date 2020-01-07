@@ -16,7 +16,7 @@ namespace KNDBsys.Model.ViewModel.WebVM
         public object children { get; set; }
     }
 
-    public class WebTexValue
+    public class WebTextValue
     {
         public string Text { get; set; }
         public string Value { get; set; }
