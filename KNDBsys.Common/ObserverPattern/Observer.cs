@@ -9,5 +9,8 @@ namespace KNDBsys.Common.ObserverPattern
     {
         public Action<string> obaction;
         public abstract void ToDo();
+
+        //public abstract void Update();
+
     }
 }

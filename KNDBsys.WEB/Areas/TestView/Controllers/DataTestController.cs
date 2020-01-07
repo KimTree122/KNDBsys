@@ -14,6 +14,7 @@ using System.Web.Script.Serialization;
 
 namespace KNDBsys.WEB.Areas.TestView.Controllers
 {
+    
     public class DataTestController : Controller
     {
         //
@@ -22,6 +23,7 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
 
 
         //观察者模式
+        [MyAuthorize]
         public string ObserverTest()
         {
             ObserverTest ot = new ObserverTest();

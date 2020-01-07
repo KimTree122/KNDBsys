@@ -52,7 +52,7 @@ namespace KNDBsys.WEB.Models
             base.HandleUnauthorizedRequest(filterContext);
             if (filterContext.HttpContext.Response.StatusCode == 403)
             {
-                filterContext.Result = new RedirectResult("/Error");
+                filterContext.Result = new RedirectResult("/Home/Error");
                 filterContext.HttpContext.Response.Redirect("/Home/Error");
             }
         }

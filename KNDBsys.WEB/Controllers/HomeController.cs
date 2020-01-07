@@ -20,6 +20,11 @@ namespace KNDBsys.WEB.Controllers
             return View();
         }
 
+        public ActionResult Error()
+        {
+            return View();
+        }
+
         public ActionResult MainView()
         {
             object id = Session["U@id"];
