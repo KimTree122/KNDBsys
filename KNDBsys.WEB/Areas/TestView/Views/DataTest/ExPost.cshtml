@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "ExPost";
+    Layout = "~/Views/Shared/_LayoutJSCSS.cshtml";
+}
+<div>
+
+    <a href="#" class="easyui-linkbutton c1" onclick="postdata()">初始</a>
+
+    <a href="#" class="easyui-linkbutton c1" onclick="GetToken()">包含token</a>
+
+</div>
+<script src="~/Scripts/MoudelJS.js"></script>
+<script type="text/javascript">
+    $().ready(function () {
+        InitLayout();
+        InitData();
+    });
+
+    function InitLayout() {
+
+    }
+    function InitData() {
+
+    }
+
+
+
+    function postdata() {
+        //var url = "./ObserverTest";
+        //var json = { userid: '1' };
+
+    }
+
+    function GetToken() {
+        var url = "./CreateToken";
+        var json = { username: 'admin', pwd: '123' };
+
+
+        MoudelJS.exPost(url, json, function (result) {
+            console.log(result);
+        }, 'json').error();
+
+    }
+
+</script>

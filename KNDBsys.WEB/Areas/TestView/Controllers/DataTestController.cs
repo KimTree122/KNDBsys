@@ -20,7 +20,10 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
         //
         // GET: /TestView/DataTest/
 
-
+        public ActionResult ExPost()
+        {
+            return View();
+        }
 
         //观察者模式
         [MyAuthorize]
