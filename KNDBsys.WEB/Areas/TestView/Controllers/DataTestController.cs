@@ -20,6 +20,12 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
         //
         // GET: /TestView/DataTest/
 
+        public ActionResult TreeView()
+        {
+            //需要在VUE环境下放弃https://wangbin3162.gitee.io/bin-tree-org/#/test
+            return View();
+        }
+
         public ActionResult ExPost()
         {
             return View();
