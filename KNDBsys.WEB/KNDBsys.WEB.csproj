@@ -426,6 +426,7 @@
     <Content Include="Areas\TestView\Views\DataTest\DynamicsControl.cshtml" />
     <Content Include="Areas\TestView\Views\DataTest\DynamicsGridView.cshtml" />
     <Content Include="Areas\TestView\Views\DataTest\ExPost.cshtml" />
+    <Content Include="Areas\TestView\Views\DataTest\RLReportH5.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\datagrid-export.js" />
@@ -461,6 +462,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\MoudelJS.js" />
     <Content Include="Scripts\ReportJS\CreateControl.js" />
+    <Content Include="Scripts\ReportJS\grhtml5-6.6-min.js" />
+    <Content Include="Scripts\ReportJS\grwebapp.js" />
     <Content Include="Scripts\TreeView\index.js" />
     <Content Include="Scripts\TreeView\style.css" />
     <Content Include="Scripts\TreeView\VueJS.js" />

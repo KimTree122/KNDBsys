@@ -118,6 +118,12 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
             return View();
         }
 
+        //锐浪H5报表
+        public ActionResult RLReportH5()
+        {
+            return View();
+        }
+
         //ViewBag的类型是动态的，不确定的，直接就可以使用，它的传值范围是：controller向view传值，view自己和自己传值。
         public ActionResult ViewBagTest()
         {

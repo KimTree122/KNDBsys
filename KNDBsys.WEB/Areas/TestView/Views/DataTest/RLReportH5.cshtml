@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "RLReportH5";
+    Layout = "~/Views/Shared/_LayoutJSCSS.cshtml";
+}
+<div>
+    <div>
+        <div id="toolbar" class="row">
+            <a class="btn btn-sm btn-primary" role="button" href='javascript:webapp({});'>打印预览</a>
+            <a class="btn btn-sm btn-primary" role="button" href='javascript:webapp({"type":"print"});'>打印...</a>
+            <a class="btn btn-sm btn-primary" role="button" href='javascript:webapp({"type":"print","showOptionDlg":"false"});'>直接打印</a>
+
+            <a class="btn btn-sm btn-primary" role="button" href='javascript:webapp({"type":"pdf"});'>导出PDF</a>
+            <a class="btn btn-sm btn-primary" role="button" href='javascript:webapp({"type":"xls"});'>导出Excel</a>
+            <div class="btn-group btn-group-sm">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">数据导出<span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href='javascript:webapp({"type":"pdf"});'>PDF</a></li>
+                    <li><a href='javascript:webapp({"type":"xls"});'>Excel</a></li>
+                    <li><a href='javascript:webapp({"type":"rtf"});'>RTF</a></li>
+                    <li><a href='javascript:webapp({"type":"csv"});'>CSV</a></li>
+                    <li><a href='javascript:webapp({"type":"txt"});'>文本</a></li>
+                    <li><a href='javascript:webapp({"type":"img"});'>图像</a></li>
+                </ul>
+            </div>
+
+            <a class="btn btn-sm btn-primary" role="button" href='javascript:webapp({"type":"grd"});'>生成报表文档</a>
+
+            <a class="btn btn-sm btn-primary rdock" role="button" href="webapp-about.htm" target="_blank">执行任务无响应帮助</a>
+        </div>
+        <div id="report_holder">
+            <!--报表占位标签，生成的报表将显示到这里-->
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/ReportJS/grhtml5-6.6-min.js"></script>
+<script src="~/Scripts/ReportJS/grwebapp.js"></script>
+<script type="text/javascript">
+    $().ready(function () {
+        onload();
+    });
+
+    function onload() {
+        var reportViewer = rubylong.grhtml5.insertReportViewer("report_holder", urlAddRandomNo("http://localhost:36769/Areas/TestView/Report/GridReport.grf"), "../../BaseInfo/BaseInfo/GetAllUserInfo?userid=1");
+        window.reportViewer = reportViewer;
+
+        reportViewer.start();
+
+        webapp_urlprotocol_startup();
+
+    };
+
+    function urlAddRandomNo(url) {
+        return url + "?id=" + Math.floor(Math.random() * 10000);
+    };
+
+    function webapp(args) {
+        //args.report = "/grf/1a.grf";
+        //args.data = "/data/DataCenter.ashx?data=Customer&name";
+        args.report = reportViewer.reportURL;
+        args.data = reportViewer.dataURL;
+
+        webapp_ws_ajax_run(args);
+    }
+</script>
+
+@*<style type="text/css">
+        #toolbar {
+            display: block;
+            position: fixed;
+            width: 100%;
+            height: 40px;
+            margin: 0;
+            padding: 4px 4px;
+            border: solid 1px;
+            background-color: #fae3e3;
+        }
+
+        #report_holder {
+            padding-top: 40px;
+        }
+
+        .rdock {
+            position: absolute;
+            right: 8px;
+        }
+    </style>*@
