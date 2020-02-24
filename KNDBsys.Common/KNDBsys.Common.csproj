@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientInfo\ClientInfo.cs" />
     <Compile Include="ExpressionGenericMapper.cs" />
     <Compile Include="ObserverPattern\ConcreteObserver.cs" />
     <Compile Include="ObserverPattern\ConcreteSubject.cs" />

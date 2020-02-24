@@ -1,4 +1,5 @@
-﻿using KNDBsys.Common.ObserverPattern;
+﻿using KNDBsys.Common.ClientInfo;
+using KNDBsys.Common.ObserverPattern;
 using KNDBsys.Model.BaseInfo;
 using KNDBsys.Model.SYS;
 using KNDBsys.WEB.Models;
@@ -19,6 +20,25 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
     {
         //
         // GET: /TestView/DataTest/
+
+
+        public string GetBrowser()
+        {
+            string ip = ClientInfo.GetBrowser();
+            return ip;
+        }
+
+        public string GetOS()
+        {
+            string ip = ClientInfo.GetOSVersion();
+            return ip;
+        }
+
+        public string GetIPAddress()
+        {
+            string ip =  ClientInfo.GetIP();
+            return ip;
+        }
 
         public ActionResult TreeView()
         {
