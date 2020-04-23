@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="ClientInfo\ClientInfo.cs" />
     <Compile Include="ExpressionGenericMapper.cs" />
+    <Compile Include="Mathcls\Round.cs" />
     <Compile Include="ObserverPattern\ConcreteObserver.cs" />
     <Compile Include="ObserverPattern\ConcreteSubject.cs" />
     <Compile Include="ObserverPattern\Observer.cs" />
