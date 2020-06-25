@@ -15,6 +15,14 @@
 
     using("QueryDialog.EasySearchText");
     EasySearchText = function (params) {
+
+        //fillControlArr    当前面板需填充控件           [$('#abc'),$('#cdf')]
+        //dialogFieldArr    弹出框对应字段               ['abc','cdf']
+        //dialogPath        弹出框地址                   ["./url"]
+        //queryAPI          按确定后直接填充数据API地址  ["./api"]
+        //queryParams       API所需参数                  ["aaa","bbb"]
+        //queryValues       API提供参数控件              [$('#abc'),"bbb"]
+
         var dom = {
             wintype: "easyui-windowSearchText",
             winiFrame: "search-iframe"

@@ -36,5 +36,29 @@ namespace UnitTestProject
             Assert.AreEqual("1", count + "");
         }
 
+        [TestMethod]
+        public void testNumber()
+        {
+            int[] nums = { 3, 1, 3, 4, 2 };
+            int doubleint = 0;
+            foreach (int i in nums)
+            {
+                int c = 0;
+                foreach (int j in nums)
+                {
+                    if (i == j)
+                    {
+                        c++;
+                    }
+                }
+                if (c > 1)
+                {
+                    doubleint = i;
+                    break;
+                }
+            }
+            Assert.AreEqual(3, doubleint);
+        }
+
     }
 }

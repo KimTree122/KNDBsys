@@ -42,7 +42,6 @@
         ReportViewer.Stop();
         //图片
         Report.ControlByName("pbox").AsPictureBox.LoadFromFile("../../Content/Images/Logo.png");
-
         Report.ParameterByName("par1").AsString = "kim";
         ReportViewer.Start();
 

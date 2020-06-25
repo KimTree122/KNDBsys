@@ -87,4 +87,15 @@
         })
     }
 
+    function newGetData() {
+        let pro = new Promise(resolve => {
+            setTimeout(() => {
+                console.log('done');
+                resolve('5秒');
+            }, 5000);
+        }).then((tip) => {
+            console.log(tip);
+            });
+    }
+
 </script>
