@@ -1,5 +1,6 @@
 ﻿using KNDBsys.Common;
 using KNDBsys.DAL;
+using KNDBsys.IService;
 using KNDBsys.Model;
 using KNDBsys.Model.BaseInfo;
 using System;
@@ -9,7 +10,7 @@ using System.Text;
 
 namespace KNDBsys.Service.BaseInfoSer
 {
-    public class ServerTypeSer : CurdService<ServerType>
+    public class ServerTypeSer : CurdService<ServerType>, IServerTypeSer
     {
         public override void SetDbset(SugarDBContext db)
         {

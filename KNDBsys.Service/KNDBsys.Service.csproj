@@ -79,6 +79,10 @@
       <Project>{8b211db0-d7fd-4ca7-97b5-a0a012a10ac6}</Project>
       <Name>KNDBsys.IBLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\KNDBsys.IService\KNDBsys.IService.csproj">
+      <Project>{f75391f5-48e0-4017-9b66-90b392ab3576}</Project>
+      <Name>KNDBsys.IService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KNDBsys.Model\KNDBsys.Model.csproj">
       <Project>{6ba63a23-22a5-4b93-8461-17ae0aa43b59}</Project>
       <Name>KNDBsys.Model</Name>

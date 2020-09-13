@@ -2,6 +2,7 @@
 using KNDBsys.Common;
 using KNDBsys.DAL;
 using KNDBsys.IBLL.BaseInfo;
+using KNDBsys.IService;
 using KNDBsys.Model;
 using KNDBsys.Model.BaseInfo;
 using System;
@@ -11,7 +12,7 @@ using System.Text;
 
 namespace KNDBsys.Service.BaseInfoSer
 {
-    public class AuthoritySer:CurdService<Authority>
+    public class AuthoritySer:CurdService<Authority>, IAuthoritySer
     {
         public override void SetDbset(SugarDBContext db)
         {

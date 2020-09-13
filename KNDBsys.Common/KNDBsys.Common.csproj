@@ -55,6 +55,8 @@
     <Compile Include="ObserverPattern\Observer.cs" />
     <Compile Include="ObserverPattern\ObserverTest.cs" />
     <Compile Include="ObserverPattern\Subject.cs" />
+    <Compile Include="RxNet\Observable.cs" />
+    <Compile Include="RxNet\Observabletest.cs" />
     <Compile Include="TreeNode\TreeNodeHelper.cs" />
     <Compile Include="TypeChange.cs" />
     <Compile Include="DataSwitch.cs" />
@@ -74,6 +76,9 @@
       <Project>{6BA63A23-22A5-4B93-8461-17AE0AA43B59}</Project>
       <Name>KNDBsys.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

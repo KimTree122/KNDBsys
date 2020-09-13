@@ -1,5 +1,6 @@
 ﻿using KNDBsys.BLL.BaseInfo;
 using KNDBsys.IBLL.BaseInfo;
+using KNDBsys.IService;
 using KNDBsys.Service.BaseInfoSer;
 using KNDBsys.Service.WorkSer;
 using System;
@@ -19,14 +20,13 @@ namespace KNDBsys.WEB.Areas.BaseInfo.Controllers
         {
             return View();
         }
-
-        private AuthoritySer authser = new AuthoritySer();
         private DictionarySer dictionarySer = new DictionarySer();
-        private UserInfoSer userInfoSer = new UserInfoSer();
-        private UserAuthSer userAuthSer = new UserAuthSer();
-        private ServerTypeSer serverTypeSer = new ServerTypeSer();
-        private CustomInfoSer customInfoSer = new CustomInfoSer();
-        private SysVerSer sysVerSer = new SysVerSer();
+        private IAuthoritySer authser = new AuthoritySer();
+        private IUserInfoSer userInfoSer = new UserInfoSer();
+        private IUserAuthSer userAuthSer = new UserAuthSer();
+        private IServerTypeSer serverTypeSer = new ServerTypeSer();
+        private ICustomInfoSer customInfoSer = new CustomInfoSer();
+        private ISysVerSer sysVerSer = new SysVerSer();
 
 
         #region 数据字典

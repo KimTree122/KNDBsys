@@ -1,16 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8B211DB0-D7FD-4CA7-97B5-A0A012A10AC6}</ProjectGuid>
+    <ProjectGuid>{F75391F5-48E0-4017-9B66-90B392AB3576}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KNDBsys.IBLL</RootNamespace>
-    <AssemblyName>KNDBsys.IBLL</AssemblyName>
+    <RootNamespace>KNDBsys.IService</RootNamespace>
+    <AssemblyName>KNDBsys.IService</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,31 +38,22 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseInfo\IBaseInfoService.cs" />
-    <Compile Include="BaseInfo\ISysDicService.cs" />
-    <Compile Include="BaseInfo\IUserInfoService.cs" />
-    <Compile Include="IBaseServiceBLL.cs" />
-    <Compile Include="ICrudService.cs" />
+    <Compile Include="IAuthoritySer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\KNDBsys.IBLL\KNDBsys.IBLL.csproj">
+      <Project>{8B211DB0-D7FD-4CA7-97B5-A0A012A10AC6}</Project>
+      <Name>KNDBsys.IBLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KNDBsys.Model\KNDBsys.Model.csproj">
       <Project>{6ba63a23-22a5-4b93-8461-17ae0aa43b59}</Project>
       <Name>KNDBsys.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Work\" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

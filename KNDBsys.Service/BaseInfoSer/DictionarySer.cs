@@ -9,6 +9,9 @@ using System.Text;
 
 namespace KNDBsys.Service.BaseInfoSer
 {
+    /// <summary>
+    /// 字典服务，未继承通用增删查改服务
+    /// </summary>
     public class DictionarySer
     {
         private ISysDicService cSDic = new SysDicService();

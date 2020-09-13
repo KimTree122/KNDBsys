@@ -62,7 +62,8 @@
             dialogPath: "./BaseDataDataGridTest",
             queryAPI: "../../BaseInfo/BaseInfo/GetUserInfoByID",
             queryParams: ["userid"],
-            queryValues: [$('#userid')]
+            queryValues: [$('#userid')],
+            CallBack: myCallBack($('#userid').textbox('getValue'))
         });
 
         QueryDialog.EasyTextBox({
@@ -74,6 +75,10 @@
             queryValues: [$('#dictid')]
         });
 
+    }
+
+    function myCallBack(str) {
+        console.log("test callback" + str);
     }
 
     TextboxQueryDialog = function (params) {

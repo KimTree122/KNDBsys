@@ -242,6 +242,14 @@
 
     using("QueryDialog.EasyTextBox");
     EasyTextBox = function (params) {
+
+        //fillControlArr    当前面板需填充控件           [$('#abc'),$('#cdf')]
+        //dialogFieldArr    弹出框对应字段               ['abc','cdf']
+        //dialogPath        弹出框地址                   ["./url"]
+        //queryAPI          按确定后直接填充数据API地址  ["./api"]
+        //queryParams       API所需参数                  ["aaa","bbb"]
+        //queryValues       API提供参数控件              [$('#abc'),"bbb"]
+
         var dom = {
             wintype: "easyui-window",
             winiFrame: "search-iframe"
@@ -335,7 +343,7 @@
             let paramjson = JSON.parse(paramstr);
             if (txbvalue.length > 0) {
                 $.post(params.queryAPI, paramjson, function (result) {
-                    if (result.total = 1) {
+                    if (result.total == 1) {
                         var entity = result.Row;
                         for (var i = 0; i < FieldArrLen; i++) {
                             var fieldName = params.dialogFieldArr[i]
@@ -344,6 +352,7 @@
                                     params.fillControlArr[i].textbox('setValue', entity[val]);
                                 }
                             }
+                            CallBack();
                         }
                     } else {
                         showDialog();
@@ -379,7 +388,7 @@
                                         var dcclicktext = $(this).find("td[field='" + fieldName + "']").text();
                                         params.fillControlArr[i].textbox('setValue', dcclicktext);
                                     }
-
+                                    CallBack();
                                     $("." + dom.wintype + "").window("close", true);
                                     params.success && params.success();
                                 });
@@ -388,6 +397,13 @@
                     });
                 }
             });
+        }
+
+        function CallBack() {
+            console.log('js dc');
+            if (params.CallBack) {
+                params.CallBack();
+            }
         }
 
         function checkParams(fillLen, fieldLen) {

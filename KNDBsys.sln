@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KNDBsys.Service", "KNDBsys.Service\KNDBsys.Service.csproj", "{6C91530B-EE56-4887-BC7D-36CE70698723}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KNDBsys.IService", "KNDBsys.IService\KNDBsys.IService.csproj", "{F75391F5-48E0-4017-9B66-90B392AB3576}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{6C91530B-EE56-4887-BC7D-36CE70698723}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C91530B-EE56-4887-BC7D-36CE70698723}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C91530B-EE56-4887-BC7D-36CE70698723}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F75391F5-48E0-4017-9B66-90B392AB3576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F75391F5-48E0-4017-9B66-90B392AB3576}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F75391F5-48E0-4017-9B66-90B392AB3576}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F75391F5-48E0-4017-9B66-90B392AB3576}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +93,7 @@ Global
 		{06B9125A-BF58-40E7-A829-37F95BE7917B} = {C543F252-AD04-4B70-AB42-DB36F920BCC0}
 		{CA239D0E-0230-405E-A087-F012888B0C61} = {C543F252-AD04-4B70-AB42-DB36F920BCC0}
 		{6C91530B-EE56-4887-BC7D-36CE70698723} = {9F44F76B-C411-4E4D-A00F-92F733EC9A20}
+		{F75391F5-48E0-4017-9B66-90B392AB3576} = {9F44F76B-C411-4E4D-A00F-92F733EC9A20}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {749492DA-89B4-476A-AEAE-A607AC48197D}
