@@ -21,6 +21,20 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
         //
         // GET: /TestView/DataTest/
 
+        public ActionResult LayUIview()
+        {
+            return View();
+        }
+
+        public ActionResult LayUItest()
+        {
+            return View();
+        }
+
+        public ActionResult Layouttest()
+        {
+            return View();
+        }
 
         public string GetBrowser()
         {

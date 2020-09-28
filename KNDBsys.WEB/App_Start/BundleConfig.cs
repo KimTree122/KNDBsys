@@ -11,7 +11,7 @@ namespace KNDBsys.WEB
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include("~/Scripts/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jquerymin").Include("~/Scripts/jquery.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jquerymin").Include("~/Scripts/jquery-{version}.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/easyuijs").Include("~/Scripts/jquery.easyui.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/mobileui").Include("~/Scripts/jquery.easyui.mobile.js"));
 

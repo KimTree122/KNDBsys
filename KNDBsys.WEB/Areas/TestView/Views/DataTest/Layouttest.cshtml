@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Layouttest";
+    Layout = "~/Views/Shared/_LayoutJSCSS.cshtml";
+}
+
+<div id="mdiv" style="width: auto;" >
+
+    <div id="main" class="easyui-layout" data-options="fit:true">
+        <div id="p" data-options="region:'west'" title="West" style="width:30%;padding:10px">
+            <p>width: 30%</p>
+        </div>
+        <div data-options="region:'center'" title="Center">
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $().ready(function () {
+        InitLayout();
+    });
+
+    function InitLayout() {
+        var height = $(document).height();
+        var width = $(document).width();
+
+
+        $('#mdiv').width(width).height(height);
+        $('#main').layout('resize');
+    }
+
+</script>

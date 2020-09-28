@@ -10,64 +10,105 @@
     <meta name="viewport" content="width=device-width" />
     <title>MainView</title>
     @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jquerymin")*@
     <script src="~/Scripts/jquery.easyui.min.js"></script>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/themes/blue/css")
     @Scripts.Render("~/bundles/home")
+    <link href="~/Content/themes/icon.css" rel="stylesheet" />
+
+    <style>
+
+    </style>
 
     <script type="text/javascript">
         $(document).ready(function () {
 
             var str = @Html.Raw( @ViewBag.au)
-            $("#maintree").tree({
-                data: str
-            });
+                //$("#maintree").sidemenu({
+                //    data: str
+                //});
+
+            //$("#maintree").sidemenu({
+            //    onSelect: function (node) {
+            //        $("#maintree").sidemenu(node.state === 'closed' ? 'expand' : 'collapse', node.target);
+            //        node.state = node.state === 'closed' ? 'open' : 'closed';
+            //        var url = node.attributes.url;
+            //        if (url.length > 0) {
+            //            addTab(node.text, url, node.iconCls);
+            //        }
+            //    }
+            //});
+
+                $("#maintree").tree({
+                    data: str
+                });
 
             $("#maintree").tree({
-                onClick: function (node) {
+                onSelect: function (node) {
                     $("#maintree").tree(node.state === 'closed' ? 'expand' : 'collapse', node.target);
                     node.state = node.state === 'closed' ? 'open' : 'closed';
                     var url = node.attributes.url;
                     if (url.length > 0) {
                         addTab(node.text, url, node.iconCls);
-                        //ReloadActivity();
                     }
                 }
             });
 
-            function ReloadActivity() {
-                var tabs = $('#mainTab').tabs().tabs('tabs');
-                for (var i = 0; i < tabs.length; i++) {
-                    tabs[i].panel('options').tab.unbind().bind('mouseenter', { index: i }
-                        , function (e) {
-                        $('#mainTab').tabs('select', e.data.index);
-                    });
-                }
-            }
-
+            addMoudle();
         });
+
+        function addMoudle() {
+
+            var sdiv = ' <div style=" padding:10px;">';
+            var ediv = '</div >'
+            var lbtn = sdiv + "<a href='#' class='easyui-linkbutton' data-options=\"iconCls:'icon-large-picture', size:'large', iconAlign:'top'\">系统模块</a>" + ediv;
+            $(lbtn).appendTo('#moudle');
+            $.parser.parse('#moudle_menu');
+
+            var lbtn2 = sdiv + "<a href='#' class='easyui-linkbutton' data-options=\"iconCls:'icon-large-clipart', size:'large', iconAlign:'top'\">模块二</a>" + ediv;
+            $(lbtn2).appendTo('#moudle');
+            $.parser.parse('#moudle_menu');
+
+
+
+                //<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-large-clipart',size:'large',iconAlign:'top'">模块二</a>
+                //<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-large-shapes',size:'large',iconAlign:'top'">模块三</a>
+                //<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-large-smartart',size:'large',iconAlign:'top'">模块四</a>
+                //<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-large-chart',size:'large',iconAlign:'top'">模块五</a>
+        }
 
     </script>
 
 </head>
 <body class="easyui-layout">
-    <div data-options="region:'north',border:false,split:false" style="height: 60px;">
-        <div class="define-head">
-            <div class="define-logo">
-                <div id="LoginTopLine">Hello,@Model.LoginUser.Uname</div>
-                <div id="LoginBotoomLine">@Model.LoginUser.UPost</div>
-            </div>
-            <div class="define-account">
 
+    <div data-options="region:'north',border:false,split:false" style="height: 80px;">
+        <div class="define-head">
+            <div>
+                <table style="margin:5px;">
+                    <tr>
+                        <td style="width:150px;">
+                            <div id="LoginTopLine">Hello,@Model.LoginUser.Uname</div>
+                            <div id="LoginBotoomLine">@Model.LoginUser.UPost</div>
+                        </td>
+                        <td>
+                            <div id="moudle_menu">
+                                <div id="moudle" style="z-index:99;display:flex;">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
 
     <div data-options="region:'west',split:true,title:'功能列表'" style="width:200px;padding:10px;">
-        <div class="easyui-panel" style="padding:5px">
-            <ul id="maintree" class="easyui-tree" data-options="animate:true,dnd:true,lines:true,fit:true"></ul>
-        </div>
 
+        <ul id="maintree" class="easyui-tree" data-options="animate:true,dnd:true,lines:true,fit:true"></ul>
+
+        @*<div id="maintree" style="width:190px" data-options="onSelect:test" ></div>*@
 
     </div>
     <div data-options="region:'east',split:true,collapsed:true,title:'通讯'" style="width:100px;padding:10px;">
@@ -78,20 +119,16 @@
             <a href="#" id="btn_out" class="easyui-linkbutton c6" style="width:120px">注销</a>
         </div>
     </div>
-
-    <div data-options="region:'center',title:'主界面'" style="margin :0 auto ;">
+    <div data-options="region:'center'" style="margin :0 auto ;">
 
         <div id="mainTab" class="easyui-tabs" data-options="fit:true">
             <div title="我的桌面" class="tabs-selected" style="overflow: hidden; background:#fff">
                 <iframe scrolling="auto" frameborder="0" src="" style="width: 100%; height: 100%;"></iframe>
             </div>
-            <div title="你的桌面" class="tabs-selected" data-options="closable:true" style="overflow: hidden; background:#fff">
-                <iframe scrolling="auto" frameborder="0" src="" style="width: 100%; height: 100%;"></iframe>
-            </div>
-
         </div>
-
     </div>
+
+
     <div id="tab_menu" class="easyui-menu" style="width: 150px;">
         <div id="tab_menu-tabrefresh" data-options="iconCls:'icon-reload'">
             刷新
