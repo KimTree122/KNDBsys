@@ -10,9 +10,9 @@ namespace KNDBsys.Service.WorkSer
 {
     public class CheckInMTSer : CurdService<CheckInMT>
     {
-        public override void SetDbset(SugarDBContext db)
+        public override void SetDbset(SugarDBContext<CheckInMT> db)
         {
-            dbSet = db.CheckInMTDb; 
+            dbSet = db.EntityDb; 
         }
 
         public CheckInMT GetCheckInMTByid(int id)

@@ -17,7 +17,7 @@ namespace KNDBsys.Service.BaseInfoSer.BaseView
 
         public UserAuthMsgVM GetUserAuthMsgByUserID(string userid,string portType)
         {
-            UserInfo userInfo = InfoSer.GetUserInfobyID_claz(userid);
+            RegUserInfo userInfo = InfoSer.GetUserInfobyID_claz(userid);
 
             UserAuthMsgVM vM = new UserAuthMsgVM { LoginUser = userInfo };
 

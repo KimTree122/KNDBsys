@@ -16,6 +16,14 @@ namespace UnitTestProject
     public class SqliteTest
     {
 
+        [TestMethod]
+        public void CreatClazz()
+        {
+            SugarTest st = new SugarTest();
+
+            st.testsql("RegUserInfo");
+            Assert.AreEqual(1, 1);
+        }
 
         [TestMethod]
         private void ViewSelect()
@@ -52,7 +60,7 @@ namespace UnitTestProject
         [TestMethod]
         public void CreatTable()
         {
-            SQLHelper sh = new SQLHelper();
+            SQLiteHelper sh = new SQLiteHelper();
             string sql = string.Format("CREATE table UserInfo (id integer PRIMARY KEY autoincrement, Uname varchar(50),Upwd varchar(50),Utel varchar(50), UPost varchar(50), delflag bool) ");
             int count = sh.SQLiteNonQuery(sql);
             Assert.AreEqual("0", count + "");
@@ -75,18 +83,9 @@ namespace UnitTestProject
         public void InsetrUser()
         {
             UserInfoService uis = new UserInfoService();
-            UserInfo user = new UserInfo { Uname = "admin", Upwd = "123", UPost = "管理员", Utel = "12345679", delflag = false };
+            RegUserInfo user = new RegUserInfo { Uname = "admin", Upwd = "123", UPost = "管理员", Utel = "12345679", delflag = false };
             int id = uis.Add(user).id;
             Assert.AreEqual("1",id.ToString());
-        }
-
-        [TestMethod]
-        public void CreatClazz()
-        {
-            SugarTest st = new SugarTest();
-            
-            st.testsql("CheckInDT") ;
-            Assert.AreEqual(1, 1);
         }
     }
 }

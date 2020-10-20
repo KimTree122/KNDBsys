@@ -20,6 +20,11 @@ namespace KNDBsys.WEB.Controllers
             return View();
         }
 
+        public ActionResult Registers()
+        {
+            return View();
+        }
+
         public ActionResult Error()
         {
             return View();
@@ -59,7 +64,7 @@ namespace KNDBsys.WEB.Controllers
                 return "验证码错误";
             }
             UserInfoSer userInfoSer = new UserInfoSer();
-            UserInfo user = userInfoSer.GetUserInfoByAccount_claz(userid, pwd);
+            RegUserInfo user = userInfoSer.GetUserInfoByAccount_claz(userid, pwd);
 
             if (user !=null)
             {

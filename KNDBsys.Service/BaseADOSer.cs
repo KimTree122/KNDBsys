@@ -10,7 +10,7 @@ using System.Text;
 
 namespace KNDBsys.Service
 {
-    public class BaseADOSer : SugarDBContext
+    public class BaseADOSer
     {
         public T GetEntity<T>(string json)
         {

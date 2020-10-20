@@ -12,7 +12,7 @@ namespace UnitTestProject
         [TestMethod]
         public void CreatTable()
         {
-            SQLHelper sh = new SQLHelper();
+            SQLiteHelper sh = new SQLiteHelper();
             string sql = string.Format("CREATE table SysVer (id integer PRIMARY KEY autoincrement, sysver varchar(50), upgradedate  varchar(50), filelist  varchar(50), note  varchar(50), programtype  varchar(50) )");
             int count = sh.SQLiteNonQuery(sql);
             Assert.AreEqual("0", count + "");
@@ -30,7 +30,7 @@ namespace UnitTestProject
         [TestMethod]
         public void InsertQRnumber()
         {
-            SQLHelper sh = new SQLHelper();
+            SQLiteHelper sh = new SQLiteHelper();
             string sql = string.Format("insert into qrnumber(qrday,qrorder) values('2018.05.12',1)");
             int count = sh.SQLiteNonQuery(sql);
             Assert.AreEqual("1", count + "");

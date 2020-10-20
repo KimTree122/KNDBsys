@@ -14,15 +14,15 @@ namespace KNDBsys.Service
     public abstract class CurdService<T> where T : class,new ()
     {
         public DbSet<T> dbSet { get; set; }
-        public SugarDBContext db { get; set; }
+        public SugarDBContext<T> db { get; set; }
 
         public CurdService()
         {
-            db = new SugarDBContext();
+            db = new SugarDBContext<T>();
             SetDbset(db);
         }
 
-        public abstract void SetDbset(SugarDBContext db);
+        public abstract void SetDbset(SugarDBContext<T> db);
 
 
         /// <summary>

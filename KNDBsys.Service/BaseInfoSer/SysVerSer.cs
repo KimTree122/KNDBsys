@@ -12,9 +12,9 @@ namespace KNDBsys.Service.BaseInfoSer
 {
     public class SysVerSer : CurdService<SysVer>,ISysVerSer
     {
-        public override void SetDbset(SugarDBContext db)
+        public override void SetDbset(SugarDBContext<SysVer> db)
         {
-            dbSet = db.SysVerDb;
+            dbSet = db.EntityDb;
         }
 
         public string GetNewSysVer(string programtype)

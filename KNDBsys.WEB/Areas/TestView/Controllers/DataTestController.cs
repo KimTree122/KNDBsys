@@ -196,7 +196,7 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
         //普通页面传递model-razor实现
         public ActionResult ModelTest()
         {
-            UserInfo userInfo = new UserInfo() { Uname = "kim" };
+            RegUserInfo userInfo = new RegUserInfo() { RegName = "kim" };
             return View(userInfo);
         }
 
@@ -205,7 +205,7 @@ namespace KNDBsys.WEB.Areas.TestView.Controllers
         {
             //(传递字符串)
             //RedirectToAction(控制器, 控制器方法, new { name = value,....})
-            UserInfo userInfo = new UserInfo() { Uname = "kim" };
+            RegUserInfo userInfo = new RegUserInfo() { RegName = "kim" };
             return RedirectToAction("DataTest", "ModelTest", userInfo);
         }
 

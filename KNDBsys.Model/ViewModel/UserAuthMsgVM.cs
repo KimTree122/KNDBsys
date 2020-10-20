@@ -8,7 +8,7 @@ namespace KNDBsys.Model.ViewModel
 {
     public class UserAuthMsgVM
     {
-        public UserInfo LoginUser { get; set; }
+        public RegUserInfo LoginUser { get; set; }
         public List<string> Msg { get; set; }
     }
 }

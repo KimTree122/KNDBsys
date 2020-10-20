@@ -12,9 +12,9 @@ namespace KNDBsys.Service.BaseInfoSer
 {
     public class UserAuthSer : CurdService<UserAuth>, IUserAuthSer
     {
-        public override void SetDbset(SugarDBContext db)
+        public override void SetDbset(SugarDBContext<UserAuth> db)
         {
-            dbSet = db.UserauthDb;
+            dbSet = db.EntityDb;
         }
 
         public string InsertTable(string authlistjson , string userid)

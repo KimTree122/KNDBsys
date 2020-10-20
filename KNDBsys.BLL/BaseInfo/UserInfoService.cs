@@ -8,7 +8,7 @@ using System.Text;
 
 namespace KNDBsys.BLL.BaseInfo
 {
-    public class UserInfoService : BaseServiceBLL<UserInfo>,IUserInfoService
+    public class UserInfoService : BaseServiceBLL<RegUserInfo>,IUserInfoService
     {
         public override void SetCurrentDal()
         {

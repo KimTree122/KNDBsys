@@ -10,13 +10,13 @@ using System.Text;
 
 namespace InitData.sqliteData
 {
-    public class SQLHelper
+    public class SQLiteHelper
     {
         public SQLiteConnection conn;
         public SQLiteCommand cmd;
         public readonly string path;
 
-        public SQLHelper()
+        public SQLiteHelper()
         {
             path = "C:\\DataBase\\cs.db";
             CheckDB();

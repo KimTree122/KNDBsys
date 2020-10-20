@@ -14,9 +14,9 @@ namespace KNDBsys.Service.BaseInfoSer
 {
     public class AuthoritySer:CurdService<Authority>, IAuthoritySer
     {
-        public override void SetDbset(SugarDBContext db)
+        public override void SetDbset(SugarDBContext<Authority> db)
         {
-            dbSet = db.AuthorityDb;
+            dbSet = db.EntityDb;
         }
 
         public string GetAllAuthority()

@@ -10,11 +10,11 @@ namespace KNDBsys.Model
     {
         public object testsql(string tablename)
         {
-            //var db =new SugarADO().sc;
-            //SugarADO sa = new SugarADO();
-            //var db = sa.GetInstance();
+            //var db = new SugarADO().sc;
+            SugarADO sa = new SugarADO();
+            var db = sa.GetInstance();
 
-            //db.DbFirst.Where(tablename).CreateClassFile(@"C:\DataBase\SqlClz");
+            db.DbFirst.Where(tablename).CreateClassFile(@"C:\DataBase\SqlClz");
 
             return 1;
         }

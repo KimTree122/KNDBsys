@@ -25,13 +25,13 @@ namespace KNDBsys.IService
         string DeleteSysdic(string dic);
     }
 
-    public interface IUserInfoSer : ICrudService<UserInfo>
+    public interface IUserInfoSer : ICrudService<RegUserInfo>
     {
         string GetAllUserInfo(string userid);
         string GetUserInfoByAccount(string account, string pwd);
-        UserInfo GetUserInfobyID_claz(string userid);
+        RegUserInfo GetUserInfobyID_claz(string userid);
         string GetUserInfobyID(string userid);
-        UserInfo GetUserInfoByAccount_claz(string account, string pwd);
+        RegUserInfo GetUserInfoByAccount_claz(string account, string pwd);
     }
 
     public interface IUserAuthSer : ICrudService<UserAuth>

@@ -12,9 +12,9 @@ namespace KNDBsys.Service.BaseInfoSer
 {
     public class CustomInfoSer : CurdService<CustomInfo>, ICustomInfoSer
     {
-        public override void SetDbset(SugarDBContext db)
+        public override void SetDbset(SugarDBContext<CustomInfo> db)
         {
-            dbSet = db.CustomInfoDb;
+            dbSet = db.EntityDb;
         }
 
         public string GetAllCustomInfo(string userid)

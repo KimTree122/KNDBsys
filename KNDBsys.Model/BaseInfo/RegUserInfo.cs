@@ -6,11 +6,11 @@ using System.Text;
 namespace KNDBsys.Model.BaseInfo
 {
     ///<summary>
-    ///
+    ///注册用户基础信息
     ///</summary>
-    public partial class UserInfo
+    public partial class RegUserInfo
     {
-        public UserInfo()
+        public RegUserInfo()
         {
 
 
@@ -27,30 +27,49 @@ namespace KNDBsys.Model.BaseInfo
         /// Default:
         /// Nullable:True
         /// </summary>           
-        public string Uname { get; set; }
-
-        public string Uaccount { get; set; }
+        public string RegName { get; set; }
 
         /// <summary>
         /// Desc:
         /// Default:
         /// Nullable:True
         /// </summary>           
-        public string Upwd { get; set; }
+        public string RegAccount { get; set; }
 
         /// <summary>
         /// Desc:
         /// Default:
         /// Nullable:True
         /// </summary>           
-        public string Utel { get; set; }
+        public string RegPwd { get; set; }
 
         /// <summary>
         /// Desc:
         /// Default:
         /// Nullable:True
         /// </summary>           
-        public string UPost { get; set; }
+        public string RegTel { get; set; }
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public string RegEmail { get; set; }
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public string RegRole { get; set; }
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public int? UserID { get; set; }
 
         /// <summary>
         /// Desc:

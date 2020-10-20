@@ -22,10 +22,10 @@ namespace KNDBsys.WEB.Areas.Work.Controllers
 
         #region 登记记录 
 
-        public string GetCustomHistory(int customid, int stauts)
-        {
-            return checkInbll.GetCustomHistory(customid, stauts);
-        }
+        //public string GetCustomHistory(int customid, int stauts)
+        //{
+        //    return checkInbll.GetCustomHistory(customid, stauts);
+        //}
 
         public string GetCheckInByMTid(int checkinmtid)
         {

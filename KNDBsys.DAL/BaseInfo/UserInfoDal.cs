@@ -7,7 +7,7 @@ using System.Text;
 
 namespace KNDBsys.DAL.BaseInfo
 {
-    public class UserInfoDal:BaseDal<UserInfo>, IUserInfoDal
+    public class UserInfoDal:BaseDal<RegUserInfo>, IUserInfoDal
     {
 
     }

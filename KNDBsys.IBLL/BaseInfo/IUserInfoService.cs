@@ -6,7 +6,7 @@ using System.Text;
 
 namespace KNDBsys.IBLL.BaseInfo
 {
-    public interface IUserInfoService:IBaseServiceBLL<UserInfo>
+    public interface IUserInfoService:IBaseServiceBLL<RegUserInfo>
     {
 
     }

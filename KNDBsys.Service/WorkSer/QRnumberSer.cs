@@ -11,9 +11,9 @@ namespace KNDBsys.Service.WorkSer
 {
     public class QRnumberSer : CurdService<QRnumber>
     {
-        public override void SetDbset(SugarDBContext db)
+        public override void SetDbset(SugarDBContext<QRnumber> db)
         {
-            dbSet = db.QRnumberDb;
+            dbSet = db.EntityDb;
         }
 
         public string GetNextNumber()

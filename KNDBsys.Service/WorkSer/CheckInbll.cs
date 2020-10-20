@@ -19,16 +19,16 @@ namespace KNDBsys.Service.WorkSer
 
         
 
-        public string GetCheckInMT(int customid,int stauts)
-        {
-            List<CheckInMT> ciMT = CheckInMTDb.GetList( c => 
-            c.delflag == false & c.CustomID == customid ).ToList();
-            if (stauts == 0)
-            {
-                ciMT = ciMT.Where(e => e.ServerStauts == stauts).ToList();
-            }
-            return DataSwitch.HttpPostList<CheckInMT>(ciMT);
-        }
+        //public string GetCheckInMT(int customid,int stauts)
+        //{
+        //    List<CheckInMT> ciMT = CheckInMTDb.GetList( c => 
+        //    c.delflag == false & c.CustomID == customid ).ToList();
+        //    if (stauts == 0)
+        //    {
+        //        ciMT = ciMT.Where(e => e.ServerStauts == stauts).ToList();
+        //    }
+        //    return DataSwitch.HttpPostList<CheckInMT>(ciMT);
+        //}
 
         public string GetCustomidByQR(string qrcode)
         {
@@ -38,12 +38,12 @@ namespace KNDBsys.Service.WorkSer
             return DataSwitch.HttpPostMsg(customid);
         }
 
-        public string GetCheckInDT(int checkinid)
-        {
-            List<CheckInDT> ciDT = CheckInDTDb.GetList(c =>
-           c.delflag == false & c.CheckInID == checkinid).OrderBy(k => k.CheckData).ToList();
-            return DataSwitch.HttpPostList<CheckInDT>(ciDT);
-        }
+        //public string GetCheckInDT(int checkinid)
+        //{
+        //    List<CheckInDT> ciDT = CheckInDTDb.GetList(c =>
+        //   c.delflag == false & c.CheckInID == checkinid).OrderBy(k => k.CheckData).ToList();
+        //    return DataSwitch.HttpPostList<CheckInDT>(ciDT);
+        //}
 
         public string GetCheckInMTDT(int checkinmtid)
         {
@@ -76,33 +76,33 @@ namespace KNDBsys.Service.WorkSer
             return str;
         }
 
-        public string GetCustomHistory(int customid, int stauts)
-        {
-            var q = Db.Queryable<CheckInMT, ServerType, Sysdic>(
-                (cm, st, sd) => new object[] {
-                    JoinType.Left, cm.ServerTypeID == st.id,
-                    JoinType.Left,cm.ServerStauts == sd.id }
-                ).Where((cm, st) => cm.delflag == false & cm.CustomID == customid)
-                .Select((cm, st, sd) => new { cm.id, st.TreeName, cm.CheckDate, sd.Dicval, cm.FinishDate, cm.ServerStauts }).ToList();
+        //public string GetCustomHistory(int customid, int stauts)
+        //{
+        //    var q = Db.Queryable<CheckInMT, ServerType, Sysdic>(
+        //        (cm, st, sd) => new object[] {
+        //            JoinType.Left, cm.ServerTypeID == st.id,
+        //            JoinType.Left,cm.ServerStauts == sd.id }
+        //        ).Where((cm, st) => cm.delflag == false & cm.CustomID == customid)
+        //        .Select((cm, st, sd) => new { cm.id, st.TreeName, cm.CheckDate, sd.Dicval, cm.FinishDate, cm.ServerStauts }).ToList();
 
-            List<CustomHistoryVM> cvm = new List<CustomHistoryVM>();
-            foreach (var vm in q)
-            {
-                CustomHistoryVM ch = new CustomHistoryVM {
-                    id = vm.id,
-                    CheckDate = vm.CheckDate,
-                    Dicname = vm.Dicval,
-                    FinishDate = vm.FinishDate,
-                    TypeName = vm.TreeName,
-                    ServerStauts =(int) vm.ServerStauts
-                };
-                cvm.Add(ch);
-            }
+        //    List<CustomHistoryVM> cvm = new List<CustomHistoryVM>();
+        //    foreach (var vm in q)
+        //    {
+        //        CustomHistoryVM ch = new CustomHistoryVM {
+        //            id = vm.id,
+        //            CheckDate = vm.CheckDate,
+        //            Dicname = vm.Dicval,
+        //            FinishDate = vm.FinishDate,
+        //            TypeName = vm.TreeName,
+        //            ServerStauts =(int) vm.ServerStauts
+        //        };
+        //        cvm.Add(ch);
+        //    }
 
-            if (stauts != 0) cvm = cvm.Where(c => c.ServerStauts == stauts).ToList();
-            cvm = cvm.OrderByDescending(c => c.id).ToList();
-            return DataSwitch.HttpPostList<CustomHistoryVM>(cvm);
-        }
+        //    if (stauts != 0) cvm = cvm.Where(c => c.ServerStauts == stauts).ToList();
+        //    cvm = cvm.OrderByDescending(c => c.id).ToList();
+        //    return DataSwitch.HttpPostList<CustomHistoryVM>(cvm);
+        //}
 
         public string GetQRnumber()
         {

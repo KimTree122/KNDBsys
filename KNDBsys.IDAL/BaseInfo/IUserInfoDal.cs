@@ -6,7 +6,7 @@ using System.Text;
 
 namespace KNDBsys.IDAL.BaseInfo
 {
-    public interface IUserInfoDal:IBaseDal<UserInfo>
+    public interface IUserInfoDal:IBaseDal<RegUserInfo>
     {
     }
 }

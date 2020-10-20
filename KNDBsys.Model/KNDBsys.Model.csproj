@@ -60,7 +60,7 @@
     <Compile Include="BaseInfo\CustomInfo.cs" />
     <Compile Include="BaseInfo\Goods.cs" />
     <Compile Include="BaseInfo\Sysdic.cs" />
-    <Compile Include="BaseInfo\UserInfo.cs" />
+    <Compile Include="BaseInfo\RegUserInfo.cs" />
     <Compile Include="PostData.cs" />
     <Compile Include="SugarADO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

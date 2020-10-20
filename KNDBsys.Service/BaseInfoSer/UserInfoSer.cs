@@ -10,28 +10,28 @@ using System.Text;
 
 namespace KNDBsys.Service.BaseInfoSer
 {
-    public class UserInfoSer : CurdService<UserInfo>,IUserInfoSer
+    public class UserInfoSer : CurdService<RegUserInfo>,IUserInfoSer
     {
-        public override void SetDbset(SugarDBContext db)
+        public override void SetDbset(SugarDBContext<RegUserInfo> db)
         {
-            dbSet = db.UserInfoDb;
+            dbSet = db.EntityDb;
         }
 
         public string GetAllUserInfo(string userid)
         {
-            var userlist = dbSet.FullClient.Queryable<UserInfo>().Where( e => e.delflag == false).Select((ui)=>
-            new UserInfo() { id = ui.id, Uname = ui.Uname, UPost = ui.UPost, Utel = ui.Utel }).ToList();
-            return DataSwitch.HttpPostList<UserInfo>(userlist);
+            var userlist = dbSet.FullClient.Queryable<RegUserInfo>().Where( e => e.delflag == false).Select((ui)=>
+            new RegUserInfo() { id = ui.id, RegName = ui.RegName , RegTel = ui.RegTel }).ToList();
+            return DataSwitch.HttpPostList<RegUserInfo>(userlist);
         }
 
         public string GetUserInfoByAccount(string account, string pwd)
         {
-            var q = dbSet.GetList().Find(u => u.Uaccount == account & u.Upwd == pwd);
-            return DataSwitch.HttpPostEntity<UserInfo>(q);
+            var q = dbSet.GetList().Find(u => u.RegAccount == account & u.RegPwd == pwd);
+            return DataSwitch.HttpPostEntity<RegUserInfo>(q);
         }
 
 
-        public UserInfo GetUserInfobyID_claz(string userid)
+        public RegUserInfo GetUserInfobyID_claz(string userid)
         {
             var userlist = dbSet.GetById(userid);
             return userlist;
@@ -40,12 +40,12 @@ namespace KNDBsys.Service.BaseInfoSer
         public string GetUserInfobyID(string userid)
         {
             var entity = dbSet.GetById(userid);
-            return DataSwitch.HttpPostEntity<UserInfo>(entity);
+            return DataSwitch.HttpPostEntity<RegUserInfo>(entity);
         }
 
-        public UserInfo GetUserInfoByAccount_claz(string account, string pwd)
+        public RegUserInfo GetUserInfoByAccount_claz(string account, string pwd)
         {
-            var q = dbSet.GetList().Find(u => u.Uaccount == account & u.Upwd == pwd);
+            var q = dbSet.GetList().Find(u => u.RegAccount == account & u.RegPwd == pwd);
             return q;
         }
 

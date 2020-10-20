@@ -12,9 +12,9 @@ namespace KNDBsys.Service.BaseInfoSer
 {
     public class ServerTypeSer : CurdService<ServerType>, IServerTypeSer
     {
-        public override void SetDbset(SugarDBContext db)
+        public override void SetDbset(SugarDBContext<ServerType> db)
         {
-            dbSet = db.ServerTypeDb;
+            dbSet = db.EntityDb;
         }
 
         public string GetAllServerType(string userid)
